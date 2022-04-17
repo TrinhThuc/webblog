@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up</title>
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;900&display=swap"
+        rel="stylesheet"> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/homepage/css/base.css">
+    <link rel="stylesheet" href="/static/signup/css/main.css">
+</head>
+
+<body>
+    <div class="main_background">
+        <div class="main" >
+            <!-- <img src="./asset/img/post.jpg" alt="" class="header-logo"> -->
+            <form class="form__sign-up"  name='form' th:action="@{/j_spring_security_check}" method='POST'>
+                <h3 class="form__subtitle">Welcome Back</h3>
+                <h1 class="form__title">Đăng nhập tài khoản của bạn</h1>
+                <div class="form__input">
+                    <label class="form__input-title" for="Email-title">Email</label>
+                    <input type="text" class="form__input-content" name='username' id="Email-title" placeholder="Example@gmail.com" required>
+                </div>
+                <div class="form__input">
+                    <label class="form__input-title" for="password-title">Mật khẩu</label>
+                    <input type="password" class="form__input-content" name='password' id="password-title" placeholder="******" required>
+                </div>
+                <div class="form__related-to-password">
+                    <div class="form__remember-pw">
+                        <input type="radio" class="form__remember-checkbox">
+                        <div class="form__remember-text">Nhớ mật khẩu</div>
+                    </div>
+                    <a href="#" class="form__forgot-pw">Quên mật khẩu?</a>
+                </div>
+                <button class="form__login-now" name="submit" type="submit" value="submit">Đăng nhập</button>
+                <div class="form__text-selection">- Hoặc -</div>
+                <div class="form__conection">
+                    <button class="form__conection-socialNetwork background--GG">
+                        <i class="fa-brands fa-google form__conection-socialNetwork-icon"></i>
+                        Đăng nhập với Google
+                    </button>
+                    <button class="form__conection-socialNetwork background--FB">
+                        <i class="fa-brands fa-facebook form__conection-socialNetwork-icon"></i>
+                        Đăng nhập với Facebook
+                    </button>
+                </div>
+            </form>
+            <p class="footer_link">
+                Chưa có tài khoản?
+                <a href="#">Đăng ký ngay</a>
+            </p>
+        </div>
+    </div>
+</body>
+
+</html>

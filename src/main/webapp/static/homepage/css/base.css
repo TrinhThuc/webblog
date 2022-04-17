@@ -1,0 +1,81 @@
+:root {
+    --primary-color: #afd5de;
+    --primary-color-lighter: #8bb1bc;
+    --text-color: #333;
+    --white-color: #fff;
+    --black-color: #000;
+    --header-height: 125px;
+    --border-color: #dbdbdb;
+    --header-wrap-height: 80px;
+    --blue-500: 47,181,250;
+    --login-color: #04c35c;
+    --login-color-lighter: #2bbd6f;
+    
+    --max-width-grid: 1250px;
+    --width-sideBar: 200px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+    line-height: 1.6rem;
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.gridFlex {
+    width: 100%;
+    max-width: var(--max-width-grid);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.grid {
+    width: 100%;
+    max-width: var(--max-width-grid);
+    margin: 0 auto;
+}
+
+.background--GG {
+    background-color: #2d3748;
+}
+
+.background--GG:hover {
+    background-color: #414c5f;
+}
+
+.background--FB {
+    background-color: #129af6;
+}
+
+.background--FB:hover {
+    background-color: #2ba7fa;
+}
+
+/* ====== Admin page ====== */
+.border-bottom-1px {
+    border-bottom: 1px solid var(--border-color) !important;
+}
+.pagination-item-active {
+    background-color: var(--primary-color);
+    color: #fff;
+    border-radius: 50%;
+}

@@ -1,0 +1,39 @@
+/* tablet */
+@media (min-width: 46.25em) and (max-width: 63.9375em) {
+    
+}
+
+/* Mobile */
+@media (max-width: 46.1875em) {
+    .header {
+        margin: 0 8px;
+    }
+
+    .header__wrap {
+        flex-wrap: wrap;
+        height: 100%;
+    }
+
+    .header__search {
+        order: 3;
+    }
+
+    .header__logo {
+        order: 1;
+    }
+
+    .header__signIn {
+        order: 2;
+    }
+
+    .header__navbar-followed-list {
+        top: 100%;
+    }
+
+    .header__navbar-followed-empty {
+    }
+
+    .header__navbar-list {
+        position: relative;
+    }
+}

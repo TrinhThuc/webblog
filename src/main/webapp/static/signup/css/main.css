@@ -1,0 +1,157 @@
+html, body {
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--primary-color);
+    position: relative;
+}
+
+.main_background {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.main_background::before {
+    content: '';
+    background-image: url(https://scontent.fhan3-3.fna.fbcdn.net/v/t1.15752-9/275564816_710183776825273_159216032791014765_n.png?_nc_cat=111&ccb=1-5&_nc_sid=ae9488&_nc_ohc=gL75W_ExO4cAX8mdcuf&_nc_ht=scontent.fhan3-3.fna&oh=03_AVLt5k57vWcljusl4wo1EJLl8Vlu8NHu7qbtH5Uf4GYjzw&oe=6268ABC0);
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    opacity: 0.15;
+    z-index: 1;
+}
+
+.main {
+    width: 72vw;
+    height: 100vh;
+    background-color: rgb(247 252 255);
+    position: absolute;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-top-left-radius: 40px;
+    border-bottom-left-radius: 40px;
+    gap: 50px;
+}
+
+.form__sign-up {
+    z-index: 2;
+    /* background-color: transparent; */
+    max-width: 500px;
+}
+
+.form__subtitle{
+    font-weight: 500;
+    margin-bottom: 8px;
+    font-size: 1.4rem;
+}
+
+.form__title {
+    font-size: 3rem;
+    line-height: 3rem;
+    margin-bottom: 50px;
+}
+
+.form__input-title {
+    font-size: 1.4rem;
+    margin-bottom: 4px;
+    display: block;
+    color: var(--text-color);
+}
+
+.form__input-content {
+    padding: 10px;
+    width: 100%;
+    outline: none;
+    border: 1px solid var(--border-color);
+    transition: border ease 0.3s;
+    line-height: 1.6rem;
+    margin-bottom: 14px;
+    font-size: 1.4rem;
+    border-radius: 3px;
+}
+
+.form__input-content:focus {
+    border: 1px solid #000;
+}
+
+.form__related-to-password {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+.form__remember-pw {
+    display: flex;
+    align-items: center;   
+    font-weight: 500;
+}
+
+.form__remember-checkbox {
+    margin-right: 4px;
+}
+
+.form__login-now {
+    width: 100%;
+    background-color: var(--login-color);
+    border: none;
+    outline: none;
+    color: var(--white-color);
+    font-size: 1.6rem;
+    padding: 10px;
+    border-radius: 3px;
+    font-weight: 600;
+}
+
+.form__login-now:hover {
+    cursor: pointer;
+    background-color: var(--login-color-lighter);
+}
+
+.form__text-selection {
+    text-align: center;
+    font-size: 1.6rem;
+    margin: 20px 0;
+    font-weight: 500;
+}
+
+.form__conection {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.form__conection-socialNetwork {
+    outline: none;
+    border: none;
+    color: #fff;
+    padding: 12px;
+    border-radius: 3px;
+    min-width: 180px;
+}
+
+.form__conection-socialNetwork:hover {
+    cursor: pointer;
+}
+
+.form__conection-socialNetwork-icon {
+    color: #fff;
+    margin-right: 4px;
+}
+
+.footer_link {
+    font-size: 1.4rem;
+    z-index: 2;
+}
+
+.footer_link a:hover{
+     cursor: pointer;
+}
+
+/* test git */

@@ -24,7 +24,4 @@ public class RoleEntity extends BaseEntity{
 
 
 
-	
-	
-	
 }

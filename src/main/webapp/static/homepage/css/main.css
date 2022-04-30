@@ -2,12 +2,14 @@
     height: var(--header-height);
     border-bottom: 1px solid var(--border-color);
     background-color: var(--white-color);
-    position: relative;
-    box-shadow: 0 10px 15px -3px rgba(var(--blue-500),.05),0 4px 6px -2px rgba(var(--blue-500),.025)!important;
+    position: sticky;
+    top: 0;
+    transition: all 0.3s;
+    box-shadow: 0 10px 15px -3px rgba(var(--blue-500), 0.05),
+    0 4px 6px -2px rgba(var(--blue-500), 0.025) !important;
 }
 
-
-.header__wrap {
+.header__top-section {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -15,26 +17,42 @@
     height: 80px;
 }
 
-.header__search {
-    border: 1px solid var(--border-color);
-    border-radius: 100rem;
+.header__top-item {
+    transition: opacity 0.3s ease-in-out;
+}
+
+.header__search-bar {
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(246, 248, 252);
     overflow: hidden;
     padding: 8px 12px;
-    display: flex;
+    display: none;
     align-items: center;
-    order: 2;
-    transition: border 0.3s ease;
-    width: 400px;
-    max-width: 500px;
+    width: 40%;
+    height: 65%;
+    margin-top: 20px;
+    margin-bottom: 12px;
+    opacity: 0;
+    transition: width 0.4s ease-in-out, opacity 0.5s ease-in-out;
 }
 
-.header__search:focus-within {
-    border: 1px solid #000;
-}
-
-.header__search i {
+.header__search-bar i {
     color: #ccc;
-    font-size: 1.4rem;
+    font-size: 1.6rem;
+    padding: 10px;
+    background-color: rgb(246, 248, 252);
+}
+
+.header__search-bar i:first-child {
+    cursor: pointer;
+    margin-left: 6px;
+    margin-right: 10px;
+}
+
+.header__search-bar i:last-child {
+    margin-left: 18px;
+    margin-right: 10px;
 }
 
 .header__search-input {
@@ -42,9 +60,15 @@
     border: none;
     padding-left: 10px;
     font-size: 1.5rem;
-    color: #ccc;
     caret-color: #000;
     width: 100%;
+    background-color: rgb(246, 248, 252);
+    font-family: "Montserrat", Arial, Helvetica, sans-serif;
+}
+
+.header__search-input::placeholder {
+    font-size: 1.2rem;
+    color: #979cae;
 }
 
 .header__logo {
@@ -56,7 +80,31 @@
 }
 
 .header__signIn {
-    order: 3;
+    order: 2;
+    display: flex;
+}
+
+.header__search-icon {
+    font-size: 2.2rem;
+    border: none;
+    border-radius: 5px;
+    color: #dfdee5;
+    background-color: #fff;
+    margin-right: 12px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    overflow: hidden;
+    transition: background-color ease-in 0.3s;
+}
+
+.header__search-icon i {
+    padding: 10px;
+    margin: 0;
+}
+
+.header__search-icon:hover i {
+    background-color: rgb(255 247 254);
 }
 
 .header_signIn-btn:hover {
@@ -69,28 +117,34 @@
     border: none;
     border-radius: 3px;
     background-color: #3398d4;
-    padding: 10px;
+    padding: 10px 16px;
     font-size: 1.7rem;
-    color: var(--white-color)
+    color: var(--white-color);
 }
 
-.header__navbar-list {
+.header__bottom-section {
     display: flex;
     justify-content: space-between;
     align-items: center;
     list-style: none;
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     text-transform: uppercase;
+    width: 100%;
+    height: 100%;
+}
+
+.header__bottom-section li a:hover {
+    color: #999;
 }
 
 .header__navbar-item {
     -moz-user-select: none !important;
-    -webkit-touch-callout: none!important;
-    -webkit-user-select: none!important;
-    -khtml-user-select: none!important;
-    -moz-user-select: none!important;
-    -ms-user-select: none!important;
-    user-select: none!important;
+    -webkit-touch-callout: none !important;
+    -webkit-user-select: none !important;
+    -khtml-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
 }
 
 .header__navbar-item:hover {
@@ -99,6 +153,8 @@
 
 .header__navbar-item a {
     color: var(--text-color);
+    transition: color ease-in 0.2s;
+    font-weight: 500;
 }
 
 .header__navbar-item:first-child {
@@ -117,20 +173,19 @@
     padding: 15px 20px;
     border: 1px solid var(--border-color);
     border-top: none;
-    /* display: flex; */
     flex-direction: column;
     justify-content: center;
-    box-shadow: 0 10px 15px -3px rgba(var(--blue-500),.05),0 4px 6px -2px rgba(var(--blue-500),.025)!important;
+    box-shadow: 0 10px 15px -3px rgba(var(--blue-500), 0.05),
+    0 4px 6px -2px rgba(var(--blue-500), 0.025) !important;
     display: none;
+    transition: height ease-in 0.3s;
 }
 
-.header__navbar-followed-list.openFlex {
-    display: flex !important;
+.header__navbar-followed-list.open {
+    display: flex;
 }
 
-.header__navbar-list:nth-child(1) {
-    
-}
+/* .header__bottom-section:nth-child(1) {} */
 
 .header__navbar-followed-empty {
     border: 1px solid var(--border-color);
@@ -146,18 +201,28 @@
 }
 
 /* ----CONTAINER---- */
+.grid {
+    display: grid;
+    grid-gap: 5px;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(3, 300px);
+}
+
+.container__post--large {
+    grid-row: span 2;
+    grid-column: span 2;
+}
+
 .container__post {
-    display: flex;
     padding: 0 12px;
-    margin: 20px 0;
+    margin-top: 20px;
+    margin-bottom: 10px;
 }
 
 .container__post-img {
     border-radius: 10px;
-    margin-right: 48px;
+    margin-right: 25px;
 }
-
-
 
 .container__post-content {
     display: flex;
@@ -168,6 +233,7 @@
     height: 40px;
     border-radius: 100rem;
 }
+
 .container__post-title {
     color: #222;
     font-size: 2rem;
@@ -182,13 +248,11 @@
     line-height: 2rem;
 }
 
-
 .container__post-userAndTime {
     margin-top: 16px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-
 }
 
 .container__post-user {
@@ -223,8 +287,8 @@
 
 /* CONTAINER - POST LARGE */
 .container__post-title--large {
-    font-size: 4.2rem;
-    line-height: 4.2rem;
+    margin-top: 20px;
+    line-height: 2.4rem;
 }
 
 .container__post-content--large {
@@ -233,29 +297,29 @@
 }
 
 .container__post-img--large {
+    min-height: 285px;
     height: 385px;
-    width: 385px;
 }
 
 /* CONTAINER - POST MEDIUM */
 .container__post--medium {
-    flex-direction: column;
+    grid-column: 3 / -1;
+    display: flex;
 }
 
 .container__post-img--medium {
-    width: 400px;
-    height: 260px;
+    width: 280px;
+    height: 210px;
 }
 
 .container__post-title--medium {
     font-size: 2rem;
-    line-height: 2rem;
-    margin-top: 20px;
-
+    line-height: 2.4rem;
 }
 
 .container__post-content--medium {
     flex-direction: column;
+    justify-content: space-between;
 }
 
 /* CONTAINER - POST SMALL */
@@ -268,5 +332,3 @@
     flex-direction: column;
     justify-content: center;
 }
-
-

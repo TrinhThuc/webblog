@@ -1,0 +1,34 @@
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div class="sideBar" th:fragment="menu">
+    <div class="sideBar__logo">
+        <img src="/static/homepage/img/logo-blog.png" alt="" class="sideBar__logo-img" />
+    </div>
+
+    <ul class="sideBar__lists">
+        <a href="./admin.html">
+            <li class="sideBar__item active">
+                <i class="fas fa-user sideBar__item-icon"></i>
+                Quản lý người dùng
+            </li>
+        </a>
+
+        <a href="./Role_manage.html">
+            <li class="sideBar__item">
+                <i class="fas fa-book sideBar__itemsicon"></i>
+                Quản lý role
+            </li>
+        </a>
+
+        <a href="./posts-manage.html">
+            <li class="sideBar__item">
+                <i class="fas fa-book sideBar__item-icon"></i>
+                Quản lý bản tin
+            </li>
+        </a>
+
+
+    </ul>
+</div>
+
+</html>

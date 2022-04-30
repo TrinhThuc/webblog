@@ -25,7 +25,6 @@ public class SpringWebConfig implements WebMvcConfigurer {
         templateResolver.setPrefix("/WEB-INF/templates/");
         templateResolver.setSuffix(".html");
         templateResolver.setTemplateMode(TemplateMode.HTML);
-
         templateResolver.setCacheable(false);
         return templateResolver;
     }

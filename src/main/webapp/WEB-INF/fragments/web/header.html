@@ -1,0 +1,72 @@
+<!DOCTYPE html >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<header class="header" th:fragment="header">
+    <div class="gridFlex">
+        <div class="header__top-section">
+            <div class="header__top-item header__search-bar">
+                <i
+                        class="fa-solid fa-arrow-left header__search-bar__back-button"
+                ></i>
+                <input
+                        type="text"
+                        class="header__search-input"
+                        placeholder="Tìm kiếm bài viết, hoặc tác giả..."
+                />
+                <i class="fas fa-search"></i>
+            </div>
+
+            <div class="header__top-item header__logo">
+                <a href="#" class="header__logo-link">
+                    <img
+                            src="/static/homepage/img/logo-blog.png"
+                            alt=""
+                            class="header__logo-img"
+                    />
+                </a>
+            </div>
+
+            <div class="header__top-item header__signIn">
+                <button class="header__search-icon">
+                    <i
+                            class="fa-solid fa-magnifying-glass header__search-icon"
+                    ></i>
+                </button>
+                <a th:href="@{/dang-nhap}">
+                    <button class="header_signIn-btn">Đăng nhập</button>
+                </a>
+
+
+
+            </div>
+        </div>
+
+        <ul class="header__bottom-section">
+            <li class="header__navbar-item followed-list">
+                Đang theo dõi
+                <i class="fas fa-chevron-down"></i>
+            </li>
+            <li class="header__navbar-item">
+                <a href="">Tất cả</a>
+            </li>
+            <li class="header__navbar-item">
+                <a href="">Khoa Học - công nghệ</a>
+            </li>
+            <li class="header__navbar-item">
+                <a href="">Thể thao</a>
+            </li>
+            <li class="header__navbar-item">
+                <a href="">truyền cảm hứng</a>
+            </li>
+            <li class="header__navbar-item">
+                <a href="">game</a>
+            </li>
+
+            <ul class="header__navbar-followed-list empty">
+                <li class="header__navbar-followed-empty">
+                    Danh sách theo dõi rỗng
+                </li>
+            </ul>
+        </ul>
+    </div>
+</header>
+</html>

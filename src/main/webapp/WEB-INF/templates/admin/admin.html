@@ -8,256 +8,404 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-    <link rel="stylesheet" type="text/css" href="/static/homepage/css/base.css" >
-    <link rel="stylesheet" type="text/css" href="/static/admin/css/main.css" >
+    <link rel="stylesheet" type="text/css" href="/static/homepage/css/base.css">
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/base_admin.css">
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/main.css">
 </head>
+
 <body>
-    <div class="main">
-        <div class="sideBar">
-            <div class="sideBar__logo">
-                <img src="../../../static/homepage/img/logo-blog.png" alt="" class="sideBar__logo-img">
+<div class="main">
+
+    <div th:replace="../fragments/admin/menu :: menu"></div>
+    <div class="container">
+        <div id="container-w1" class="container__wrapper active">
+            <div class="container__top">
+                <div class="container__title">danh sách người dùng</div>
+                <div class="container__refresh-btn">
+                    <i class="fa-solid fa-arrow-rotate-right"></i>
+                </div>
+            </div>
+            <div class="container__search">
+                <input type="text" class="container__input"
+                       placeholder="Nhập tên đăng nhập, họ tên, vị trí và nhóm" />
+            </div>
+            <div class="container__filter">
+                <ul class="container__filter-lists">
+                    <li class="container__filter-item">
+                        <span id="title-0" class="container__filter-title">Phân quyền</span>
+                        <i class="fa-solid fa-angle-down"></i>
+                        <ul id="filter-0" class="container__selection-list">
+                            <li class="container__selection-item">Super admin</li>
+                            <li class="container__selection-item">Admin</li>
+                            <li class="container__selection-item">Dân thường</li>
+                            <li class="container__selection-item">Only read</li>
+                        </ul>
+                    </li>
+                    <li class="container__filter-item">
+                        <span id="title-1" class="container__filter-title">Trạng thái</span>
+                        <i class="fa-solid fa-angle-down"></i>
+                        <ul id="filter-1" class="container__selection-list">
+                            <li class="container__selection-item">Online</li>
+                            <li class="container__selection-item">Offline</li>
+                        </ul>
+                    </li>
+                    <li class="container__filter-item">
+                        <span id="title-2" class="container__filter-title">Kiểu người dùng</span>
+                        <i class="fa-solid fa-angle-down"></i>
+                        <ul id="filter-2" class="container__selection-list">
+                            <li class="container__selection-item">Trưởng nhóm truyền thông</li>
+                            <li class="container__selection-item">Trưởng nhóm</li>
+                            <li class="container__selection-item">Dân thường</li>
+                            <li class="container__selection-item">Only read</li>
+                        </ul>
+                    </li>
+                    <li class="container__filter-item">
+                        <span id="title-3" class="container__filter-title">Nhóm</span>
+                        <i class="fa-solid fa-angle-down"></i>
+                        <ul id="filter-3" class="container__selection-list">
+                            <li class="container__selection-item">Dev</li>
+                            <li class="container__selection-item">Backend</li>
+                            <li class="container__selection-item">Truyền thông</li>
+                            <li class="container__selection-item">Only read</li>
+                        </ul>
+                    </li>
+                    <li id="filter-4" class="container__filter-item">Lọc kết quả</li>
+                </ul>
             </div>
 
-            <ul class="sideBar__lists">
-                <li class="sideBar__item">
-                    <i class="fas fa-user sideBar__item-icon"></i>
-                    Quản lý người dùng
+            <table class="container__table">
+                <tr class="container__table-row border-bottom-1px">
+                    <th>STT</th>
+                    <th>Họ và Tên</th>
+                    <th>Tên đăng nhập</th>
+                    <th>Phân quyền</th>
+                    <th>Kiểu người dùng</th>
+                    <th>Nhóm</th>
+                    <th>Trạng thái</th>
+                    <th class="container__addMore-btn">
+                        <i class="fa-solid fa-plus"></i>
+                        Thêm mới
+                    </th>
+                </tr>
+
+                <tr class="container__table-row">
+                    <td>1</td>
+                    <td>Trần Thị Bích Diệp</td>
+                    <td>BichDiep1309</td>
+                    <td>admin</td>
+                    <td>Trưởng nhóm truyền thông</td>
+                    <td>Truyền thông</td>
+                    <td>Hoạt động</td>
+                    <td>
+                        <i class="fa-solid fa-eye container__table-icon"></i>
+                        <i class="fa-solid fa-pen container__table-icon"></i>
+                        <i class="fa-solid fa-trash container__table-icon"></i>
+                    </td>
+                </tr>
+                <tr class="container__table-row">
+                    <td>2</td>
+                    <td>Phan Hữu Việt</td>
+                    <td>PhanViet2002</td>
+                    <td>Super Super admin</td>
+                    <td>Trưởng nhóm</td>
+                    <td>dev</td>
+                    <td>Hoạt động</td>
+                    <td>
+                        <i class="fa-solid fa-eye container__table-icon"></i>
+                        <i class="fa-solid fa-pen container__table-icon"></i>
+                        <i class="fa-solid fa-trash container__table-icon"></i>
+                    </td>
+                </tr>
+                <tr class="container__table-row">
+                    <td>3</td>
+                    <td>Vũ Minh Hòa</td>
+                    <td>MinhHoa2002</td>
+                    <td>Dân thường</td>
+                    <td>only reading</td>
+                    <td>dev</td>
+                    <td>Hoạt động</td>
+                    <td>
+                        <i class="fa-solid fa-eye container__table-icon"></i>
+                        <i class="fa-solid fa-pen container__table-icon"></i>
+                        <i class="fa-solid fa-trash container__table-icon"></i>
+                    </td>
+                </tr>
+                <tr class="container__table-row">
+                    <td>4</td>
+                    <td>Trần Thị Diễm</td>
+                    <td>TranDiem2002</td>
+                    <td>Dân thường</td>
+                    <td>only reading</td>
+                    <td>dev</td>
+                    <td>Hoạt động</td>
+                    <td>
+                        <i class="fa-solid fa-eye container__table-icon"></i>
+                        <i class="fa-solid fa-pen container__table-icon"></i>
+                        <i class="fa-solid fa-trash container__table-icon"></i>
+                    </td>
+                </tr>
+                <tr class="container__table-row">
+                    <td>5</td>
+                    <td>Thực Trịnh Văn</td>
+                    <td>ThucCho'2002</td>
+                    <td>Dân thường</td>
+                    <td>Thg tạch thể truất</td>
+                    <td>dev</td>
+                    <td>Hoạt động</td>
+                    <td>
+                        <i class="fa-solid fa-eye container__table-icon"></i>
+                        <i class="fa-solid fa-pen container__table-icon"></i>
+                        <i class="fa-solid fa-trash container__table-icon"></i>
+                    </td>
+                </tr>
+                <tr class="container__table-row">
+                    <td>6</td>
+                    <td>Thực Trịnh Văn</td>
+                    <td>ThucCho'2002</td>
+                    <td>Dân thường</td>
+                    <td>Thg tạch thể truất</td>
+                    <td>dev</td>
+                    <td>Hoạt động</td>
+                    <td>
+                        <i class="fa-solid fa-eye container__table-icon"></i>
+                        <i class="fa-solid fa-pen container__table-icon"></i>
+                        <i class="fa-solid fa-trash container__table-icon"></i>
+                    </td>
+                </tr>
+                <tr class="container__table-row">
+                    <td>7</td>
+                    <td>Thực Trịnh Văn</td>
+                    <td>ThucCho'2002</td>
+                    <td>Dân thường</td>
+                    <td>Thg tạch thể truất</td>
+                    <td>dev</td>
+                    <td>Hoạt động</td>
+                    <td>
+                        <i class="fa-solid fa-eye container__table-icon"></i>
+                        <i class="fa-solid fa-pen container__table-icon"></i>
+                        <i class="fa-solid fa-trash container__table-icon"></i>
+                    </td>
+                </tr>
+                <tr class="container__table-row">
+                    <td>8</td>
+                    <td>Thực Trịnh Văn</td>
+                    <td>ThucCho'2002</td>
+                    <td>Dân thường</td>
+                    <td>Thg tạch thể truất</td>
+                    <td>dev</td>
+                    <td>Hoạt động</td>
+                    <td>
+                        <i class="fa-solid fa-eye container__table-icon"></i>
+                        <i class="fa-solid fa-pen container__table-icon"></i>
+                        <i class="fa-solid fa-trash container__table-icon"></i>
+                    </td>
+                </tr>
+                <tr class="container__table-row">
+                    <td>9</td>
+                    <td>Thực Trịnh Văn</td>
+                    <td>ThucCho'2002</td>
+                    <td>Dân thường</td>
+                    <td>Thg tạch thể truất</td>
+                    <td>dev</td>
+                    <td>Hoạt động</td>
+                    <td>
+                        <i class="fa-solid fa-eye container__table-icon"></i>
+                        <i class="fa-solid fa-pen container__table-icon"></i>
+                        <i class="fa-solid fa-trash container__table-icon"></i>
+                    </td>
+                </tr>
+                <tr class="container__table-row">
+                    <td>10</td>
+                    <td>Thực Trịnh Văn</td>
+                    <td>ThucCho'2002</td>
+                    <td>Dân thường</td>
+                    <td>Thg tạch thể truất</td>
+                    <td>dev</td>
+                    <td>Hoạt động</td>
+                    <td>
+                        <i class="fa-solid fa-eye container__table-icon"></i>
+                        <i class="fa-solid fa-pen container__table-icon"></i>
+                        <i class="fa-solid fa-trash container__table-icon"></i>
+                    </td>
+                </tr>
+
+            </table>
+
+            <div class="container__pagination">
+                <button class="btn firstBtn">
+                    <i class="fa-solid fa-angles-left container__pagination-icon"></i>
+                </button>
+
+                <button class="btn prevBtn">
+                    <i class="fa-solid fa-angle-left container__pagination-icon"></i>
+                </button>
+
+                <ul class="container__pagination-lists">
+
+                </ul>
+
+                <button class="btn nextBtn">
+                    <i class="fa-solid fa-angle-right container__pagination-icon"></i>
+                </button>
+
+                <button class="btn lastBtn">
+                    <i class="fa-solid fa-angles-right container__pagination-icon"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal">
+    <!-- Modal delete -->
+    <div class="modal__wrap modal__wrap--delete">
+        <div class="modal__header">
+            <img src="/static/admin/img/warning-img.png" alt="" class="modal__img">
+        </div>
+        <div class="modal__title">Bạn có chắc chắn muốn xóa không?</div>
+        <div class="modal__choose">
+            <button class="btn modal__choose--yes">Yes</button>
+            <button class="btn modal__choose--no">No</button>
+        </div>
+    </div>
+
+    <!-- Modal edit -->
+    <div class="modal__wrap modal__wrap--edit">
+        <i class="fas fa-times modal__close"></i>
+        <!-- Edit info -->
+        <div class="modal__edit-inf">
+            <ul class="modal__edit-list">
+                <li class="modal__edit-item">
+                    <p class="modal__edit-text">
+                        Tên đăng nhập
+                        <i class="fas fa-asterisk modal__edit-icon"></i>
+                    </p>
+                    <input type="text" class="modal__edit-input" required>
                 </li>
-                <li class="sideBar__item">
-                    <i class="fas fa-book sideBar__itemsicon"></i>
-                    Quản lý role
+
+                <li class="modal__edit-item">
+                    <p class="modal__edit-text">
+                        Mật khẩu
+                        <i class="fas fa-asterisk modal__edit-icon"></i>
+                    </p>
+                    <input type="password" class="modal__edit-input" required>
                 </li>
-                <li class="sideBar__item">
-                    <i class="fas fa-book sideBar__item-icon"></i>
-                    Quản lý bản tin
+
+                <li class="modal__edit-item">
+                    <p class="modal__edit-text">
+                        Họ và tên
+                        <i class="fas fa-asterisk modal__edit-icon"></i>
+                    </p>
+                    <input type="text" class="modal__edit-input" required>
+                </li>
+
+                <li class="modal__edit-item">
+                    <p class="modal__edit-text">Email</p>
+                    <input type="email" class="modal__edit-input">
+                </li>
+
+            </ul>
+            <ul class="modal__edit-list">
+                <li class="modal__edit-item">
+                    <p class="modal__edit-text">Số điện thoại</p>
+                    <input type="number" class="modal__edit-input">
+                </li>
+
+                <li class="modal__edit-item">
+                    <p class="modal__edit-text">Role</p>
+                    <input type="text" class="modal__edit-input">
+                </li>
+
+                <li class="modal__edit-item">
+                    <p class="modal__edit-text">
+                        Nhóm
+                        <i class="fas fa-asterisk modal__edit-icon"></i>
+                    </p>
+                    <input type="text" class="modal__edit-input" required>
+                </li>
+
+                <li class="modal__edit-item">
+                    <p class="modal__edit-text">Người thêm</p>
+                    <input type="text" class="modal__edit-input">
                 </li>
             </ul>
         </div>
 
-        <div class="container">
-            <div class="container__wrapper">
-                <div class="container__top">
-
-                    <div class="container__title">danh sách người dùng</div>
-                    <p>Thuc</p>
-                    <div class="container__refresh-btn">
-
-                        <i class="fa-solid fa-arrow-rotate-right"></i>
+        <!-- Edit role -->
+        <div class="modal__edit-role">
+            <p class="modal__edit-text">
+                Roles
+                <i class="fas fa-asterisk modal__edit-icon"></i>
+            </p>
+            <div class="modal__edit-container">
+                <!-- table 1 của edit role -->
+                <div class="modal__edit-table">
+                    <div class="modal__table-wrap">
+                        <div class="modal__table-title">
+                            Danh sách Roles
+                        </div>
+                        <div class="modal__table-search">
+                            <i class="fas fa-search modal__table-icon"></i>
+                            <input type="text" class="modal__table-input">
+                        </div>
+                        <ul class="modal__table-list">
+                            <li class="modal__table-item">Giám đốc chi nhánh</li>
+                            <li class="modal__table-item">Phó giám đốc chi nhánh</li>
+                            <li class="modal__table-item">Trưởng phong</li>
+                            <li class="modal__table-item">Trưởng phong ke toan</li>
+                        </ul>
                     </div>
                 </div>
-                <div class="container__search">
-                    <input type="text" class="container__input" placeholder="Nhập tên đăng nhập, họ tên, vị trí và nhóm">
-                </div>
-                <div class="container_filter">
-                    <ul class="container__filter-lists">
-                        <li class="container__filter-item">
-                            Phân quyền
-                            <i class="fa-solid fa-angle-down"></i>
-                        </li>
-                        <li class="container__filter-item">
-                            Trạng thái
-                            <i class="fa-solid fa-angle-down"></i>
-                        </li>
-                        <li class="container__filter-item">
-                            Kiểu người dùng
-                            <i class="fa-solid fa-angle-down"></i>
-                        </li>
-                        <li class="container__filter-item">
-                            Nhóm
-                            <i class="fa-solid fa-angle-down"></i>
-                        </li>
-                        <li class="container__filter-item">
-                            Lọc kết quả
-                        </li>
-                    </ul>
+
+                <div class="modal__edit-change">
+                    <button class="modal__edit-btn">
+                        <i class="fas fa-angle-right"></i>
+                    </button>
+                    <button class="modal__edit-btn">
+                        <i class="fas fa-angle-double-right"></i>
+                    </button>
+                    <button class="modal__edit-btn">
+                        <i class="fas fa-angle-left"></i>
+                    </button>
+                    <button class="modal__edit-btn">
+                        <i class="fas fa-angle-double-left"></i>
+                    </button>
                 </div>
 
-                <table class="container__table">
-                    <tr class="container__table-row border-bottom-1px">
-                        <th>STT</th>
-                        <th>Họ và Tên</th>
-                        <th>Tên đăng nhập</th>
-                        <th>Phân quyền</th>
-                        <th>Kiểu người dùng</th>
-                        <th>Nhóm</th>
-                        <th>Trạng thái</th>
-                        <th>
-                            <i class="fa-solid fa-plus"></i>
-                            Thêm mới
-                        </th>
-                    </tr>
+                <!-- table 2 của edit role -->
+                <div class="modal__edit-table">
+                    <div class="modal__table-wrap">
+                        <div class="modal__table-title">
+                            Danh sách Role đã chọn
+                        </div>
+                        <div class="modal__table-search">
+                            <i class="fas fa-search modal__table-icon"></i>
+                            <input type="text" class="modal__table-input">
+                        </div>
+                        <ul class="modal__table-list">
+                            <li class="modal__table-item">Giám đốc khối</li>
 
-                    <tr class="container__table-row">
-                        <td>1</td>
-                        <td>Trần Thị Bích Diệp</td>
-                        <td>BichDiep1309</td>
-                        <td>admin</td>
-                        <td>Trưởng nhóm truyền thông</td>
-                        <td>Truyền thông</td>
-                        <td>Hoạt động</td>
-                        <td>
-                            <i class="fa-solid fa-eye container__table-icon"></i>
-                            <i class="fa-solid fa-pen container__table-icon"></i>
-                            <i class="fa-solid fa-trash container__table-icon"></i>
-                        </td>
-                    </tr>
-
-                    <tr class="container__table-row">
-                        <td>2</td>
-                        <td>Phan Hữu Việt</td>
-                        <td>PhanViet2002</td>
-                        <td>Super Super admin</td>
-                        <td>Trưởng nhóm</td>
-                        <td>dev</td>
-                        <td>Hoạt động</td>
-                        <td>
-                            <i class="fa-solid fa-eye container__table-icon"></i>
-                            <i class="fa-solid fa-pen container__table-icon"></i>
-                            <i class="fa-solid fa-trash container__table-icon"></i>
-                        </td>
-                    </tr>
-
-                    <tr class="container__table-row">
-                        <td>3</td>
-                        <td>Vũ Minh Hòa</td>
-                        <td>MinhHoa2002</td>
-                        <td>Dân thường</td>
-                        <td>only reading</td>
-                        <td>dev</td>
-                        <td>Hoạt động</td>
-                        <td>
-                            <i class="fa-solid fa-eye container__table-icon"></i>
-                            <i class="fa-solid fa-pen container__table-icon"></i>
-                            <i class="fa-solid fa-trash container__table-icon"></i>
-                        </td>
-                    </tr>
-
-                    <tr class="container__table-row">
-                        <td>4</td>
-                        <td>Trần Thị Diễm</td>
-                        <td>TranDiem2002</td>
-                        <td>Dân thường</td>
-                        <td>only reading</td>
-                        <td>dev</td>
-                        <td>Hoạt động</td>
-                        <td>
-                            <i class="fa-solid fa-eye container__table-icon"></i>
-                            <i class="fa-solid fa-pen container__table-icon"></i>
-                            <i class="fa-solid fa-trash container__table-icon"></i>
-                        </td>
-                    </tr>
-
-                    <tr class="container__table-row">
-                        <td>5</td>
-                        <td>Thực Trịnh Văn</td>
-                        <td>ThucCho'2002</td>
-                        <td>Dân thường</td>
-                        <td>Thg tạch thể truất</td>
-                        <td>dev</td>
-                        <td>Hoạt động</td>
-                        <td>
-                            <i class="fa-solid fa-eye container__table-icon"></i>
-                            <i class="fa-solid fa-pen container__table-icon"></i>
-                            <i class="fa-solid fa-trash container__table-icon"></i>
-                        </td>
-                    </tr>
-
-                    <tr class="container__table-row">
-                        <td>6</td>
-                        <td>Thực Trịnh Văn</td>
-                        <td>ThucCho'2002</td>
-                        <td>Dân thường</td>
-                        <td>Thg tạch thể truất</td>
-                        <td>dev</td>
-                        <td>Hoạt động</td>
-                        <td>
-                            <i class="fa-solid fa-eye container__table-icon"></i>
-                            <i class="fa-solid fa-pen container__table-icon"></i>
-                            <i class="fa-solid fa-trash container__table-icon"></i>
-                        </td>
-                    </tr>
-
-                    <tr class="container__table-row">
-                        <td>7</td>
-                        <td>Thực Trịnh Văn</td>
-                        <td>ThucCho'2002</td>
-                        <td>Dân thường</td>
-                        <td>Thg tạch thể truất</td>
-                        <td>dev</td>
-                        <td>Hoạt động</td>
-                        <td>
-                            <i class="fa-solid fa-eye container__table-icon"></i>
-                            <i class="fa-solid fa-pen container__table-icon"></i>
-                            <i class="fa-solid fa-trash container__table-icon"></i>
-                        </td>
-                    </tr>
-
-                    <tr class="container__table-row">
-                        <td>8</td>
-                        <td>Thực Trịnh Văn</td>
-                        <td>ThucCho'2002</td>
-                        <td>Dân thường</td>
-                        <td>Thg tạch thể truất</td>
-                        <td>dev</td>
-                        <td>Hoạt động</td>
-                        <td>
-                            <i class="fa-solid fa-eye container__table-icon"></i>
-                            <i class="fa-solid fa-pen container__table-icon"></i>
-                            <i class="fa-solid fa-trash container__table-icon"></i>
-                        </td>
-                    </tr>
-
-                    <tr class="container__table-row">
-                        <td>9</td>
-                        <td>Thực Trịnh Văn</td>
-                        <td>ThucCho'2002</td>
-                        <td>Dân thường</td>
-                        <td>Thg tạch thể truất</td>
-                        <td>dev</td>
-                        <td>Hoạt động</td>
-                        <td>
-                            <i class="fa-solid fa-eye container__table-icon"></i>
-                            <i class="fa-solid fa-pen container__table-icon"></i>
-                            <i class="fa-solid fa-trash container__table-icon"></i>
-                        </td>
-                    </tr>
-
-                    <tr class="container__table-row">
-                        <td>10</td>
-                        <td>Thực Trịnh Văn</td>
-                        <td>ThucCho'2002</td>
-                        <td>Dân thường</td>
-                        <td>Thg tạch thể truất</td>
-                        <td>dev</td>
-                        <td>Hoạt động</td>
-                        <td>
-                            <i class="fa-solid fa-eye container__table-icon"></i>
-                            <i class="fa-solid fa-pen container__table-icon"></i>
-                            <i class="fa-solid fa-trash container__table-icon"></i>
-                        </td>
-                    </tr>
-                </table>
-
-                <div class="container__pagination">
-                    <i class="fa-solid fa-angles-left container__pagination-icon"></i>
-                    <i class="fa-solid fa-angle-left container__pagination-icon"></i>
-                    <ul class="container__pagination-lists">
-                        <li class="container__pagination-item pagination-item-active">1</li>
-                        <li class="container__pagination-item">2</li>
-                        <li class="container__pagination-item">3</li>
-                        <li class="container__pagination-item">4</li>
-                        <li class="container__pagination-item">5</li>
-                    </ul>
-                    <i class="fa-solid fa-angle-right container__pagination-icon"></i>
-                    <i class="fa-solid fa-angles-right container__pagination-icon"></i>
-                    <div class="container__pagination-end">
-                        10
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
+
+        <div class="modal__edit-footer">
+            <button class="btn modal__edit-cancel">
+                Hủy bỏ
+            </button>
+
+            <button class="btn modal__edit-confirm">
+                Xác nhận
+            </button>
+        </div>
     </div>
 
-    <script src="../../../static/admin/JS/main_admin.js"></script>
+    <!-- Modal eye -->
+</div>
+
+
 </body>
+    <script src="/static/admin/JS/main_admin.js"></script>
 </html>

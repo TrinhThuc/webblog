@@ -17,46 +17,48 @@
 </head>
 
 <body>
-    <div class="main_background">
-        <div class="main" >
-            <!-- <img src="./asset/img/post.jpg" alt="" class="header-logo"> -->
-            <form class="form__sign-up"  name='form' th:action="@{/j_spring_security_check}" method='POST'>
-                <h3 class="form__subtitle">Welcome Back</h3>
-                <h1 class="form__title">Đăng nhập tài khoản của bạn</h1>
-                <div class="form__input">
-                    <label class="form__input-title" for="Email-title">Email</label>
-                    <input type="text" class="form__input-content" name='username' id="Email-title" placeholder="Example@gmail.com" required>
+<div class="main_background">
+    <div class="main">
+        <!-- <img src="./asset/img/post.jpg" alt="" class="header-logo"> -->
+        <form class="form__sign-up" name='form' th:action="@{/j_spring_security_check}" method='POST'>
+            <h3 class="form__subtitle">Welcome Back</h3>
+            <h1 class="form__title">Đăng nhập tài khoản của bạn</h1>
+            <div class="form__input">
+                <label class="form__input-title" for="Email-title">Email</label>
+                <input type="text" class="form__input-content" name='username' id="Email-title"
+                       placeholder="Example@gmail.com" required>
+            </div>
+            <div class="form__input">
+                <label class="form__input-title" for="password-title">Mật khẩu</label>
+                <input type="password" class="form__input-content" name='password' id="password-title"
+                       placeholder="******" required>
+            </div>
+            <div class="form__related-to-password">
+                <div class="form__remember-pw">
+                    <input type="radio" class="form__remember-checkbox">
+                    <div class="form__remember-text">Nhớ mật khẩu</div>
                 </div>
-                <div class="form__input">
-                    <label class="form__input-title" for="password-title">Mật khẩu</label>
-                    <input type="password" class="form__input-content" name='password' id="password-title" placeholder="******" required>
-                </div>
-                <div class="form__related-to-password">
-                    <div class="form__remember-pw">
-                        <input type="radio" class="form__remember-checkbox">
-                        <div class="form__remember-text">Nhớ mật khẩu</div>
-                    </div>
-                    <a href="#" class="form__forgot-pw">Quên mật khẩu?</a>
-                </div>
-                <button class="form__login-now" name="submit" type="submit" value="submit">Đăng nhập</button>
-                <div class="form__text-selection">- Hoặc -</div>
-                <div class="form__conection">
-                    <button class="form__conection-socialNetwork background--GG">
-                        <i class="fa-brands fa-google form__conection-socialNetwork-icon"></i>
-                        Đăng nhập với Google
-                    </button>
-                    <button class="form__conection-socialNetwork background--FB">
-                        <i class="fa-brands fa-facebook form__conection-socialNetwork-icon"></i>
-                        Đăng nhập với Facebook
-                    </button>
-                </div>
-            </form>
-            <p class="footer_link">
-                Chưa có tài khoản?
-                <a href="#">Đăng ký ngay</a>
-            </p>
-        </div>
+                <a href="#" class="form__forgot-pw">Quên mật khẩu?</a>
+            </div>
+            <button class="form__login-now" name="submit" type="submit" value="submit">Đăng nhập</button>
+            <div class="form__text-selection">- Hoặc -</div>
+            <div class="form__conection">
+                <button class="form__conection-socialNetwork background--GG">
+                    <i class="fa-brands fa-google form__conection-socialNetwork-icon"></i>
+                    Đăng nhập với Google
+                </button>
+                <button class="form__conection-socialNetwork background--FB">
+                    <i class="fa-brands fa-facebook form__conection-socialNetwork-icon"></i>
+                    Đăng nhập với Facebook
+                </button>
+            </div>
+        </form>
+        <p class="footer_link">
+            Chưa có tài khoản?
+            <a href="#">Đăng ký ngay</a>
+        </p>
     </div>
+</div>
 </body>
 
 </html>

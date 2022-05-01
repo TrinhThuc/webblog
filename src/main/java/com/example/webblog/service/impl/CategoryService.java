@@ -17,40 +17,40 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class CategoryService implements ICategoryService {
 
-	@Autowired
-	private CategoryRepository categoryRepository;
-	
-	@Autowired
-	private CategoryConverter categoryConverter;
-		
-	@Override
-	public Map<String, String> findAll() {
-		Map<String, String> result = new HashMap<>();
-		List<CategoryEntity> entities = categoryRepository.findAll();
-		for(CategoryEntity item : entities) {
-			result.put(item.getCode(), item.getName());
-		}
-		return result;
-	}
+    @Autowired
+    private CategoryRepository categoryRepository;
 
-	@Override
-	@Transactional
-	public CategoryDTO save(CategoryDTO dto) {
-		CategoryEntity category = new CategoryEntity();
-		if(dto.getId() != null){
-			CategoryEntity oleCategory = categoryRepository.getById(dto.getId());
-			category = categoryConverter.toEntity(dto, oleCategory);
-		}else
-			category = categoryConverter.toEntity(dto);
-		return categoryConverter.toDto(categoryRepository.save(category));
-	}
+    @Autowired
+    private CategoryConverter categoryConverter;
 
-	@Override
-	@Transactional
-	public void delete(long[] ids) {
-		for(long id : ids){
-			categoryRepository.deleteById(id);
-		}
-	}
+    @Override
+    public Map<String, String> findAll() {
+        Map<String, String> result = new HashMap<>();
+        List<CategoryEntity> entities = categoryRepository.findAll();
+        for (CategoryEntity item : entities) {
+            result.put(item.getCode(), item.getName());
+        }
+        return result;
+    }
+
+    @Override
+    @Transactional
+    public CategoryDTO save(CategoryDTO dto) {
+        CategoryEntity category = new CategoryEntity();
+        if (dto.getId() != null) {
+            CategoryEntity oleCategory = categoryRepository.getById(dto.getId());
+            category = categoryConverter.toEntity(dto, oleCategory);
+        } else
+            category = categoryConverter.toEntity(dto);
+        return categoryConverter.toDto(categoryRepository.save(category));
+    }
+
+    @Override
+    @Transactional
+    public void delete(long[] ids) {
+        for (long id : ids) {
+            categoryRepository.deleteById(id);
+        }
+    }
 
 }

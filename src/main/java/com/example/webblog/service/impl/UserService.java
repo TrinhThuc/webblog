@@ -12,6 +12,7 @@ import com.example.webblog.respository.RoleRepository;
 import com.example.webblog.respository.UserRepository;
 import com.example.webblog.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -34,14 +35,14 @@ public class UserService implements IUserService {
     public UserDTO save(UserDTO dto) {
         List<RoleEntity> entities = new ArrayList<>();
         UserEntity userEntity = new UserEntity();
-        for(String code : dto.getRoleCodes()){
+        for (String code : dto.getRoleCodes()) {
             entities.add(roleRepository.findRoleEntityByCode(code));
         }
-        if(dto.getId() != null){
+        if (dto.getId() != null) {
             UserEntity oldUser = userRepository.getById(dto.getId());
             oldUser.setRoles(entities);
             userEntity = userConverter.toEntity(oldUser, dto);
-        }else{
+        } else {
             userEntity = userConverter.toEntity(dto);
             userEntity.setRoles(entities);
         }
@@ -54,10 +55,26 @@ public class UserService implements IUserService {
     @Transactional
     public void delete(long[] ids) {
         UserEntity userEntity = new UserEntity();
-        for(long id : ids){
+        for (long id : ids) {
             userEntity = userRepository.getById(id);
             userEntity.setStatus(0);
             userRepository.save(userEntity);
         }
+    }
+
+    @Override
+    public List<UserDTO> findAll(Pageable pageable) {
+        List<UserDTO> models= new ArrayList<>();
+        List<UserEntity> entities = userRepository.findAll(pageable).getContent();
+        for(UserEntity user : entities){
+            UserDTO userDTO = userConverter.toDto(user);
+            models.add(userDTO);
+        }
+        return  models;
+    }
+
+    @Override
+    public int getTotalItem() {
+        return  (int)userRepository.count();
     }
 }

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign in</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/homepage/css/base.css">
+    <link rel="stylesheet" href="/static/signup/css/main.css">
+</head>
+
+<body>
+<div class="main_background">
+    <img src="/static/signup/img/sign-up-background.png" alt="" class="header-logo">
+    <div class="main">
+
+        <form id="form-1" class="form__sign-up" th:action="@{/dang-ki}" th:object="${user}" method="post">
+            <h3 class="form__subtitle">Welcome</h3>
+            <h1 class="form__title">Đăng ký tài khoản của bạn</h1>
+
+            <div class="form-group">
+                <label for="fullname" class="form-label">Tên đầy đủ</label>
+                <input id="fullname" name="fullname" type="text" placeholder="VD: Phan Hữu Việt" class="form-control"
+                       th:field="*{fullname}">
+                <span class="form-message"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="email" class="form-label">Tên đăng nhập</label>
+                <input id="email" name="email" type="text" placeholder="VD: Example@gmail.com" class="form-control"
+                       th:field="*{userName}">
+                <span class="form-message">
+                    <div th:if="${message}">
+                            <div style="color: #f33a58">Tên đăng nhập đã tồn tại!</div>
+                    </div>
+                </span>
+            </div>
+
+            <div class="form-group">
+                <label for="password" class="form-label">Mật khẩu</label>
+                <input id="password" name="password" type="password" placeholder="Nhập mật khẩu"
+                       class="form-control" th:field="*{password}">
+                <span class="form-message"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="password_confirmation" class="form-label">Nhập lại mật khẩu</label>
+                <input id="password_confirmation" name="password_confirmation" placeholder="Nhập lại mật khẩu"
+                       type="password" class="form-control">
+                <span class="form-message"></span>
+            </div>
+
+            <button class="form-submit" type="submit">Đăng ký</button>
+
+
+        </form>
+        <p class="footer_link">
+            Đã có tài khoản?
+            <a th:href="@{/dang-nhap}">Đăng nhập ngay</a>
+        </p>
+    </div>
+</div>
+</body>
+<script src="/static/signup/js/main.js"></script>
+<script>
+    Validator({
+        form: '#form-1',
+        formGroupSelector: '.form-group',
+        errorSelector: '.form-message',
+        rules: [
+            // Validator.isEmail('#email'),
+            Validator.isRequired('#password'),
+            Validator.isRequired('#fullname'),
+            Validator.isConfirmed('#password_confirmation', function () {
+                return document.querySelector('#form-1 #password').value;
+            }, 'Mật khẩu nhập lại không chính xác'),
+            Validator.minLength('#password', 6)
+        ]
+
+    });
+</script>
+
+</html>

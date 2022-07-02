@@ -11,4 +11,5 @@ public interface IUserService {
     void delete(long[] ids);
     List<UserDTO> findAll(Pageable pageable);
     int getTotalItem();
+    UserDTO findByUserName(String name);
 }

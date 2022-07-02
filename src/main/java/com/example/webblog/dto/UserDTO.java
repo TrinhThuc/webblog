@@ -14,6 +14,16 @@ public class UserDTO extends AbstractDTO<UserDTO>{
     private String avatar;
     private String email;
     private List<String> roleCodes = new ArrayList<>();
+    private List<RoleEntity> roles= new ArrayList<>();
+
+
+    public List<RoleEntity> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<RoleEntity> roles) {
+        this.roles = roles;
+    }
 
     public List<String> getRoleCodes() {
         return roleCodes;

@@ -1,6 +1,6 @@
-.container {
+/* .container {
     height: calc(100vh - 48px);
-}
+} */
 
 .container__action {
     border: 2px solid #ccc;
@@ -12,12 +12,13 @@
     margin-top: 8px;
     border-radius: 5px;
     position: relative;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
     user-select: none;
 }
 
-.container__action span {
-    
-}
+.container__action span {}
 
 .container__action:hover {
     cursor: pointer;
@@ -73,13 +74,12 @@
     height: 1.6rem;
 }
 
-.container__comfirm {
-    border: 2px solid var(--primary-color);
-    width: auto;
-    text-align: center;
+.container__confirm {
+    border: 1px solid var(--primary-color);
     position: relative;
     float: right;
     margin-right: 50px;
+    margin-bottom: 24px;
     padding: 8px 16px;
     border-radius: 20px;
     font-size: 1.6rem;
@@ -87,6 +87,6 @@
     color: var(--primary-color);
 }
 
-.container__comfirm:hover {
+.container__confirm:hover {
     cursor: pointer;
 }

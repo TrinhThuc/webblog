@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
     width: 100vw;
     height: 100vh;
     background-color: var(--primary-color);
@@ -11,17 +12,16 @@ html, body {
     position: relative;
 }
 
-.main_background::before {
-    content: '';
-    background-image: url(https://scontent.fhan3-3.fna.fbcdn.net/v/t1.15752-9/275564816_710183776825273_159216032791014765_n.png?_nc_cat=111&ccb=1-5&_nc_sid=ae9488&_nc_ohc=gL75W_ExO4cAX8mdcuf&_nc_ht=scontent.fhan3-3.fna&oh=03_AVLt5k57vWcljusl4wo1EJLl8Vlu8NHu7qbtH5Uf4GYjzw&oe=6268ABC0);
-    background-repeat: no-repeat;
+.header-logo {
     position: absolute;
     top: 0px;
     left: 0px;
     right: 0px;
     bottom: 0px;
-    opacity: 0.15;
+    opacity: 0.1;
     z-index: 1;
+    -webkit-user-drag: none;
+    user-select: none;
 }
 
 .main {
@@ -42,10 +42,10 @@ html, body {
 .form__sign-up {
     z-index: 2;
     /* background-color: transparent; */
-    max-width: 500px;
+    width: 430px;
 }
 
-.form__subtitle{
+.form__subtitle {
     font-weight: 500;
     margin-bottom: 8px;
     font-size: 1.4rem;
@@ -57,27 +57,50 @@ html, body {
     margin-bottom: 50px;
 }
 
-.form__input-title {
+.form-group {
+    display: flex;
+    flex-direction: column;
     font-size: 1.4rem;
-    margin-bottom: 4px;
-    display: block;
-    color: var(--text-color);
+    margin-bottom: 16px;
 }
 
-.form__input-content {
-    padding: 10px;
-    width: 100%;
-    outline: none;
-    border: 1px solid var(--border-color);
-    transition: border ease 0.3s;
-    line-height: 1.6rem;
-    margin-bottom: 14px;
+.form-label,
+.form-message {
+    text-align: left;
+}
+
+.form-label {
+    font-weight: 700;
+    padding-bottom: 6px;
+    line-height: 1.8rem;
     font-size: 1.4rem;
+}
+
+.form-control {
+    height: 40px;
+    padding: 8px 12px;
+    border: 1px solid #b3b3b3;
     border-radius: 3px;
+    outline: none;
+    font-size: 1.4rem;
 }
 
-.form__input-content:focus {
-    border: 1px solid #000;
+.form-control:hover {
+    border-color: var(--primary-color);
+}
+
+.form-group.invalid .form-control {
+    border-color: #f33a58;
+}
+
+.form-group.invalid .form-message {
+    color: #f33a58;
+}
+
+.form-message {
+    font-size: 1.2rem;
+    line-height: 1.6rem;
+    padding: 4px 0 0;
 }
 
 .form__related-to-password {
@@ -89,12 +112,20 @@ html, body {
 
 .form__remember-pw {
     display: flex;
-    align-items: center;   
+    align-items: center;
     font-weight: 500;
 }
 
 .form__remember-checkbox {
     margin-right: 4px;
+}
+
+.form__forgot-pw {
+    color: #1d8acb;
+}
+
+.form__forgot-pw:hover {
+    text-decoration: underline;
 }
 
 .form__login-now {
@@ -133,7 +164,7 @@ html, body {
     color: #fff;
     padding: 12px;
     border-radius: 3px;
-    min-width: 180px;
+    min-width: 200px;
 }
 
 .form__conection-socialNetwork:hover {
@@ -145,13 +176,35 @@ html, body {
     margin-right: 4px;
 }
 
+.form-submit {
+    outline: none;
+    background-color: var(--primary-color);
+    margin-top: 12px;
+    padding: 12px 16px;
+    font-weight: 600;
+    color: #fff;
+    border: none;
+    width: 100%;
+    font-size: 14px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.form-submit:hover {
+    filter: brightness(102.5%);
+}
+
 .footer_link {
     font-size: 1.4rem;
     z-index: 2;
 }
 
-.footer_link a:hover{
-     cursor: pointer;
+.footer_link a {
+    color: #1d8acb;
+
 }
 
-/* test git */
+.footer_link a:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}

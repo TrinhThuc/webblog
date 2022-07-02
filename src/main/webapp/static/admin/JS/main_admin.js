@@ -1,6 +1,5 @@
 const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
-document.q
 
 // Biến của pagination
 const numberOfPaginations = $$('.container__pagination-item');
@@ -29,6 +28,7 @@ const modalTable = $('.modal');
 const modalWraps = $$('.modal__wrap');
 const modalTableDelete = $('.modal__wrap--delete');
 const modalTableEdit = $('.modal__wrap--edit');
+const modalTableView = $('.modal__wrap--view');
 const chooseYes = $('.modal__choose--yes');
 const chooseNo = $('.modal__choose--no');
 const closeBtn = $('.modal__close');
@@ -40,6 +40,8 @@ const sideBarItems = $$('.sideBar__item');
 
 const app = {
     currentIndex: 0,
+    visibleUser: 10,
+    currentPage: 0,
     isActive: false,
     arr: [memberList.innerHTML],
 
@@ -147,7 +149,27 @@ const app = {
 
         },
         {
-            STT: 10,
+            STT: 11,
+            Name: 'Trần Thị Bích Diệp',
+            UserName: 'BichDiep1309',
+            Role: 'admin',
+            UserType: 'Trưởng nhóm truyền thông',
+            Team: 'truyền thông',
+            Status: 'Online',
+
+        },
+        {
+            STT: 12,
+            Name: 'Trần Thị Bích Diệp',
+            UserName: 'BichDiep1309',
+            Role: 'admin',
+            UserType: 'Trưởng nhóm truyền thông',
+            Team: 'truyền thông',
+            Status: 'Online',
+
+        },
+        {
+            STT: 13,
             Name: 'Trần Thị Bích Diệp',
             UserName: 'BichDiep1309',
             Role: 'admin',
@@ -159,7 +181,14 @@ const app = {
     ],
 
     render_member: function () {
-        const htmls_member = this.Members.map((member, index) => {
+        const visibleUser = this.visibleUser;
+        const currentPage = this.currentPage;
+
+        const start = visibleUser * currentPage;
+
+        const displayedMember = this.Members.slice(start, start + visibleUser);
+
+        const htmls_member = displayedMember.map((member) => {
             return `
             <tr class="container__table-row">
                 <td>${member.STT}</td>
@@ -178,8 +207,7 @@ const app = {
             `;
         });
 
-        console.log(this.arr.join(''));
-        memberList.innerHTML = this.arr.concat(htmls_member).join('');
+        memberList.innerHTML = htmls_member.join('');
         // memberList.innerHTML = htmls_member.join('');
     },
 
@@ -206,17 +234,24 @@ const app = {
 
         //Xu ly khi bam vao nut last page
         lastBtn.onclick = function () {
-            app.lastPage();
+            app.skip4Page();
         }
 
         //Xu ly khi bam vao nut first page
         firstBtn.onclick = function () {
-            app.firstPage();
+            app.prev4Page();
         }
 
         //Lang nghe hanh vi click vao pagination list
         paginationList.onclick = function (e) {
+
+            if (!e.target.classList.contains('container__pagination-item')) return;
+
             const paginationNode = e.target.closest('.container__pagination-item:not(.active)');
+            app.currentPage = e.target.dataset.index;
+
+            // app.render_member();
+
             if (paginationNode) {
                 app.currentIndex = Number(paginationNode.dataset.index);
                 app.render();
@@ -224,7 +259,7 @@ const app = {
         }
 
         //Lang nghe hanh vi click vao detele btn
-        iconDeletes.forEach((iconDelete, index) => {
+        iconDeletes.forEach((iconDelete) => {
             iconDelete.onclick = function () {
                 app.appearModal();
                 app.appearDeleteTable();
@@ -232,14 +267,14 @@ const app = {
         })
 
         //Lang nghe hanh vi click vao eye btn
-        iconEyes.forEach((iconEye, index) => {
+        iconEyes.forEach((iconEye) => {
             iconEye.onclick = function () {
                 app.appearModal();
             }
         })
 
         //Lang nghe hanh vi click vao edit btn
-        iconEdits.forEach((iconEdit, index) => {
+        iconEdits.forEach((iconEdit) => {
             iconEdit.onclick = function () {
                 app.appearModal();
                 app.appearEditTable();
@@ -260,6 +295,7 @@ const app = {
         modalTable.onclick = function () {
             app.hideDeleteTable();
             app.hideEditTable();
+            app.hideViewTable();
         }
 
         // Lang nghe hanh vi click vao modal-wrap
@@ -301,7 +337,7 @@ const app = {
             filter.onclick = function () {
                 document.getElementById(`filter-${index}`).classList.toggle('appear-block');
                 selectionItems.forEach((selectionItem, index1) => {
-                    selectionItem.onclick = function() {
+                    selectionItem.onclick = function () {
                         var value = selectionItem.innerHTML;
                         document.getElementById(`title-${index}`).innerHTML = value;
                     }
@@ -309,8 +345,13 @@ const app = {
             }
         })
 
-        // Xử lý khi click vào 1 chức năng lọc
-
+        // Xử lý khi click vào icon eye
+        iconEyes.forEach((iconEye, index) => {
+            iconEye.onclick = function () {
+                app.appearModal();
+                app.appearEyeTable();
+            }
+        })
     },
 
     activeSideBar: function () {
@@ -319,32 +360,53 @@ const app = {
 
     nextPage: function () {
         this.currentIndex++;
+        this.currentPage++;
         if (this.currentIndex >= this.paginations.length) {
+            this.currentPage = 0;
             this.currentIndex = 0;
         }
 
         this.render();
+        // this.render_member();
     },
 
     prevPage: function () {
         this.currentIndex--;
+        this.currentPage--;
+
         if (this.currentIndex < 0) {
+            this.currentPage = this.paginations.length - 1;
             this.currentIndex = this.paginations.length - 1;
         }
 
         this.render();
+        // this.render_member();
     },
 
-    lastPage: function () {
-        this.currentIndex = this.paginations.length - 1;
+    skip4Page: function () {
+        this.currentIndex += 3;
+        this.currentPage += 3;
+
+        if (this.currentIndex >= this.paginations.length) {
+            this.currentIndex = this.paginations.length - 1;
+            this.currentPage = this.paginations.length - 1;
+        }
 
         this.render();
+        // this.render_member();
     },
 
-    firstPage: function () {
-        this.currentIndex = 0;
+    prev4Page: function () {
+        this.currentIndex -= 3;
+        this.currentPage -= 3;
+
+        if (this.currentIndex < 0) {
+            this.currentIndex = 0;
+            this.currentPage = 0;
+        }
 
         this.render();
+        // this.render_member();
     },
 
 
@@ -356,6 +418,11 @@ const app = {
     hideEditTable: function () {
         modalTable.classList.remove('appear-flex');
         modalTableEdit.classList.remove('appear-block');
+    },
+
+    hideViewTable: function() {
+        modalTable.classList.remove('appear-flex');
+        modalTableView.classList.remove('appear-block');
     },
 
     appearModal: function () {
@@ -370,6 +437,10 @@ const app = {
         modalTableEdit.classList.add('appear-block');
     },
 
+    appearEyeTable: function () {
+        modalTableView.classList.add('appear-block');
+    },
+
     //Ham de bat dau khoi dong chuong trinh
     start: function () {
         // render cac trang trong list ra html
@@ -378,7 +449,6 @@ const app = {
             this.render();
             paginationBar.classList.add('appear-flex');
         }
-
         //xu ly cac thao tac bang tay
         this.handleEvents();
     }

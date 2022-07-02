@@ -1,5 +1,6 @@
 package com.example.webblog.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ public class RoleEntity extends BaseEntity{
 	private String code;
 	
 	@ManyToMany(mappedBy = "roles", cascade = CascadeType.ALL)
+	@JsonIgnore
     private List<UserEntity> users = new ArrayList<>();
 
 

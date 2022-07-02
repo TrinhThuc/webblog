@@ -9,6 +9,7 @@ public class RoleDTO extends AbstractDTO<RoleDTO>{
     private String code;
     private String name;
     private List<String> usernames = new ArrayList<>();
+    private List<UserDTO> users = new ArrayList<>();
 
     public List<String> getUsernames() {
         return usernames;

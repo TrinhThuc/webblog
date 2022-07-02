@@ -19,28 +19,35 @@
 <body>
 <div class="main_background">
     <div class="main">
-        <!-- <img src="./asset/img/post.jpg" alt="" class="header-logo"> -->
+        <img src="/static/signup/img/sign-up-background.png" alt="" class="header-logo">
         <form class="form__sign-up" name='form' th:action="@{/j_spring_security_check}" method='POST'>
-            <h3 class="form__subtitle">Welcome Back</h3>
+            <h3 class="form__subtitle" >Welcome Back</h3>
             <h1 class="form__title">Đăng nhập tài khoản của bạn</h1>
-            <div class="form__input">
-                <label class="form__input-title" for="Email-title">Email</label>
-                <input type="text" class="form__input-content" name='username' id="Email-title"
-                       placeholder="Example@gmail.com" required>
+
+            <div class="form-group">
+                <label for="email" class="form-label">Tên đăng nhập</label>
+                <input id="email" name='username' type="text" placeholder="VD: Example@gmail.com" class="form-control">
+                <span class="form-message"></span>
+                <div th:if="${#request.getParameter('error') == 'true'}">
+                    <span class="form-message" style="color: #f33a58">Tài khoản hoặc mật khẩu không đúng!</span>
+                </div>
             </div>
-            <div class="form__input">
-                <label class="form__input-title" for="password-title">Mật khẩu</label>
-                <input type="password" class="form__input-content" name='password' id="password-title"
-                       placeholder="******" required>
+
+            <div class="form-group">
+                <label for="password" class="form-label">Mật khẩu</label>
+                <input id="password" name='password' type="password" placeholder="Nhập mật khẩu"
+                       class="form-control">
+                <span class="form-message"></span>
             </div>
+
             <div class="form__related-to-password">
                 <div class="form__remember-pw">
-                    <input type="radio" class="form__remember-checkbox">
+                    <input name="remember-me" type="radio" class="form__remember-checkbox">
                     <div class="form__remember-text">Nhớ mật khẩu</div>
                 </div>
                 <a href="#" class="form__forgot-pw">Quên mật khẩu?</a>
             </div>
-            <button class="form__login-now" name="submit" type="submit" value="submit">Đăng nhập</button>
+            <button class="form__login-now" type="submit">Đăng nhập</button>
             <div class="form__text-selection">- Hoặc -</div>
             <div class="form__conection">
                 <button class="form__conection-socialNetwork background--GG">
@@ -55,10 +62,24 @@
         </form>
         <p class="footer_link">
             Chưa có tài khoản?
-            <a href="#">Đăng ký ngay</a>
+            <a th:href="@{/dang-ki}">Đăng ký ngay</a>
         </p>
     </div>
 </div>
 </body>
-
+<!--<script src="/static/signup/js/main.js"></script>-->
+<!--<script>-->
+<!--    Validator({-->
+<!--        form: '#form-1',-->
+<!--        formGroupSelector: '.form-group',-->
+<!--        errorSelector: '.form-message',-->
+<!--        rules: [-->
+<!--            Validator.isEmail('#email'),-->
+<!--            Validator.isRequired('#password')-->
+<!--        ],-->
+<!--        onSubmit: function (data) {-->
+<!--            console.log(data);-->
+<!--        }-->
+<!--    });-->
+<!--</script>-->
 </html>

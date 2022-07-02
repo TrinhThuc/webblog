@@ -1,5 +1,6 @@
 package com.example.webblog.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -35,6 +36,7 @@ public class UserEntity extends BaseEntity{
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "userid"), 
 								  inverseJoinColumns = @JoinColumn(name = "roleid"))
+	@JsonIgnore
 	private List<RoleEntity> roles = new ArrayList<>();
 
 

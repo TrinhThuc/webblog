@@ -22,7 +22,18 @@ public class AbstractDTO<T> {
 	private String alert;
 	private String message;
 	private String type;
-	
+	private Integer stt;
+
+
+
+	public Integer getStt() {
+		return stt;
+	}
+
+	public void setStt(Integer stt) {
+		this.stt = stt;
+	}
+
 	public Long getId() {
 		return id;
 	}

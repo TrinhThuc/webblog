@@ -15,6 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,20 +32,27 @@ public class UserService implements IUserService {
     @Autowired
     UserConverter userConverter;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @Override
     @Transactional
     public UserDTO save(UserDTO dto) {
         List<RoleEntity> entities = new ArrayList<>();
         UserEntity userEntity = new UserEntity();
-        for (String code : dto.getRoleCodes()) {
-            entities.add(roleRepository.findRoleEntityByCode(code));
-        }
+        dto.setPassword(passwordEncoder.encode(dto.getPassword()));
+
         if (dto.getId() != null) {
+            for (String code : dto.getRoleCodes()) {
+                entities.add(roleRepository.findRoleEntityByCode(code));
+            }
             UserEntity oldUser = userRepository.getById(dto.getId());
             oldUser.setRoles(entities);
             userEntity = userConverter.toEntity(oldUser, dto);
         } else {
             userEntity = userConverter.toEntity(dto);
+            entities.add(roleRepository.findRoleEntityByCode("ROLE_USER"));
+            userEntity.setStatus(1);
             userEntity.setRoles(entities);
         }
 
@@ -76,5 +85,14 @@ public class UserService implements IUserService {
     @Override
     public int getTotalItem() {
         return  (int)userRepository.count();
+    }
+
+    @Override
+    public UserDTO findByUserName(String name) {
+        UserEntity user = userRepository.findOneByUserNameAndStatus(name, 1);
+        if(user==null){
+            return null;
+        }
+        return userConverter.toDto(user);
     }
 }

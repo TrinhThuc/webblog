@@ -1,9 +1,11 @@
 /* ======= CSS ADMIN ======= */
 
 /* SIDE BAR */
+
 .main {
     display: flex;
     position: relative;
+    height: 100%;
 }
 
 .sideBar {
@@ -41,20 +43,20 @@
 }
 
 /* CONTAINER */
-
 .container {
     box-shadow: 0 0 10px 0 #ccc;
     margin: 24px 16px;
     width: 100%;
-}
-
-.container__wrapper {
-    padding: 20px 30px;
-    display: none;
+    min-height: calc(100vh - 48px);
 }
 
 .container__wrapper.active {
     display: block;
+}
+
+.container__wrapper {
+    padding: 20px 30px;
+    min-height: 100%;
 }
 
 .container__top {
@@ -105,6 +107,12 @@
     border: none;
 }
 
+.container__table-member {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
 /* PAGINATION */
 .container__pagination {
     display: none;
@@ -112,6 +120,7 @@
     align-items: center;
     gap: 30px;
     font-size: 1.4rem;
+    margin-top: auto;
 }
 
 .container__pagination>button {
@@ -154,4 +163,11 @@
     background-color: var(--primary-color);
     border-radius: 50%;
     color: #fff;
+}
+
+/* MODAL */
+.modal__wrap {
+    background-color: var(--white-color);
+    border-radius: 5px;
+    position: relative;
 }

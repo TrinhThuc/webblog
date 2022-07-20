@@ -1,5 +1,6 @@
 package com.example.webblog.service.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -51,6 +52,17 @@ public class CategoryService implements ICategoryService {
         for (long id : ids) {
             categoryRepository.deleteById(id);
         }
+    }
+
+    @Override
+    public List<CategoryDTO> getAll() {
+        List<CategoryDTO> categoryDTOS = new ArrayList<>();
+        List<CategoryEntity> categoryEntities = categoryRepository.findAll();
+        for(CategoryEntity category : categoryEntities){
+            CategoryDTO categoryDTO = categoryConverter.toDto(category);
+            categoryDTOS.add(categoryDTO);
+        }
+        return categoryDTOS;
     }
 
 }

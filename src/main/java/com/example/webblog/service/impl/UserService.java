@@ -11,13 +11,19 @@ import com.example.webblog.respository.CategoryRepository;
 import com.example.webblog.respository.RoleRepository;
 import com.example.webblog.respository.UserRepository;
 import com.example.webblog.service.IUserService;
+import net.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,13 +41,18 @@ public class UserService implements IUserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private JavaMailSender mailSender;
+
     @Override
     @Transactional
-    public UserDTO save(UserDTO dto) {
+    public UserDTO save(UserDTO dto, String siteURL)  throws UnsupportedEncodingException, MessagingException {
         List<RoleEntity> entities = new ArrayList<>();
         UserEntity userEntity = new UserEntity();
         dto.setPassword(passwordEncoder.encode(dto.getPassword()));
-
+        String randomCode = RandomString.make(64);
+        dto.setVerificationCode(randomCode);
+        dto.setEnabled(false);
         if (dto.getId() != null) {
             for (String code : dto.getRoleCodes()) {
                 entities.add(roleRepository.findRoleEntityByCode(code));
@@ -54,6 +65,7 @@ public class UserService implements IUserService {
             entities.add(roleRepository.findRoleEntityByCode("ROLE_USER"));
             userEntity.setStatus(1);
             userEntity.setRoles(entities);
+            sendVerificationEmail(dto, siteURL);
         }
 
         return userConverter.toDto(userRepository.save(userEntity));
@@ -89,10 +101,66 @@ public class UserService implements IUserService {
 
     @Override
     public UserDTO findByUserName(String name) {
-        UserEntity user = userRepository.findOneByUserNameAndStatus(name, 1);
+        UserEntity user = userRepository.findOneByUserNameAndStatusAndEnabled(name, 1, true);
         if(user==null){
             return null;
         }
         return userConverter.toDto(user);
     }
+
+    @Override
+    public UserDTO findByEmail(String email) {
+        UserEntity user = userRepository.findByEmailAndStatus(email, 1);
+        if(user==null){
+            return null;
+        }
+        return userConverter.toDto(user);
+    }
+
+
+    @Override
+    public void sendVerificationEmail(UserDTO user, String siteURL)
+            throws MessagingException, UnsupportedEncodingException {
+        String toAddress = user.getEmail();
+        String fromAddress = "trinhthuc432@gmail.com";
+        String senderName = "MeooBlog";
+        String subject = "Please verify your registration";
+        String content = "Dear [[name]],<br>"
+                + "Please click the link below to verify your registration:<br>"
+                + "<h3><a href=\"[[URL]]\" target=\"_self\">VERIFY</a></h3>"
+                + "Thank you,<br>"
+                + "Your company name.";
+
+        MimeMessage message = mailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message);
+
+        helper.setFrom(fromAddress, senderName);
+        helper.setTo(toAddress);
+        helper.setSubject(subject);
+
+        content = content.replace("[[name]]", user.getFullname());
+        String verifyURL = siteURL + "/verify?code=" + user.getVerificationCode();
+
+        content = content.replace("[[URL]]", verifyURL);
+
+        helper.setText(content, true);
+
+        mailSender.send(message);
+
+    }
+
+    @Override
+    public boolean verify(String verificationCode) {
+        UserEntity user = userRepository.findByVerificationCode(verificationCode);
+        if (user == null || user.isEnabled()) {
+            return false;
+        } else {
+            user.setVerificationCode(null);
+            user.setEnabled(true);
+            userRepository.save(user);
+            return true;
+        }
+    }
+
+
 }

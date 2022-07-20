@@ -13,6 +13,25 @@ public class UserDTO extends AbstractDTO<UserDTO>{
     private Integer status;
     private String avatar;
     private String email;
+    private String verificationCode;
+    private boolean enabled;
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public String getVerificationCode() {
+        return verificationCode;
+    }
+
+    public void setVerificationCode(String verificationCode) {
+        this.verificationCode = verificationCode;
+    }
+
     private List<String> roleCodes = new ArrayList<>();
     private List<RoleEntity> roles= new ArrayList<>();
 

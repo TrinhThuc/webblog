@@ -321,11 +321,10 @@ const app = {
         }
 
         // Lắng nghe hành vi click vào nút confirm
-        //hoặc cancel trong modal edit
-        confirmBtn.onclick = function () {
-            app.hideDeleteTable();
-            app.hideEditTable();
-        }
+        // //hoặc cancel trong modal edit
+        // confirmBtn.onclick = function () {
+        //     alert()
+        // }
 
         cancelBtn.onclick = function () {
             app.hideDeleteTable();

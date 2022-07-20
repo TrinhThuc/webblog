@@ -142,17 +142,17 @@
     </div>
 
     <!-- Modal edit -->
-    <div class="modal__wrap modal__wrap--edit">
+    <div class="modal__wrap modal__wrap--edit" th:each="user : ${model.listResult}">
         <i class="fas fa-times modal__close"></i>
         <!-- Edit info -->
         <div class="modal__edit-inf">
             <ul class="modal__edit-list">
                 <li class="modal__edit-item">
-                    <p class="modal__edit-text">
+                    <p class="modal__edit-text" >
                         Tên đăng nhập
                         <i class="fas fa-asterisk modal__edit-icon"></i>
                     </p>
-                    <input type="text" class="modal__edit-input" required>
+                    <input type="text" class="modal__edit-input" th:placeholder="${user.userName}" required>
                 </li>
 
                 <li class="modal__edit-item">
@@ -160,7 +160,7 @@
                         Mật khẩu
                         <i class="fas fa-asterisk modal__edit-icon"></i>
                     </p>
-                    <input type="password" class="modal__edit-input" required>
+                    <input type="password" class="modal__edit-input" th:placeholder="${user.password}" required>
                 </li>
 
                 <li class="modal__edit-item">
@@ -168,12 +168,12 @@
                         Họ và tên
                         <i class="fas fa-asterisk modal__edit-icon"></i>
                     </p>
-                    <input type="text" class="modal__edit-input" required>
+                    <input type="text" class="modal__edit-input" th:placeholder="${user.fullname}" required>
                 </li>
 
                 <li class="modal__edit-item">
                     <p class="modal__edit-text">Email</p>
-                    <input type="email" class="modal__edit-input">
+                    <input type="email" class="modal__edit-input" th:placeholder="${user.email}">
                 </li>
 
             </ul>
@@ -198,13 +198,13 @@
 
                 <li class="modal__edit-item">
                     <p class="modal__edit-text">Người thêm</p>
-                    <input type="text" class="modal__edit-input">
+                    <input type="text" class="modal__edit-input" th:placeholder="${user.createdBy}">
                 </li>
             </ul>
         </div>
 
         <!-- Edit role -->
-        <div class="modal__edit-role">
+        <div class="modal__edit-role" >
             <p class="modal__edit-text">
                 Roles
                 <i class="fas fa-asterisk modal__edit-icon"></i>
@@ -273,20 +273,22 @@
     </div>
 
     <!-- Modal eye -->
-    <div class="modal__wrap modal__wrap--view">
+    <div class="modal__wrap modal__wrap--view" th:each="user : ${model.listResult}">
         <div class="modal__view-background">
             <img src="/static/admin/img/avt_admin.jpg" alt="" class="modal__avt">
-            <span class="modal__name">Trinh Van Thuc</span>
-            <span class="modal__role">Admin</span>
+            <span class="modal__name" th:text="${user.fullname}"></span>
+            <span class="modal__role" th:each="role : ${user.roles}" >
+                <span th:text="${role.name}"></span>
+            </span>
         </div>
         <div class="modal__view-info">
             <div class="modal__info">
                 <span>Tên đăng nhập</span>
-                <div>TrinhThuc</div>
+                <div th:text="${user.userName}"></div>
             </div>
             <div class="modal__info">
                 <span>Email</span>
-                <div>TrinhThuc423@gmail.com</div>
+                <div th:text="${user.email}"></div>
             </div>
         </div>
         <button class="btn modal__change-pasw">Đổi mật khẩu</button>
@@ -393,4 +395,10 @@
 
 </body>
 <script src="/static/admin/JS/main_admin.js"></script>
+<script>
+    var btnEdit = document.querySelector('.modal__edit-confirm')
+    btnEdit.onclick = function (){
+        alert('ađfadsfad')
+    }
+</script>
 </html>

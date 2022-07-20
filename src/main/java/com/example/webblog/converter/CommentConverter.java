@@ -32,14 +32,14 @@ public class CommentConverter {
     public CommentEntity toEntity(CommentDTO dto) {
         CommentEntity result = modelMapper.map(dto, CommentEntity.class);
         result.setPost(postRepository.getById(dto.getPostid()));
-        result.setUser(userRepository.findOneByUserNameAndStatus(dto.getUsername(), 1));
+        result.setUser(userRepository.findOneByUserNameAndStatusAndEnabled(dto.getUsername(), 1, true));
         return result;
     }
 
     public CommentEntity toEntity(CommentDTO dto, CommentEntity entity){
         entity.setContent(dto.getContent());
         entity.setPost(postRepository.getById(dto.getPostid()));
-        entity.setUser(userRepository.findOneByUserNameAndStatus(dto.getUsername(), 1));
+        entity.setUser(userRepository.findOneByUserNameAndStatusAndEnabled(dto.getUsername(), 1, true));
         return entity;
     }
 }

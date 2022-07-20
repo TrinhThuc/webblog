@@ -11,6 +11,11 @@ public class MyUser extends User {
         super(username, password, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
     }
 
+    @Override
+    public boolean isEnabled() {
+        return super.isEnabled();
+    }
+
     private String fullName;
 
     public String getFullName() {

@@ -12,16 +12,16 @@ public class UserAPI {
     @Autowired
     private IUserService userService;
 
-    @PostMapping("api/user")
-    public UserDTO createPost(@RequestBody UserDTO userDTO){
-        return userService.save(userDTO);
-    }
-
-    @PutMapping("api/user/{id}")
-    public UserDTO updatePost(@RequestBody UserDTO userDTO, @PathVariable("id")long id){
-        userDTO.setId(id);
-        return userService.save(userDTO);
-    }
+//    @PostMapping("api/user")
+//    public UserDTO createPost(@RequestBody UserDTO userDTO){
+//        return userService.save(userDTO);
+//    }
+//
+//    @PutMapping("api/user/{id}")
+//    public UserDTO updatePost(@RequestBody UserDTO userDTO, @PathVariable("id")long id){
+//        userDTO.setId(id);
+//        return userService.save(userDTO);
+//    }
 
     @DeleteMapping("api/user")
     public void deletePost(@RequestBody long[] ids) {

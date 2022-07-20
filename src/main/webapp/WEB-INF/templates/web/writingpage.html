@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css"
+        />
+        <link rel="stylesheet" href="/static/writingpage/CSS/base.css" />
+        <link rel="stylesheet" href="/static/writingpage/CSS/main.css" />
+    </head>
+    <body>
+        <div class="main">
+            <header class="header">
+                <div class="header__content">
+                    <div class="header__blog-avatar">
+                        <a href="#">
+                            <img src="/static/writingpage/img/logo-blog.png" alt="" />
+                        </a>
+                    </div>
+                    <div class="header__blog-icon">
+                        <div class="header__icon__notificartion">
+                            <a href="#">
+                                <i class="fa-solid fa-bell"></i>
+                            </a>
+                        </div>
+                        <div class="header__icon__user-avatar">
+                            <a href="#">
+                                <img src="/static/writingpage/img/avt.jpg" alt="" />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <div class="container">
+                <div class="writing-blog__container">
+                    <div
+                        class="writing-blog__items writing_blog__title"
+                        contenteditable="true"
+                        placeholder="Tiêu đề bài viết..." name ="title"
+                    ></div>
+                    <div
+                        class="writing-blog__items writing-blog__editor-wrapper"
+                    >
+                        <div
+                            class="writing-blog__editor editor"
+                            placeholder="Nội dung bài viết" name = "content"
+                        ></div>
+                    </div>
+                    <div class="writing-blog__submit-btn">
+                        <a href="#">
+                            <button>SUBMIT</button>
+                        </a>
+                    </div>
+                </div>
+                <div class="modal">
+                    <div class="modal__items">
+                        <div class="modal__item modal__blog-post-description">
+                            <p class="modal__text-label">
+                                Mô tả bài viết <em>(Không bắt buộc)</em>
+                            </p>
+                            <textarea
+                                name="shortDescription"
+                                id=""
+                                cols="30"
+                                rows="10"
+                            ></textarea>
+                        </div>
+<!--                        <div class="modal__item modal__blog-post-tag">-->
+<!--                            <p class="modal__text-label">-->
+<!--                                Thêm thẻ tag <em>(Tối đa 5 thẻ)</em>-->
+<!--                            </p>-->
+<!--                            <div class="modal__input-box">-->
+<!--                                <i class="fa-solid fa-magnifying-glass"></i>-->
+<!--                                <input type="text" />-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="modal__item modal__blog-post-series">-->
+<!--                            <p-->
+<!--                                class="modal__blog-post-series modal__text-label"-->
+<!--                            >-->
+<!--                                Series-->
+<!--                            </p>-->
+<!--                            <div-->
+<!--                                class="modal__blog-post-series modal__drop-down-list"-->
+<!--                            >-->
+<!--                                <div-->
+<!--                                    class="modal__blog-post-series modal__selected-choice"-->
+<!--                                >-->
+<!--                                    &#45;&#45; Chọn danh mục &#45;&#45;-->
+<!--                                </div>-->
+<!--                                <div-->
+<!--                                    class="modal__blog-post-series modal__select-box"-->
+<!--                                >-->
+<!--                                    <div-->
+<!--                                        class="blog-post-genre select-box__options"-->
+<!--                                    >-->
+<!--                                        <div class="select-box__option">-->
+<!--                                            <input-->
+<!--                                                type="radio"-->
+<!--                                                name="genre"-->
+<!--                                                id="debate"-->
+<!--                                                class="select-box__option__radio"-->
+<!--                                            />-->
+<!--                                            <label for="debate">-->
+<!--                                                Quan điểm - tranh luận-->
+<!--                                            </label>-->
+<!--                                        </div>-->
+<!--                                        <div class="select-box__option">-->
+<!--                                            <input-->
+<!--                                                type="radio"-->
+<!--                                                name="genre"-->
+<!--                                                id="inspire"-->
+<!--                                                class="select-box__option__radio"-->
+<!--                                            />-->
+<!--                                            <label for="inspire">-->
+<!--                                                Truyền cảm hứng-->
+<!--                                            </label>-->
+<!--                                        </div>-->
+<!--                                        <div class="select-box__option">-->
+<!--                                            <input-->
+<!--                                                type="radio"-->
+<!--                                                name="genre"-->
+<!--                                                id="science"-->
+<!--                                                class="select-box__option__radio"-->
+<!--                                            />-->
+<!--                                            <label for="science">-->
+<!--                                                Khoa học - công nghệ-->
+<!--                                            </label>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+                        <div class="modal__item modal__blog-post-genre">
+                            <p class="blog-post-genre modal__text-label">
+                                Chọn danh mục
+                            </p>
+                            <div class="blog-post-genre modal__drop-down-list">
+                                <div
+                                    class="blog-post-genre modal__selected-choice"
+                                >
+                                    -- Chọn danh mục --
+                                </div>
+                                <div class="blog-post-genre modal__select-box" >
+                                    <div
+                                        class="blog-post-genre select-box__options"
+
+                                    >
+                                        <div th:each="category : ${Categories}">
+                                            <div class="select-box__option">
+                                                <input
+                                                        type="radio"
+                                                        name="genre"
+                                                        id="debate"
+                                                        class="select-box__option__radio"
+                                                />
+                                                <label for="debate" th:text="${category.name}">
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal__action-warpper">
+                            <button class="modal__return-btn">Quay lại</button>
+                            <button class="modal__submit-btn" id ="createPostBtn">Tạo</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src="/static/writingpage/ckeditor5-build-balloon/ckeditor.js"></script>
+    <script src="/static/writingpage/Javascript/main.js"></script>
+    <script>
+        var createPostBtn = document.querySelector('#createPostBtn')
+        createPostBtn.onclick = function (){
+            var title = document.querySelector('div[name="title"]').textContent
+            var content = document.querySelector('div[name="content"]').textContent
+            var shortDescription = document.querySelector('textarea[name="shortDescription"]').textContent
+            var post = {
+                title : title,
+                content : content,
+                shortDescription : shortDescription
+            }
+            console.log(post)
+        }
+    </script>
+
+</html>

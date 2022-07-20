@@ -1,0 +1,365 @@
+.header {
+    height: 70px;
+    width: 100%;
+    border-bottom: 1px solid var(--border-color);
+    background-color: var(--white-color);
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    transition: all 0.3s;
+    box-shadow: 0 10px 15px -3px rgba(var(--blue-500), 0.05),
+        0 4px 6px -2px rgba(var(--blue-500), 0.025) !important;
+    z-index: 999;
+}
+
+.header__content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    max-width: var(--max-width-grid);
+    margin: 0 auto;
+}
+
+.header__blog-avatar a img {
+    width: 100px;
+    height: 45px;
+}
+
+.header__blog-icon {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.header__icon__notificartion {
+    transition: background-color ease-in-out 0.3s;
+}
+
+.header__icon__notificartion i {
+    font-size: 1.8rem;
+    color: rgb(192, 192, 192);
+    padding: 10px;
+}
+
+.header__icon__notificartion:hover {
+    background-color: rgba(var(--blue-500), 0.15);
+    border-radius: 5px;
+}
+
+.header__icon__user-avatar {
+    margin-left: 15px;
+}
+
+.header__icon__user-avatar img {
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    margin: 10px;
+}
+
+
+.writing-blog__container {
+    width: 80%;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.writing_blog__title {
+    border: none;
+    width: 100%;
+    padding: 15px;
+    font-size: 2.2rem;
+    line-height: 2.5rem;
+    color: var(--text-color);
+    font-weight: 600;
+    overflow: hidden;
+    word-break: break-word;
+    cursor: text;
+}
+
+.writing_blog__title:focus {
+    outline: none;
+}
+
+.writing_blog__title:empty:before {
+    content: attr(placeholder);
+    color: rgb(192, 192, 192);
+}
+
+.writing-blog__items {
+    margin: 10px 0;
+}
+
+.writing-blog__editor-wrapper {
+    color: var(--text-color);
+    margin-top: 20px;
+}
+
+.writing-blog__editor {
+    font-size: 1.8rem;
+    line-height: 2rem;
+    padding-left: 15px !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.ck.ck-editor__editable>.ck-placeholder::before {
+    color: rgb(162, 162, 162);
+}
+
+.writing-blog__submit-btn {
+    position: fixed;
+    bottom: 0;
+    left: 45%;
+    margin-bottom: 50px;
+}
+
+.writing-blog__submit-btn a {
+    display: block;
+    height: 100%;
+}
+
+.writing-blog__submit-btn button {
+    padding: 10px;
+    letter-spacing: 4px;
+    font-size: 1.8rem;
+    color: var(--white-color);
+    width: 160px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(51, 152, 212);
+    cursor: pointer;
+}
+
+.writing-blog__submit-btn button:hover {
+    opacity: 0.9;
+}
+
+/* modal section */
+.modal {
+    padding-top: 50px;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 999;
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    background: rgba(255, 255, 255, 0.2);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    visibility: hidden;
+    opacity: 0;
+
+    transition: visibility 0.2s ease-in-out,
+        opacity 0.2s ease-in-out;
+}
+
+.modal.visible {
+    visibility: visible;
+    opacity: 1;
+}
+
+.modal__items {
+    width: 600px;
+}
+
+.modal__items * {
+    border-radius: 5px;
+}
+
+.modal__item textarea,
+.modal__item.modal__input-box,
+.modal__item select {
+    width: 100%;
+}
+
+.modal__item {
+    display: block;
+}
+
+.modal__item p {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: rgb(74, 85, 104);
+    margin: 10px 0;
+}
+
+.modal__item p>em {
+    color: rgb(160, 174, 192);
+}
+
+.modal__blog-post-description textarea {
+    resize: none;
+    height: 70px !important;
+    padding: 10px;
+    font-size: 1.4rem;
+    color: rgb(74, 85, 104);
+    border: 1px solid #e2e8f0;
+    font-weight: 500;
+    outline: none;
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+    background-color: #fff;
+}
+
+.modal__input-box {
+    border: 1px solid #e2e8f0;
+    padding: 15px;
+    background-color: #fff;
+    position: relative;
+}
+
+.modal__input-box::before {
+    content: "";
+    background-color: #ccc;
+    height: 20px;
+    width: 2px;
+    left: 225px;
+    top: 14px;
+    position: absolute;
+}
+
+.modal__input-box i {
+    font-size: 1.4rem;
+    margin-right: 0 10px;
+}
+
+.modal__input-box input {
+    border: none;
+    outline: none;
+    border-radius: 0;
+    font-size: 1.4rem;
+    margin-left: 10px;
+    font-weight: 500;
+    color: rgb(74, 85, 104);
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+}
+
+/* modal selection box */
+.modal__custom-drop-down-list {
+    position: relative;
+}
+
+.modal__selected-choice {
+    position: relative;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 15px;
+    margin-bottom: 10px;
+    background-color: #fff;
+    cursor: pointer;
+    font-size: 1.3rem;
+    font-weight: 500;
+}
+
+.modal__select-box {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    background-color: #fff;
+    position: relative;
+}
+
+.modal__select-box .select-box__options {
+    max-height: 200px;
+    z-index: 9999;
+    position: absolute;
+    width: 100%;
+
+    visibility: hidden;
+    opacity: 0;
+
+    background-color: #fff;
+    transition: all 0.3s ease-in-out;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+    overflow-y: scroll;
+}
+
+.modal__item .select-box__options.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+.modal__selected-choice::after {
+    content: "";
+    background-image: url("/writing-blog-page/assets/img/down-arrow-svgrepo-com.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    position: absolute;
+    height: 33%;
+    width: 15px;
+    right: 25px;
+    top: 15px;
+
+    transition: all 0.3s ease-in-out;
+}
+
+.modal__select-box .select-box__options::-webkit-scrollbar {
+    width: 8px;
+    border-radius: 0 5px 5px 0;
+}
+
+.modal__select-box .select-box__options::-webkit-scrollbar-thumb {
+    background-color: rgb(255, 153, 240);
+    border-radius: 5px;
+}
+
+.select-box__option {
+    font-size: 1.3rem;
+    font-weight: 500;
+    padding: 12px 15px;
+}
+
+.select-box__option label {
+    cursor: pointer;
+}
+
+.select-box__option:hover {
+    background-color: rgb(255, 223, 250);
+    border-radius: 0;
+    cursor: pointer;
+}
+
+.modal__select-box .select-box__option__radio {
+    display: none;
+}
+
+.modal__action-warpper {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.modal__action-warpper button {
+    margin: 0 10px;
+    padding: 10px;
+
+    border: none;
+
+    width: 100px;
+
+    cursor: pointer;
+    transition: all 0.1s linear;
+}
+
+.modal__return-btn {
+    background-color: #fff;
+    border: 1px solid #e3e3e3 !important;
+}
+
+.modal__return-btn:hover {
+    background-color: rgba(19, 161, 243, 0.7);
+    color: #fff;
+}
+
+.modal__submit-btn {
+    background-color: rgb(51, 152, 212);
+    color: #fff;
+}
+
+.modal__submit-btn:hover {
+    opacity: 0.7;
+}

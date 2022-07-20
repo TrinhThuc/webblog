@@ -33,6 +33,12 @@ public class UserEntity extends BaseEntity{
 	@Column(name = "email")
 	private String email;
 
+	@Column(name = "verification_code", length = 64)
+	private String verificationCode;
+
+	@Column
+	private boolean enabled;
+
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "userid"), 
 								  inverseJoinColumns = @JoinColumn(name = "roleid"))

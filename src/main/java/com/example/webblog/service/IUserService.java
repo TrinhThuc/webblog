@@ -11,6 +11,7 @@ import java.util.List;
 
 public interface IUserService {
     UserDTO save(UserDTO dto, String siteURL) throws UnsupportedEncodingException, MessagingException ;
+    UserDTO save(UserDTO dto);
     void delete(long[] ids);
     List<UserDTO> findAll(Pageable pageable);
     int getTotalItem();

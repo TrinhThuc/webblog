@@ -7,5 +7,5 @@ import java.util.List;
 
 
 public interface CategoryRepository extends JpaRepository<CategoryEntity, Long>{
-	CategoryEntity findOneByCode(String code);
+	CategoryEntity findOneById(Long id);
 }

@@ -48,10 +48,10 @@
                     ></div>
                     <div
                         class="writing-blog__items writing-blog__editor-wrapper"
-                    >
+                        name = "content">
                         <div
                             class="writing-blog__editor editor"
-                            placeholder="Nội dung bài viết" name = "content"
+                            placeholder="Nội dung bài viết"
                         ></div>
                     </div>
                     <div class="writing-blog__submit-btn">
@@ -155,7 +155,7 @@
 
                                     >
                                         <div th:each="category : ${Categories}">
-                                            <div class="select-box__option">
+                                            <div th:id="${category.id}" class="select-box__option ">
                                                 <input
                                                         type="radio"
                                                         name="genre"
@@ -182,19 +182,6 @@
     </body>
     <script src="/static/writingpage/ckeditor5-build-balloon/ckeditor.js"></script>
     <script src="/static/writingpage/Javascript/main.js"></script>
-    <script>
-        var createPostBtn = document.querySelector('#createPostBtn')
-        createPostBtn.onclick = function (){
-            var title = document.querySelector('div[name="title"]').textContent
-            var content = document.querySelector('div[name="content"]').textContent
-            var shortDescription = document.querySelector('textarea[name="shortDescription"]').textContent
-            var post = {
-                title : title,
-                content : content,
-                shortDescription : shortDescription
-            }
-            console.log(post)
-        }
-    </script>
+
 
 </html>

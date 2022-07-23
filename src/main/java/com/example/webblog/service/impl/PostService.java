@@ -30,7 +30,7 @@ public class PostService implements IPostService {
 	@Override
 	@Transactional
 	public PostDTO save(PostDTO dto) {
-		CategoryEntity category = categoryRepository.findOneByCode(dto.getCategoryCode());
+		CategoryEntity category = categoryRepository.findOneById(dto.getCategoryId());
 		PostEntity postEntity = new PostEntity();
 		if (dto.getId() != null) {
 			PostEntity oldNew = postRepository.getById(dto.getId());

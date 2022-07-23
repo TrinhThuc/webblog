@@ -46,28 +46,37 @@ public class UserService implements IUserService {
 
     @Override
     @Transactional
-    public UserDTO save(UserDTO dto, String siteURL)  throws UnsupportedEncodingException, MessagingException {
+    public UserDTO save(UserDTO dto, String siteURL) throws UnsupportedEncodingException, MessagingException {
         List<RoleEntity> entities = new ArrayList<>();
         UserEntity userEntity = new UserEntity();
         dto.setPassword(passwordEncoder.encode(dto.getPassword()));
         String randomCode = RandomString.make(64);
         dto.setVerificationCode(randomCode);
         dto.setEnabled(false);
-        if (dto.getId() != null) {
-            for (String code : dto.getRoleCodes()) {
-                entities.add(roleRepository.findRoleEntityByCode(code));
-            }
-            UserEntity oldUser = userRepository.getById(dto.getId());
-            oldUser.setRoles(entities);
-            userEntity = userConverter.toEntity(oldUser, dto);
-        } else {
-            userEntity = userConverter.toEntity(dto);
-            entities.add(roleRepository.findRoleEntityByCode("ROLE_USER"));
-            userEntity.setStatus(1);
-            userEntity.setRoles(entities);
-            sendVerificationEmail(dto, siteURL);
-        }
+        userEntity = userConverter.toEntity(dto);
+        entities.add(roleRepository.findRoleEntityByCode("ROLE_USER"));
+        userEntity.setStatus(1);
+        userEntity.setRoles(entities);
+        sendVerificationEmail(dto, siteURL);
+        return userConverter.toDto(userRepository.save(userEntity));
+    }
 
+    @Override
+    @Transactional
+    public UserDTO save(UserDTO dto) {
+        UserEntity userEntity = new UserEntity();
+        if(dto.getPassword() !=null ){
+            dto.setPassword(passwordEncoder.encode(dto.getPassword()));
+        }
+        UserEntity oldUser = userRepository.findOneById(dto.getId());
+        if(dto.getRoleCodes() != null)
+        for (String code : dto.getRoleCodes()) {
+            List<RoleEntity> entities = new ArrayList<>();
+            entities.add(roleRepository.findRoleEntityByCode(code));
+            oldUser.setRoles(entities);
+        }
+//        đoạn trên có vấn đề mai fix nhé
+        userEntity = userConverter.toEntity(oldUser, dto);
         return userConverter.toDto(userRepository.save(userEntity));
     }
 
@@ -85,24 +94,24 @@ public class UserService implements IUserService {
 
     @Override
     public List<UserDTO> findAll(Pageable pageable) {
-        List<UserDTO> models= new ArrayList<>();
+        List<UserDTO> models = new ArrayList<>();
         List<UserEntity> entities = userRepository.findAll(pageable).getContent();
-        for(UserEntity user : entities){
+        for (UserEntity user : entities) {
             UserDTO userDTO = userConverter.toDto(user);
             models.add(userDTO);
         }
-        return  models;
+        return models;
     }
 
     @Override
     public int getTotalItem() {
-        return  (int)userRepository.count();
+        return (int) userRepository.count();
     }
 
     @Override
     public UserDTO findByUserName(String name) {
         UserEntity user = userRepository.findOneByUserNameAndStatusAndEnabled(name, 1, true);
-        if(user==null){
+        if (user == null) {
             return null;
         }
         return userConverter.toDto(user);
@@ -111,7 +120,7 @@ public class UserService implements IUserService {
     @Override
     public UserDTO findByEmail(String email) {
         UserEntity user = userRepository.findByEmailAndStatus(email, 1);
-        if(user==null){
+        if (user == null) {
             return null;
         }
         return userConverter.toDto(user);

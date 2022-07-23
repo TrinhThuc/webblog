@@ -33,11 +33,15 @@ public class UserConverter {
     }
 
     public UserEntity toEntity(UserEntity entity, UserDTO dto){
+        if(dto.getUserName()!=null && dto.getUserName()!="")
         entity.setUserName(dto.getUserName());
+        if(dto.getPassword()!=null && dto.getPassword()!="")
         entity.setPassword(dto.getPassword());
+        if(dto.getFullname()!=null && dto.getFullname()!="")
         entity.setFullname(dto.getFullname());
-        entity.setStatus(dto.getStatus());
+        if(dto.getEmail() != null && dto.getEmail() != "")
         entity.setEmail(dto.getEmail());
+        if(dto.getAvatar() != null && dto.getAvatar() !="")
         entity.setAvatar(dto.getAvatar());
         return entity;
     }

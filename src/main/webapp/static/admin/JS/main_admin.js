@@ -1,3 +1,4 @@
+// Begin
 const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
 
@@ -22,21 +23,27 @@ const filterItems = $$('.container__filter-title');
 const filters = $$('.container__filter-item')
 const selections = $$('.container__selection-list');
 const selectionItems = $$('.container__selection-item');
+const refreshBtn = $('.container__refresh-btn');
 
 // Biến của phần modal
-const modalTable = $('.modal');
+const modalTables = $$('.modal');
 const modalWraps = $$('.modal__wrap');
-const modalTableDelete = $('.modal__wrap--delete');
-const modalTableEdit = $('.modal__wrap--edit');
-const modalTableView = $('.modal__wrap--view');
-const chooseYes = $('.modal__choose--yes');
-const chooseNo = $('.modal__choose--no');
-const closeBtn = $('.modal__close');
-const confirmBtn = $('.modal__edit-confirm');
-const cancelBtn = $('.modal__edit-cancel');
+const modalTableDeletes = $$('.modal__wrap--delete');
+const modalTableEdits = $$('.modal__wrap--edit');
+const modalTableViews = $$('.modal__wrap--view');
+
+const chooseYess = $$('.modal__choose--yes');
+const chooseNos = $$('.modal__choose--no');
+const closeBtns = $$('.modal__close');
+const confirmBtns = $$('.modal__edit-confirm');
+const cancelBtns = $$('.modal__edit-cancel');
 
 // Biến phần sideBar
 const sideBarItems = $$('.sideBar__item');
+
+// Biến test
+const tests = document.querySelectorAll(".modal__wrap--view");
+const testModals = document.querySelectorAll(".modal");
 
 const app = {
     currentIndex: 0,
@@ -234,12 +241,12 @@ const app = {
 
         //Xu ly khi bam vao nut last page
         lastBtn.onclick = function () {
-            app.skip4Page();
+            app.lastPage();
         }
 
         //Xu ly khi bam vao nut first page
         firstBtn.onclick = function () {
-            app.prev4Page();
+            app.firstPage();
         }
 
         //Lang nghe hanh vi click vao pagination list
@@ -252,51 +259,60 @@ const app = {
 
             // app.render_member();
 
-            if (paginationNode) {
-                app.currentIndex = Number(paginationNode.dataset.index);
-                app.render();
-            }
+            // if (paginationNode) {
+            //     app.currentIndex = Number(paginationNode.dataset.index);
+            //     app.render();
+            // }
         }
 
         //Lang nghe hanh vi click vao detele btn
         iconDeletes.forEach((iconDelete) => {
             iconDelete.onclick = function () {
-                app.appearModal();
-                app.appearDeleteTable();
-            }
-        })
-
-        //Lang nghe hanh vi click vao eye btn
-        iconEyes.forEach((iconEye) => {
-            iconEye.onclick = function () {
-                app.appearModal();
+                const value = this.closest('.container__table-row');
+                app.appearModal(value);
+                app.appearDeleteTable(value);
             }
         })
 
         //Lang nghe hanh vi click vao edit btn
         iconEdits.forEach((iconEdit) => {
             iconEdit.onclick = function () {
-                app.appearModal();
-                app.appearEditTable();
+                const value = this.closest('.container__table-row');
+
+                app.appearModal(value);
+                app.appearEditTable(value);
+            }
+        })
+
+        // Xử lý khi click vào eye btn
+        iconEyes.forEach((iconEye, index) => {
+            iconEye.onclick = function () {
+                const value = this.closest('.container__table-row');
+                app.appearModal(value);
+                app.appearEyeTable(value);
             }
         })
 
         //Lang nghe hanh vi click vao yes or no
         //trong modal delete
-        chooseYes.onclick = function () {
-            app.hideDeleteTable();
-        }
+        chooseYess.forEach(chooseYes => {
+            chooseYes.onclick = function () {
+                app.hideAllTableDeletes();
+            }
+        })
 
-        chooseNo.onclick = function () {
-            app.hideDeleteTable();
-        }
+        chooseNos.forEach(chooseNo => {
+            chooseNo.onclick = function () {
+                app.hideAllTableDeletes();
+            }
+        })
 
         //Lang nghe hanh vi click vao modal de ẩn table
-        modalTable.onclick = function () {
-            app.hideDeleteTable();
-            app.hideEditTable();
-            app.hideViewTable();
-        }
+        modalTables.forEach(modalTable => {
+            modalTable.onclick = function () {
+                app.hideAllTable();
+            }
+        })
 
         // Lang nghe hanh vi click vao modal-wrap
         //de ngan hien tuong nổi bọt
@@ -308,28 +324,33 @@ const app = {
 
         //Lắng nghe hành vi click vào nút 'Thêm mới'
         //trong danh sách người dùng
-        addMoreBtn.onclick = function () {
-            app.appearModal();
-            app.appearEditTable();
-        }
+        // addMoreBtn.onclick = function () {
+        //     app.appearModal(this.dataset.value);
+        //     app.appearEditTable(this.dataset.value);
+        // }
 
         // Lắng nghe hành vi click vào nút close
         //trong modal edit
-        closeBtn.onclick = function () {
-            app.hideDeleteTable();
-            app.hideEditTable();
-        }
+        closeBtns.forEach(closeBtn => {
+            closeBtn.onclick = function () {
+                app.hideAllTableEdits();
+            }
+        })
 
         // Lắng nghe hành vi click vào nút confirm
-        // //hoặc cancel trong modal edit
-        // confirmBtn.onclick = function () {
-        //     alert()
-        // }
+        //hoặc cancel trong modal edit
+        // confirmBtns.forEach(confirmBtn => {
+        //     confirmBtn.onclick = function () {
+        //         app.hideAllTableEdits();
+        //     }
+        // })
 
-        cancelBtn.onclick = function () {
-            app.hideDeleteTable();
-            app.hideEditTable();
-        }
+        cancelBtns.forEach(cancelBtn => {
+            cancelBtn.onclick = function () {
+                app.hideAllTableEdits();
+            }
+        })
+
 
         //Lắng nghe hành vi click vào filter
         filters.forEach((filter, index) => {
@@ -344,16 +365,10 @@ const app = {
             }
         })
 
-        // Xử lý khi click vào icon eye
-        iconEyes.forEach((iconEye, index) => {
-            iconEye.onclick = function () {
-                app.appearModal();
-                app.appearEyeTable();
-            }
-        })
-    },
-
-    activeSideBar: function () {
+        // Lắng nghe hành vi click vào refreshBtn
+        refreshBtn.onclick = function () {
+            location.reload();
+        }
 
     },
 
@@ -382,62 +397,119 @@ const app = {
         // this.render_member();
     },
 
-    skip4Page: function () {
-        this.currentIndex += 3;
-        this.currentPage += 3;
-
-        if (this.currentIndex >= this.paginations.length) {
-            this.currentIndex = this.paginations.length - 1;
-            this.currentPage = this.paginations.length - 1;
-        }
-
+    lastPage: function () {
+        this.currentIndex = this.paginations.length - 1;
         this.render();
         // this.render_member();
     },
 
-    prev4Page: function () {
-        this.currentIndex -= 3;
-        this.currentPage -= 3;
-
-        if (this.currentIndex < 0) {
-            this.currentIndex = 0;
-            this.currentPage = 0;
-        }
-
+    firstPage: function () {
+        this.currentIndex = 0;
         this.render();
         // this.render_member();
     },
 
 
-    hideDeleteTable: function () {
-        modalTable.classList.remove('appear-flex');
-        modalTableDelete.classList.remove('appear-flex');
+    hideDeleteTable: function (value) {
+        modalTableDeletes.forEach(modalTableDelete => {
+            if (modalTableDelete.dataset.value == value) {
+                modalTableDelete.classList.remove('appear-flex');
+            }
+        })
+
+        modalTables.forEach(modalTable => {
+            if (modalTable.dataset.value == value) {
+                modalTable.classList.remove('appear-flex');
+            }
+        })
     },
 
-    hideEditTable: function () {
-        modalTable.classList.remove('appear-flex');
-        modalTableEdit.classList.remove('appear-block');
+    hideEditTable: function (value) {
+        modalTables.forEach(modalTable => {
+            if (modalTable.dataset.value == value) {
+                modalTable.classList.remove('appear-flex');
+            }
+        })
+        modalTableEdits.forEach(modalTableEdit => {
+            if (modalTableEdit.dataset.value == value) {
+                modalTableEdit.classList.remove('appear-flex');
+            }
+        })
     },
 
-    hideViewTable: function() {
+    hideViewTable: function () {
         modalTable.classList.remove('appear-flex');
         modalTableView.classList.remove('appear-block');
     },
 
-    appearModal: function () {
-        modalTable.classList.add('appear-flex');
+    appearModal: function (value) {
+        value.querySelector('.modal').classList.add('appear-flex');
     },
 
-    appearDeleteTable: function () {
-        modalTableDelete.classList.add('appear-flex');
+    appearDeleteTable: function (value) {
+        // Tìm table delete của người được bấm vào
+        value.querySelector('.modal__wrap--delete').classList.add('appear-flex');
+
+        // modalTableDeletes.forEach(modalTableDelete => {
+        //     if (modalTableDelete.dataset.value == value) {
+        //         modalTableDelete.classList.add('appear-flex');
+        //     }
+        // })
     },
 
-    appearEditTable: function () {
-        modalTableEdit.classList.add('appear-block');
+    appearEditTable: function (value) {
+        value.querySelector('.modal__wrap--edit').classList.add('appear-block');
     },
 
-    appearEyeTable: function () {
-        modalTableView.classList.add('appear-block');
+    appearEyeTable: function (value) {
+        value.querySelector('.modal__wrap--view').classList.add('appear-block');
+    },
+
+    hideAllTableEdits: function () {
+        modalTableEdits.forEach(modalTableEdit => {
+            modalTableEdit.classList.remove('appear-block');
+        })
+
+        modalTables.forEach(modalTable => {
+            modalTable.classList.remove('appear-flex');
+        })
+    },
+
+    hideAllTable: function () {
+        // Xóa modal
+        modalTables.forEach(modalTable => {
+            modalTable.classList.remove('appear-flex');
+        })
+
+        // Xóa table edit
+        modalTableEdits.forEach(modalTableEdit => {
+            modalTableEdit.classList.remove('appear-block');
+        })
+
+        // Xóa table delete
+        modalTableDeletes.forEach(modalTableDelete => {
+            modalTableDelete.classList.remove('appear-flex');
+        })
+
+        // Xóa table view
+        modalTableViews.forEach(modalTableView => {
+            modalTableView.classList.remove('appear-block');
+        })
+    },
+
+    hideAllTableDeletes: function () {
+        modalTables.forEach(modalTable => {
+            modalTable.classList.remove('appear-flex');
+        })
+
+        modalTableDeletes.forEach(modalTableDelete => {
+            modalTableDelete.classList.remove('appear-flex');
+        })
+    },
+
+    test: function (value) {
+        const tests = document.querySelector(`[class='container__table-row'][id='${value}']`);
+        tests.querySelector('.modal').classList.add('appear-flex');
     },
 
     //Ham de bat dau khoi dong chuong trinh

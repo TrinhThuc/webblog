@@ -1,7 +1,5 @@
 /* tablet */
-@media (min-width: 46.25em) and (max-width: 63.9375em) {
-
-}
+@media (min-width: 46.25em) and (max-width: 63.9375em) {}
 
 /* Mobile */
 @media (max-width: 46.1875em) {
@@ -30,8 +28,7 @@
         top: 100%;
     }
 
-    .header__navbar-followed-empty {
-    }
+    .header__navbar-followed-empty {}
 
     .header__navbar-list {
         position: relative;

@@ -2,7 +2,7 @@ function Validator(options) {
     function getParent(element, selector) {
         while (element.parentElement) {
             if (element.parentElement.matches(selector)) {
-                return element.parentElement; 
+                return element.parentElement;
             }
             element = element.parentElement;
         }
@@ -84,13 +84,13 @@ function Validator(options) {
                                 }
                                 values[input.name].push(input.value);
                                 break;
-                            
+
                             case 'file':
                                 values[input.name] = input.files;
                                 break;
-                                
-                            default: 
-                            values[input.name] = input.value
+
+                            default:
+                                values[input.name] = input.value
                         }
 
                         return  values;
@@ -171,3 +171,23 @@ Validator.isConfirmed = function (selector, getConfirmValue, message) {
         }
     }
 }
+
+// Code JS về giao diện
+const btnSocialNetworks = document.querySelectorAll('.form__conection-socialNetwork');
+const inputRadio = document.querySelector('.form__remember-checkbox');
+
+btnSocialNetworks.forEach((btnSocialNetwork) => {
+    btnSocialNetwork.onclick = function () {
+        this.disabled = true;
+    }
+});
+
+if (inputRadio.checked) {
+    inputRadio.checked = false;
+}
+else {
+    inputRadio.checked = true;
+
+}
+
+

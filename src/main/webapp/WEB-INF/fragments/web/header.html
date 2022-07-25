@@ -1,72 +1,249 @@
 <!DOCTYPE html >
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<header class="header" th:fragment="header">
+<header id="header" class="header">
     <div class="gridFlex">
         <div class="header__top-section">
             <div class="header__top-item header__search-bar">
-                <i
-                        class="fa-solid fa-arrow-left header__search-bar__back-button"
-                ></i>
-                <input
-                        type="text"
-                        class="header__search-input"
-                        placeholder="Tìm kiếm bài viết, hoặc tác giả..."
-                />
+                <i class="fa-solid fa-arrow-left header__search-bar__back-button"></i>
+                <input type="text" class="header__search-input"
+                       placeholder="Tìm kiếm bài viết, hoặc tác giả..." />
                 <i class="fas fa-search"></i>
+
             </div>
 
             <div class="header__top-item header__logo">
                 <a href="#" class="header__logo-link">
-                    <img
-                            src="/static/homepage/img/logo-blog.png"
-                            alt=""
-                            class="header__logo-img"
-                    />
+                    <img src="/static/homepage/img/logo-blog.png" alt="" class="header__logo-img" />
                 </a>
             </div>
 
-            <div class="header__top-item header__signIn">
+            <div class="header__top-item header__sign-In"
+                 th:if = "${#request.userPrincipal == null}">
                 <button class="header__search-icon">
-                    <i
-                            class="fa-solid fa-magnifying-glass header__search-icon"
-                    ></i>
+                    <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
-                <a th:href="@{/dang-nhap}">
-                    <button class="header_signIn-btn">Đăng nhập</button>
-                </a>
+                <button class="header_signIn-btn">
+                    <a th:href="@{/dang-nhap}">Đăng nhập</a>
+                </button>
+            </div>
+
+            <div class="header__top-item header__user-signed-In"  th:if = "${#request.userPrincipal != null}">
+                <div class="user-signed-In__icon-wrapper">
+                    <div class="user-signed-In__icon-items user-signed-In__search-icon header__search-icon">
+                        <a href="#">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </a>
+                    </div>
+                    <div class="user-signed-In__icon-items user-signed-In__message-icon">
+                        <div class="header__icon__notificartion">
+                            <a href="#">
+                                <i class="fa-solid fa-bell"></i>
+                            </a>
+                        </div>
+                        <div class="header__modal__notification">
+                            <div class="modal__notification__tittle">
+                                <h2>Thông báo</h2>
+                            </div>
+                            <div class="modal__notification__board">
+                                <div class="notification__board__news-avatar">
+                                    <div class="board__item-avatar">
+                                        <img src="/static/homepage/img/avt.jpg" alt="">
+                                    </div>
+                                </div>
+
+                                <div class="notification__board__news-content">
+                                    <div class="board__item__content">
+                                        Spiderum Team vừa đăng một bài viết mới: "Chào Đón Website "Người Trong Muôn Nghề” Chính Thức Ra Mắt"
+                                    </div>
+
+                                    <div class="board__item__posted-time">
+                                        20 tháng 7
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="user-signed-In__user-avatar-wrapper">
+                    <div class="user-signed-In__user-avatar-wrapper">
+                        <div class="header__icon__user-navbar">
+                            <a href="#">
+                                <img src="/static/homepage/img/avt.jpg" alt="" />
+                            </a>
+                        </div>
+                        <div class="header__modal__user-navbar">
+                            <div class="modal__user-navbar__information-wrapper">
+                                <div class="modal__user-navbar__avatar">
+                                    <img src="/static/homepage/img/avt.jpg" alt="">
+                                </div>
+                                <div class="modal__user-navbar__information">
+                                    <div class="user-navbar__display-name">
+                                        Hòa Vũ
+                                    </div>
+                                    <div class="user-navbar__user-name">
+                                        @lamzii
+                                    </div>
+                                    <a href="#">
+                                        Xem trang cá nhân
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="modal__user-navbar__feature">
+                                <ul class="user-navbar__items">
+                                    <a href="#">
+                                        <li class="user-navbar__item">
+                                            <i class="fa-solid fa-pen"></i>
+                                            Bài viết của tôi
+                                        </li>
+                                    </a>
+                                    <a href="#">
+                                        <li class="user-navbar__item">
+                                            <i class="fa-solid fa-bookmark"></i>
+                                            Đã lưu
+                                        </li>
+                                    </a>
+                                    <a href="#">
+                                        <li class="user-navbar__item">
+                                            <i class="fa-solid fa-gear"></i>Tùy chỉnh tài khoản
+                                        </li>
+                                </ul>
+                                </a>
+                            </div>
+                            <div class="modal__user-navbar__sign-off" >
+                                <a th:href="@{/dang-xuat}">
+                                    <button class="user-navbar__sign-off__btn"
+                                    >
+                                        <span>
+                                            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                                            Đăng xuất
+                                        </span>
+                                    </button>
+                                </a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="user-signed-In__writing-blog-wrapper">
+                    <a th:href="@{/bai-dang/viet-bai}">
+                        <button>
+                                    <span>
+                                        Viết bài
+                                    </span>
+                        </button>
+                    </a>
+                </div>
+            </div>
 
 
+        </div>
+        <div class="header__bottom-section">
+            <div class="header__navbar-item followed-list text-strong">
+                        <span>
+                            ĐANG THEO DÕI
+                            <i class="fas fa-chevron-down"></i>
+                        </span>
+                <ul class="header__navbar-followed-list empty">
+                    <li class="header__navbar-followed-empty">
+                        Danh sách theo dõi rỗng
+                    </li>
+                </ul>
+            </div>
 
+            <div class="header__navbar-item popular-writer text-strong">
+                        <span>
+                            THÀNH VIÊN NỔI BẬT
+                        </span>
+            </div>
+
+            <div class="header__navbar-item header__navbar-topic-list-container">
+                <button class="header__navbar-item header__topic-list-prev-button">
+                            <span>
+                                < </span>
+                </button>
+                <div class="header__navbar-item header__navbar-topic-list-warrper">
+                    <ul class="header__navbar-item header__navbar-topic-list">
+                        <li class="header__navbar-item header__topic-list-item">
+                            <a href="">Tất cả</a>
+                        </li>
+                        <li class="header__navbar-item header__topic-list-item">
+                            <a href="">Khoa Học - công nghệ</a>
+                        </li>
+                        <li class="header__navbar-item header__topic-list-item">
+                            <a href="">Thể thao</a>
+                        </li>
+                        <li class="header__navbar-item header__topic-list-item">
+                            <a href="">truyền cảm hứng</a>
+                        </li>
+                        <li class="header__navbar-item header__topic-list-item">
+                            <a href="">game</a>
+                        </li>
+                        <li class="header__navbar-item header__topic-list-item">
+                            <a href="">Tất cả</a>
+                        </li>
+                        <li class="header__navbar-item header__topic-list-item">
+                            <a href="">Khoa Học - công nghệ</a>
+                        </li>
+                        <li class="header__navbar-item header__topic-list-item">
+                            <a href="">Thể thao</a>
+                        </li>
+                        <li class="header__navbar-item header__topic-list-item">
+                            <a href="">truyền cảm hứng</a>
+                        </li>
+                        <li class="header__navbar-item header__topic-list-item">
+                            <a href="">game</a>
+                        </li>
+                        <li class="header__navbar-item header__topic-list-item">
+                            <a href="">Thể thao</a>
+                        </li>
+                        <li class="header__navbar-item header__topic-list-item">
+                            <a href="">truyền cảm hứng</a>
+                        </li>
+                        <li class="header__navbar-item header__topic-list-item">
+                            <a href="">game</a>
+                        </li>
+                        <li class="header__navbar-item header__topic-list-item">
+                            <a href="">Khoa Học - công nghệ</a>
+                        </li>
+                        <li class="header__navbar-item header__topic-list-item">
+                            <a href="">Thể thao</a>
+                        </li>
+                        <li class="header__navbar-item header__topic-list-item">
+                            <a href="">truyền cảm hứng</a>
+                        </li>
+                        <li class="header__navbar-item header__topic-list-item">
+                            <a href="">game</a>
+                        </li>
+                        <li class="header__navbar-item header__topic-list-item">
+                            <a href="">Thể thao</a>
+                        </li>
+                        <li class="header__navbar-item header__topic-list-item">
+                            <a href="">truyền cảm hứng</a>
+                        </li>
+                        <li class="header__navbar-item header__topic-list-item">
+                            <a href="">game</a>
+                        </li>
+                        <li class="header__navbar-item header__topic-list-item">
+                            <a href="">truyền cảm hứng</a>
+                        </li>
+                        <li class="header__navbar-item header__topic-list-item">
+                            <a href="">truyền cảm hứng</a>
+                        </li>
+                        <li class="header__navbar-item header__topic-list-item">
+                            <a href="">truyền cảm hứng</a>
+                        </li>
+                        <li class="header__navbar-item header__topic-list-item">
+                            <a href="">truyền cảm hứng</a>
+                        </li>
+
+                    </ul>
+                </div>
+                <button class="header__navbar-item header__topic-list-next-button">
+                    <span> > </span>
+                </button>
             </div>
         </div>
-
-        <ul class="header__bottom-section">
-            <li class="header__navbar-item followed-list">
-                Đang theo dõi
-                <i class="fas fa-chevron-down"></i>
-            </li>
-            <li class="header__navbar-item">
-                <a href="">Tất cả</a>
-            </li>
-            <li class="header__navbar-item">
-                <a href="">Khoa Học - công nghệ</a>
-            </li>
-            <li class="header__navbar-item">
-                <a href="">Thể thao</a>
-            </li>
-            <li class="header__navbar-item">
-                <a href="">truyền cảm hứng</a>
-            </li>
-            <li class="header__navbar-item">
-                <a href="">game</a>
-            </li>
-
-            <ul class="header__navbar-followed-list empty">
-                <li class="header__navbar-followed-empty">
-                    Danh sách theo dõi rỗng
-                </li>
-            </ul>
-        </ul>
     </div>
 </header>
 </html>

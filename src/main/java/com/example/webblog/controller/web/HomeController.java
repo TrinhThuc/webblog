@@ -98,7 +98,7 @@ public class HomeController {
         }
     }
 
-    @GetMapping("bai-dang/viet-bai")
+    @GetMapping("/bai-dang/viet-bai")
     public ModelAndView writingPage() {
         CategoryDTO categoryDTO = new CategoryDTO();
         categoryDTO.setListResult(categoryService.getAll());

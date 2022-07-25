@@ -44,6 +44,11 @@ li {
     list-style: none;
 }
 
+.active {
+    display: block !important;
+    z-index: 999;
+}
+
 .text-strong {
     font-weight: 700;
     text-transform: uppercase;

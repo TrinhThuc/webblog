@@ -161,10 +161,13 @@ body {
 .form__conection-socialNetwork {
     outline: none;
     border: none;
-    color: #fff;
     padding: 12px;
     border-radius: 3px;
     min-width: 200px;
+}
+
+.form__conection-socialNetwork a {
+    color: #fff;
 }
 
 .form__conection-socialNetwork:hover {

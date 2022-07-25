@@ -6,8 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign up</title>
-    <!-- <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;900&display=swap"
-        rel="stylesheet"> -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -18,8 +16,8 @@
 
 <body>
 <div class="main_background">
+    <img src="/static/signup/img/sign-up-background.png" alt="" class="header-logo">
     <div class="main">
-        <img src="/static/signup/img/sign-up-background.png" alt="" class="header-logo">
         <form class="form__sign-up" name='form' th:action="@{/j_spring_security_check}" method='POST'>
             <h3 class="form__subtitle" >Welcome Back</h3>
             <h1 class="form__title">Đăng nhập tài khoản của bạn</h1>
@@ -52,11 +50,11 @@
             <div class="form__conection">
                 <button class="form__conection-socialNetwork background--GG">
                     <i class="fa-brands fa-google form__conection-socialNetwork-icon"></i>
-                    Đăng nhập với Google
+                    <a href="">Đăng nhập với Google</a>
                 </button>
                 <button class="form__conection-socialNetwork background--FB">
                     <i class="fa-brands fa-facebook form__conection-socialNetwork-icon"></i>
-                    Đăng nhập với Facebook
+                    <a href="">Đăng nhập với Facebook</a>
                 </button>
             </div>
         </form>
@@ -67,7 +65,7 @@
     </div>
 </div>
 </body>
-<!--<script src="/static/signup/js/main.js"></script>-->
+<script src="/static/signup/js/main.js"></script>
 <!--<script>-->
 <!--    Validator({-->
 <!--        form: '#form-1',-->
@@ -82,4 +80,5 @@
 <!--        }-->
 <!--    });-->
 <!--</script>-->
+
 </html>

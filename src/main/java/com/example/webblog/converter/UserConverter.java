@@ -17,8 +17,8 @@ public class UserConverter {
 
     public UserDTO toDto(UserEntity entity) {
         List<RoleEntity> roleEntityList = entity.getRoles();
-        List<String> roles= new ArrayList<>();
-        for(RoleEntity role : roleEntityList){
+        List<String> roles = new ArrayList<>();
+        for (RoleEntity role : roleEntityList) {
             roles.add(role.getCode());
         }
         UserDTO result = new UserDTO();
@@ -32,17 +32,19 @@ public class UserConverter {
         return result;
     }
 
-    public UserEntity toEntity(UserEntity entity, UserDTO dto){
-        if(dto.getUserName()!=null && dto.getUserName()!="")
-        entity.setUserName(dto.getUserName());
-        if(dto.getPassword()!=null && dto.getPassword()!="")
-        entity.setPassword(dto.getPassword());
-        if(dto.getFullname()!=null && dto.getFullname()!="")
-        entity.setFullname(dto.getFullname());
-        if(dto.getEmail() != null && dto.getEmail() != "")
-        entity.setEmail(dto.getEmail());
-        if(dto.getAvatar() != null && dto.getAvatar() !="")
-        entity.setAvatar(dto.getAvatar());
+    public UserEntity toEntity(UserEntity entity, UserDTO dto) {
+        if (dto.getUserName() != null && dto.getUserName() != "")
+            entity.setUserName(dto.getUserName());
+        if (dto.getPassword() != null && dto.getPassword() != "")
+            entity.setPassword(dto.getPassword());
+        if (dto.getFullname() != null && dto.getFullname() != "")
+            entity.setFullname(dto.getFullname());
+        if (dto.getEmail() != null && dto.getEmail() != "")
+            entity.setEmail(dto.getEmail());
+        if (dto.getAvatar() != null && dto.getAvatar() != "")
+            entity.setAvatar(dto.getAvatar());
+        if (dto.getRoles() != null)
+            entity.setRoles(dto.getRoles());
         return entity;
     }
 

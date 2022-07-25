@@ -1,0 +1,245 @@
+.container {
+    padding: 20px 30px;
+    display: flex;
+    gap: 16px;
+}
+
+.container__user {
+    min-width: 250px;
+    height: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 32px 16px;
+    position: -webkit-sticky;
+    /* Safari */
+    position: sticky;
+    top: 0;
+}
+
+.container__user-head {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 16px;
+    width: 90%;
+}
+
+.user__avt {
+    width: 150px;
+    height: 150px;
+    border-radius: 100rem;
+}
+
+.user__name {
+    font-size: 2rem;
+    font-weight: 500;
+    color: #bbb;
+    margin-top: 16px;
+}
+
+.user__edit {
+    border: 3px solid var(--primary-color);
+    padding: 10px 16px;
+    border-radius: 25px;
+    color: var(--primary-color);
+    font-weight: 500;
+    font-size: 1.8rem;
+    margin-top: 16px;
+}
+
+.container__user-footer {
+    margin-top: 16px;
+    margin-bottom: 40px;
+    display: flex;
+    gap: 10px;
+}
+
+.user__follow {
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.user__follow span:first-child {
+    margin-bottom: 12px;
+}
+
+.container__content {
+    flex: 1;
+    display: none;
+}
+
+.content__header {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 8px 20px;
+    font-size: 1.8rem;
+    margin-bottom: 12px;
+}
+
+.content__header span:first-child {
+    margin-right: 16px;
+}
+
+.content__header span:hover {
+    cursor: pointer;
+}
+
+.content__header span.active {
+    color: var(--primary-color);
+    border-bottom: 4px solid var(--primary-color);
+}
+
+.content__table {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 16px 8px;
+}
+
+.content__table-item {
+    display: flex;
+    margin: 16px 0;
+    overflow: hidden;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.content__table-item:hover {
+    background-color: #e9e9e9;
+    box-shadow: 0px 2px 8px rgb(0 0 0 / 20%);
+}
+
+.table__img-link {
+    width: 200px;
+    height: 150px;
+}
+
+.table__img-link img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.table__content {
+    margin-left: 12px;
+    font-size: 1.4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    flex: 1;
+}
+
+.table__title a:hover {
+    text-decoration: underline;
+}
+
+.table__sub-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    /* number of lines to show */
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.content__footer {
+    color: #000;
+    border: 1px solid #ccc;
+    margin-top: 16px;
+    width: 100%;
+    padding: 8px 0;
+    font-size: 1.6rem;
+    font-weight: 500;
+}
+
+/* ======= Modal Edit =======*/
+.modal__edit {
+    display: none;
+    margin: 0 auto;
+    min-width: 400px;
+    padding: 16px;
+    min-height: 600px;
+}
+
+.modal__avt {
+    width: 150px;
+    height: 150px;
+}
+
+.modal__form {
+    margin-top: 20px;
+    font-size: 1.6rem;
+}
+
+.modal__input {
+    padding: 10px 16px;
+    margin-top: 8px;
+    background-color: #E3F3F1;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    display: block;
+    width: 100%;
+}
+
+.modal__btn {
+    width: 100%;
+    color: #000;
+    border-radius: 20px;
+    margin: 40px 0;
+}
+
+.modal__change-psw {
+    opacity: 0;
+    transform: translateY(-15px);
+    transition: all 0.3s ease-in-out;
+    display: none;
+}
+
+.modal__save {
+    margin-top: 16px;
+}
+
+.modal__save button {
+    float: right;
+    border-radius: 20px;
+    border: 2px solid var(--primary-color);
+    min-width: 100px;
+    padding: 8px 16px;
+}
+
+.modal__save-btn {
+    background-color: var(--primary-color);
+    color: #fff;
+    margin-left: 16px;
+}
+
+.modal__cancel-btn {
+    color: #000;
+}
+
+/* CSS error checking */
+.modal__form.invalid .modal__input {
+    border: 1px solid #f33a58;
+}
+
+.modal__form.invalid .form-message {
+    color: #f33a58;
+}
+
+.form-message {
+    font-size: 1.4rem;
+    line-height: 1.6rem;
+    padding: 4px 0 0;
+}

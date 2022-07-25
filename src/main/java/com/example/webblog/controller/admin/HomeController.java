@@ -35,7 +35,7 @@ public class HomeController {
         UserDTO model = new UserDTO();
         model.setPage(page);
         model.setLimit(limit);
-        ModelAndView mav = new ModelAndView("admin/admin");
+        ModelAndView mav = new ModelAndView("admin/user_manage");
         Pageable pageable = PageRequest.of(page-1,limit);
         List<UserDTO> ListResult = userService.findAll(pageable);
         Integer i= (page-1)*limit +1;
@@ -47,6 +47,18 @@ public class HomeController {
         model.setTotalItem(userService.getTotalItem());
         model.setTotalPage((int) Math.ceil((double) model.getTotalItem() / model.getLimit()));
         mav.addObject("model",model);
+        return mav;
+    }
+
+    @RequestMapping(value = "/quan-tri/role", method = RequestMethod.GET)
+    public ModelAndView listRole() {
+        ModelAndView mav = new ModelAndView("admin/role_manage");
+        return mav;
+    }
+
+    @RequestMapping(value = "/quan-tri/bai-viet", method = RequestMethod.GET)
+    public ModelAndView listPost() {
+        ModelAndView mav = new ModelAndView("admin/posts-manage");
         return mav;
     }
 }

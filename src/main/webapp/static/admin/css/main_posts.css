@@ -59,6 +59,14 @@
     border-spacing: 12px 25px;
 }
 
+.container__table-row .icon {
+    font-size: 2rem;
+}
+
+.container__table-row .icon:hover {
+    cursor: pointer;
+}
+
 .container__table-row th {
     font-size: 1.6rem;
     padding-bottom: 4px;

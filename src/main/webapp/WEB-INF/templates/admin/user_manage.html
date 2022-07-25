@@ -124,7 +124,7 @@
                                                             <i class="fas fa-asterisk modal__edit-icon"></i>
                                                         </p>
                                                         <input type="text" class="modal__edit-input" required
-                                                        th:placeholder="${user.userName}" name="userName">
+                                                               th:placeholder="${user.userName}" name="userName">
                                                     </li>
 
                                                     <li class="modal__edit-item">
@@ -132,8 +132,7 @@
                                                             Mật khẩu
                                                             <i class="fas fa-asterisk modal__edit-icon"></i>
                                                         </p>
-                                                        <input type="password" class="modal__edit-input" required
-                                                        >
+                                                        <input type="password" class="modal__edit-input" required>
                                                     </li>
 
                                                     <li class="modal__edit-item">
@@ -142,39 +141,20 @@
                                                             <i class="fas fa-asterisk modal__edit-icon"></i>
                                                         </p>
                                                         <input type="text" class="modal__edit-input" required
-                                                        th:placeholder="${user.fullname}" name="fullname">
+                                                               th:placeholder="${user.fullname}" name="fullname">
                                                     </li>
 
                                                     <li class="modal__edit-item">
                                                         <p class="modal__edit-text">Email</p>
                                                         <input type="email" class="modal__edit-input"
-                                                        th:placeholder="${user.email}" name ="email">
+                                                               th:placeholder="${user.email}" name ="email">
                                                     </li>
-
-                                                </ul>
-                                                <ul class="modal__edit-list">
-                                                    <li class="modal__edit-item">
-                                                        <p class="modal__edit-text">Số điện thoại</p>
-                                                        <input type="number" class="modal__edit-input">
-                                                    </li>
-
-                                                    <li class="modal__edit-item">
-                                                        <p class="modal__edit-text">Role</p>
-                                                        <input type="text" class="modal__edit-input">
-                                                    </li>
-
-                                                    <li class="modal__edit-item">
-                                                        <p class="modal__edit-text">
-                                                            Nhóm
-                                                            <i class="fas fa-asterisk modal__edit-icon"></i>
-                                                        </p>
-                                                        <input type="text" class="modal__edit-input" required>
-                                                    </li>
-
-                                                    <li class="modal__edit-item">
-                                                        <p class="modal__edit-text">Người thêm</p>
-                                                        <input type="text" class="modal__edit-input"
-                                                               th:placeholder="${user.createdBy}">
+                                                    <li class="modal__edit-item manage__user">
+                                                        <div>
+                                                            <input type="checkbox" th:id="'switch' + ${user.id}" class="switch-input" />
+                                                            <label th:for="'switch' + ${user.id}" class="switch"></label>
+                                                        </div>
+                                                        <span class="modal__edit-text">Khóa tài khoản</span>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -185,57 +165,16 @@
                                                     Roles
                                                     <i class="fas fa-asterisk modal__edit-icon"></i>
                                                 </p>
-                                                <div class="modal__edit-container">
-                                                    <!-- table 1 của edit role -->
-                                                    <div class="modal__edit-table">
-                                                        <div class="modal__table-wrap">
-                                                            <div class="modal__table-title">
-                                                                Danh sách Roles
-                                                            </div>
-                                                            <div class="modal__table-search">
-                                                                <i class="fas fa-search modal__table-icon"></i>
-                                                                <input type="text" class="modal__table-input">
-                                                            </div>
-                                                            <ul class="modal__table-list">
-                                                                <li class="modal__table-item">Giám đốc chi nhánh</li>
-                                                                <li class="modal__table-item">Phó giám đốc chi nhánh
-                                                                </li>
-                                                                <li class="modal__table-item">Trưởng phong</li>
-                                                                <li class="modal__table-item">Trưởng phong ke toan</li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
+                                                <div class="modal__role-container">
+                                                    <ul class="modal__role-list" >
+                                                        <li class="modal__role-item" th:each="role : ${roles}">
+                                                            <label th:id="${role.id}" for="" class="modal__role-label"
+                                                            th:text="${role.name}">
+                                                            </label>
+                                                                <input type="checkbox"  class="modal__role-input">
 
-                                                    <div class="modal__edit-change">
-                                                        <button class="modal__edit-btn">
-                                                            <i class="fas fa-angle-right"></i>
-                                                        </button>
-                                                        <button class="modal__edit-btn">
-                                                            <i class="fas fa-angle-double-right"></i>
-                                                        </button>
-                                                        <button class="modal__edit-btn">
-                                                            <i class="fas fa-angle-left"></i>
-                                                        </button>
-                                                        <button class="modal__edit-btn">
-                                                            <i class="fas fa-angle-double-left"></i>
-                                                        </button>
-                                                    </div>
-
-                                                    <!-- table 2 của edit role -->
-                                                    <div class="modal__edit-table">
-                                                        <div class="modal__table-wrap">
-                                                            <div class="modal__table-title">
-                                                                Danh sách Role đã chọn
-                                                            </div>
-                                                            <div class="modal__table-search">
-                                                                <i class="fas fa-search modal__table-icon"></i>
-                                                                <input type="text" class="modal__table-input">
-                                                            </div>
-                                                            <ul class="modal__table-list">
-                                                                <li class="modal__table-item">Giám đốc khối</li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
+                                                        </li>
+                                                    </ul>
                                                 </div>
                                                 <div class="modal__edit-footer">
                                                     <button class="btn modal__edit-cancel">
@@ -432,7 +371,11 @@
             var fullname = inf.querySelector('input[name="fullname"]').value
             var email = inf.querySelector('input[name="email"]').value
             var id = btnEdit.getAttribute('id')
+            var rolreIds = app.sendAllInputChecked(btnEdit)
+            var status = app.sendStatusBlock(btnEdit)
             var user = {
+                roleIds : rolreIds,
+                status : status,
                 userName : userName,
                 fullname : fullname,
                 email : email,

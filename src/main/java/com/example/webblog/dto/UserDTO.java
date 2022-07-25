@@ -15,6 +15,8 @@ public class UserDTO extends AbstractDTO<UserDTO>{
     private String email;
     private String verificationCode;
     private boolean enabled;
+    private List<Long> roleIds = new ArrayList<>();
+    private List<RoleEntity> roles= new ArrayList<>();
 
     public boolean isEnabled() {
         return enabled;
@@ -32,8 +34,7 @@ public class UserDTO extends AbstractDTO<UserDTO>{
         this.verificationCode = verificationCode;
     }
 
-    private List<String> roleCodes = new ArrayList<>();
-    private List<RoleEntity> roles= new ArrayList<>();
+
 
 
     public List<RoleEntity> getRoles() {
@@ -44,12 +45,12 @@ public class UserDTO extends AbstractDTO<UserDTO>{
         this.roles = roles;
     }
 
-    public List<String> getRoleCodes() {
-        return roleCodes;
+    public List<Long> getRoleIds() {
+        return roleIds;
     }
 
-    public void setRoleCodes(List<String> roleCodes) {
-        this.roleCodes = roleCodes;
+    public void setRoleIds(List<Long> roleIds) {
+        this.roleIds = roleIds;
     }
 
     public UserDTO() {

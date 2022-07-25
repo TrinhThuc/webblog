@@ -17,13 +17,13 @@ public class UserConverter {
 
     public UserDTO toDto(UserEntity entity) {
         List<RoleEntity> roleEntityList = entity.getRoles();
-        List<String> roles = new ArrayList<>();
+        List<Long> roles = new ArrayList<>();
         for (RoleEntity role : roleEntityList) {
-            roles.add(role.getCode());
+            roles.add(role.getId());
         }
         UserDTO result = new UserDTO();
         result = modelMapper.map(entity, UserDTO.class);
-        result.setRoleCodes(roles);
+        result.setRoleIds(roles);
         return result;
     }
 
@@ -43,8 +43,7 @@ public class UserConverter {
             entity.setEmail(dto.getEmail());
         if (dto.getAvatar() != null && dto.getAvatar() != "")
             entity.setAvatar(dto.getAvatar());
-        if (dto.getRoles() != null)
-            entity.setRoles(dto.getRoles());
+
         return entity;
     }
 

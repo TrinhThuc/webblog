@@ -20,7 +20,7 @@ action.onclick = function() {
 confirmBtn.onmouseover = function() {
     setTimeout(() => {
         confirmBtn.style.color = 'white';
-    }, 150);
+    }, 100);
     // confirmBtn.style.color = 'white';
     // console.log(123);
 }
@@ -28,9 +28,7 @@ confirmBtn.onmouseover = function() {
 confirmBtn.onmouseout = function() {
     setTimeout(() => {
         confirmBtn.style.color = 'var(--primary-color)';
-    }, 150);
-    // confirmBtn.style.color = 'white';
-    // console.log(123);
+    }, 100);
 }
 
 

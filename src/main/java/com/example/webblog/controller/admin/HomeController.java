@@ -1,7 +1,9 @@
 package com.example.webblog.controller.admin;
 
+import com.example.webblog.dto.RoleDTO;
 import com.example.webblog.dto.UserDTO;
 import com.example.webblog.entity.RoleEntity;
+import com.example.webblog.service.IRoleService;
 import com.example.webblog.service.IUserService;
 import com.example.webblog.service.impl.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,9 @@ public class HomeController {
 
     @Autowired
     private IUserService userService;
+
+    @Autowired
+    private IRoleService roleService;
 
     @RequestMapping(value = "/quan-tri/trang-chu", method = RequestMethod.GET)
     public ModelAndView homePage() {
@@ -46,6 +51,8 @@ public class HomeController {
         model.setListResult(ListResult);
         model.setTotalItem(userService.getTotalItem());
         model.setTotalPage((int) Math.ceil((double) model.getTotalItem() / model.getLimit()));
+        List<RoleDTO> roles = roleService.findAll();
+        mav.addObject("roles",roles);
         mav.addObject("model",model);
         return mav;
     }

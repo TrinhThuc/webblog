@@ -224,7 +224,7 @@
     color: #ffeb3b;
 }
 
-.container__table-icon:last-child {
+.container__table-icon:nth-child(3) {
     color: #f44336;
 }
 
@@ -331,6 +331,53 @@
     border: 2px solid #000;
 }
 
+.modal__edit-item.manage__user {
+    display: flex;
+    align-items: center;
+}
+
+.modal__edit-item > div {
+    margin-right: 16px;
+}
+
+.switch {
+    position: relative;
+    cursor: pointer;
+    width: 4.8rem;
+    height: 2rem;
+    display: block;
+    overflow: hidden;
+    /* box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1); */
+    background: #000;
+    border-radius: 100rem;
+    transition: background-color 0.25s linear;
+ }
+ 
+ .switch:after {
+    content: "";
+    position: absolute;
+    width: 1.6rem;
+    height: 1.6rem;
+    border-radius: 100rem;
+    background-color: #fff;
+    top: 2px;
+    left: 2px;
+    transition: background-color 0.25s linear, transform 0.25s linear;
+ }
+ 
+ .switch-input {
+    display: none;
+ }
+ 
+ .switch-input:checked + .switch {
+    background-color: #6a5af9;
+ }
+ 
+ .switch-input:checked + .switch:after {
+    transform: translateX(2.75rem);
+    background-color: white;
+ }
+
 .modal__edit-icon {
     font-size: 1.2rem;
     color: red;
@@ -355,97 +402,38 @@
     margin-top: 20px;
 }
 
-.modal__edit-container {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-}
-
-.modal__edit-table {
+.modal__role-container {
     border: 2px solid var(--border-color);
-    background-color: #f5fdff;
-    font-size: 1.4rem;
-    width: 400px;
-    border-radius: 10px;
-}
-
-.modal__table-wrap {
-    padding: 16px 16px;
-}
-
-.modal__table-title {
-    font-size: 1.4rem;
-    color: var(--primary-color);
-    font-weight: 500;
-}
-
-.modal__table-search {
-    display: flex;
-    align-items: center;
-    border: 1px solid #ccc;
     border-radius: 5px;
-    transition: border linear 0.2s;
-    background-color: var(--white-color);
-    padding: 8px;
-    margin-top: 12px;
-}
-
-.modal__table-search:focus-within {
-    border: 1px solid #000;
-}
-
-.modal__table-icon {
-    color: #ccc;
-}
-
-.modal__table-icon:hover {
-    cursor: pointer;
-}
-
-.modal__table-input {
-    border: none;
-    outline: none;
-    font-size: 1.4rem;
-    width: 100%;
-    margin-left: 8px;
-}
-
-.modal__table-list {
-    height: 150px;
-    margin-top: 20px;
-}
-
-.modal__table-item {
     padding: 10px;
+}
+
+.modal__role-list {
+    height: 100px;
+    overflow-y: scroll;
+
+}
+
+.modal__role-list::-webkit-scrollbar {
+    width: 10px;
+}
+
+.modal__role-list::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: #ccc;
+}
+
+.modal__role-item {
+    margin-bottom: 12px;
+}
+
+.modal__role-label {
     font-weight: 500;
-
 }
 
-.modal__table-item:hover {
-    cursor: pointer;
-    background-color: #ccc;
-}
-
-.modal__edit-change {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-}
-
-.modal__edit-btn {
-    outline: none;
-    border: none;
-    padding: 12px;
-    font-size: 2rem;
-    background-color: var(--primary-color);
-    color: #fff;
-    border-radius: 3px;
-}
-
-.modal__edit-btn:hover {
-    -webkit-filter: brightness(103%);
-    filter: brightness(103%);
-    cursor: pointer;
+.modal__role-input {
+    float: right;
+    margin-right: 16px;
 }
 
 .modal__edit-footer {

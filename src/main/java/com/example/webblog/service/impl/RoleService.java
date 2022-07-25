@@ -9,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class RoleService implements IRoleService {
     @Autowired
@@ -35,5 +38,14 @@ public class RoleService implements IRoleService {
         for(long id : ids){
             roleRepository.deleteById(id);
         }
+    }
+
+    @Override
+    @Transactional
+    public List<RoleDTO> findAll() {
+        List<RoleDTO> roleDTOS = new ArrayList<>();
+        for(RoleEntity role : roleRepository.findAll())
+            roleDTOS.add(roleConverter.toDto(role));
+        return roleDTOS;
     }
 }

@@ -46,7 +46,6 @@ li {
 
 .active {
     display: block !important;
-    z-index: 999;
 }
 
 .text-strong {

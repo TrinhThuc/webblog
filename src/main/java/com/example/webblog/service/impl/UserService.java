@@ -65,16 +65,21 @@ public class UserService implements IUserService {
     @Transactional
     public UserDTO save(UserDTO dto) {
         UserEntity userEntity = new UserEntity();
+
         if(dto.getPassword() !=null ){
             dto.setPassword(passwordEncoder.encode(dto.getPassword()));
         }
         UserEntity oldUser = userRepository.findOneById(dto.getId());
-        if(dto.getRoleCodes() != null)
-        for (String code : dto.getRoleCodes()) {
+        if(dto.getRoleIds() != null)
+        {
             List<RoleEntity> entities = new ArrayList<>();
-            entities.add(roleRepository.findRoleEntityByCode(code));
+            for (Long roleId : dto.getRoleIds()) {
+                entities.add(roleRepository.findRoleEntityById(roleId));
+
+            }
             oldUser.setRoles(entities);
         }
+
 //        đoạn trên có vấn đề mai fix nhé
         userEntity = userConverter.toEntity(oldUser, dto);
         return userConverter.toDto(userRepository.save(userEntity));

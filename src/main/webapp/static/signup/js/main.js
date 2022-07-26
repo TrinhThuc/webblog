@@ -182,12 +182,12 @@ btnSocialNetworks.forEach((btnSocialNetwork) => {
     }
 });
 
-if (inputRadio.checked) {
-    inputRadio.checked = false;
-}
-else {
-    inputRadio.checked = true;
-
-}
+// if (inputRadio.checked) {
+//     inputRadio.checked = false;
+// }
+// else {
+//     inputRadio.checked = true;
+//
+// }
 
 

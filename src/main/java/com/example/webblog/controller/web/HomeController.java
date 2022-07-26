@@ -42,23 +42,6 @@ public class HomeController {
         return mav;
     }
 
-//    @RequestMapping(value = "/dang-ki", method = RequestMethod.GET)
-//    public ModelAndView signUpPage( ) {
-//        ModelAndView mav = new ModelAndView("registration");
-//        return mav;
-//    }
-//
-//    @RequestMapping(value = "/dang-ki", method = RequestMethod.POST)
-//    public ModelAndView signUpPage(@ModelAttribute UserDTO user ) {
-//        UserDTO dto = userService.findByUserName(user.getUserName());
-//        if(dto != null){
-//            dto.setPassword(passwordEncoder.encode(dto.getPassword()));
-//            userService.save(dto);
-//        }
-//        ModelAndView mav = new ModelAndView("redirect:/dang-ki?success");
-//        mav.addObject("user", user);
-//        return mav;
-//    }
     @GetMapping("/dang-ki")
     public String signUp(Model model){
         model.addAttribute("user", new UserDTO());

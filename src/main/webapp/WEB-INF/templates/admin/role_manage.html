@@ -39,65 +39,17 @@
                         </th>
                     </tr>
 
-                    <tr class="container__table-row">
-                        <td>1</td>
-                        <td>ADMIN</td>
-                        <td>Quản trị viên</td>
+                    <tr class="container__table-row" th:each="role :${roles}">
+                        <td th:text="${role.id}"></td>
+                        <td th:text="${role.code}"></td>
+                        <td th:text="${role.name}"></td>
                         <td>
                             <i class="fa-solid fa-pen container__table-icon"></i>
                             <i class="fa-solid fa-trash container__table-icon"></i>
                         </td>
                     </tr>
 
-                    <tr class="container__table-row">
-                        <td>2</td>
-                        <td>USER</td>
-                        <td>Người dùng</td>
-                        <td>
-                            <i class="fa-solid fa-pen container__table-icon"></i>
-                            <i class="fa-solid fa-trash container__table-icon"></i>
-                        </td>
-                    </tr>
 
-                    <tr class="container__table-row">
-                        <td>5</td>
-                        <td>Thực Trịnh Văn</td>
-                        <td>ThucCho'2002</td>
-                        <td>
-                            <i class="fa-solid fa-pen container__table-icon"></i>
-                            <i class="fa-solid fa-trash container__table-icon"></i>
-                        </td>
-                    </tr>
-
-                    <tr class="container__table-row">
-                        <td>5</td>
-                        <td>Thực Trịnh Văn</td>
-                        <td>ThucCho'2002</td>
-                        <td>
-                            <i class="fa-solid fa-pen container__table-icon"></i>
-                            <i class="fa-solid fa-trash container__table-icon"></i>
-                        </td>
-                    </tr>
-
-                    <tr class="container__table-row">
-                        <td>5</td>
-                        <td>Thực Trịnh Văn</td>
-                        <td>ThucCho'2002</td>
-                        <td>
-                            <i class="fa-solid fa-pen container__table-icon"></i>
-                            <i class="fa-solid fa-trash container__table-icon"></i>
-                        </td>
-                    </tr>
-
-                    <tr class="container__table-row">
-                        <td>5</td>
-                        <td>Thực Trịnh Văn</td>
-                        <td>ThucCho'2002</td>
-                        <td>
-                            <i class="fa-solid fa-pen container__table-icon"></i>
-                            <i class="fa-solid fa-trash container__table-icon"></i>
-                        </td>
-                    </tr>
                 </table>
                
 

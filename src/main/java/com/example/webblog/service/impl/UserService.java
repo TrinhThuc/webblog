@@ -79,8 +79,6 @@ public class UserService implements IUserService {
             }
             oldUser.setRoles(entities);
         }
-
-//        đoạn trên có vấn đề mai fix nhé
         userEntity = userConverter.toEntity(oldUser, dto);
         return userConverter.toDto(userRepository.save(userEntity));
     }

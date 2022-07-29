@@ -15,199 +15,88 @@
 </head>
 
 <body>
-    <div class="main">
-        <div th:replace="../fragments/admin/menu :: menu"></div>
+<div class="main">
+    <div th:replace="../fragments/admin/menu :: menu"></div>
 
-        <div class="container">
-            <div class="container__wrapper active">
-                <div class="container__top">
-                    <div class="container__title">Quản lý Role</div>
-                    <div class="container__refresh-btn">
-                        <i class="fa-solid fa-arrow-rotate-right"></i>
-                    </div>
+    <div class="container">
+        <div class="container__wrapper active">
+            <div class="container__top">
+                <div class="container__title">Quản lý Role</div>
+                <div class="container__refresh-btn">
+                    <i class="fa-solid fa-arrow-rotate-right"></i>
                 </div>
+            </div>
 
-                <div class="container__action">
-                    <span>Tác vụ</span>
-                    <i class="fa-solid fa-angle-down container__action-icon"></i>
-                    <ul class="container__action-list box-shadow">
-                        <li class="container__action-item">Duyệt bài</li>
-                        <li class="container__action-item">Gỡ bài</li>
-                        <li class="container__action-item">Xóa bài</li>
-                    </ul>
-                </div>
+            <div class="container__action">
+                <span>Tác vụ</span>
+                <i class="fa-solid fa-angle-down container__action-icon"></i>
+                <ul class="container__action-list box-shadow">
+                    <li class="container__action-item">Duyệt bài</li>
+                    <li class="container__action-item">Gỡ bài</li>
+                    <li class="container__action-item">Xóa bài</li>
+                </ul>
+            </div>
 
-                <table class="container__table">
-                    <tr class="container__table-row border-bottom-1px">
-                        <th>STT</th>
-                        <th>Tiêu đề</th>
-                        <th>Thể loại</th>
-                        <th>Tác giả</th>
-                        <th>Ngày đăng</th>
-                        <th></th>
-                        <th></th>
-                    </tr>
+            <table class="container__table">
+                <tr class="container__table-row border-bottom-1px">
+                    <th>STT</th>
+                    <th>Tiêu đề</th>
+                    <th>Thể loại</th>
+                    <th>Tác giả</th>
+                    <th>Ngày đăng</th>
+                    <th></th>
+                    <th></th>
+                </tr>
 
-                    <tr class="container__table-row">
-                        <td>1</td>
-                        <td>Dit me Thuc</td>
-                        <td>Xã hội</td>
-                        <td>PhanVietdz</td>
-                        <td>13/9/2002</td>
-                        <td><i class="fa-solid fa-book-bookmark icon"></i></td>
-                        <td class="container__table-select">
-                            <input type="radio" class="container__table-input">
-                        </td>
-                    </tr>
+                <tr id="1" class="container__table-row" th:each="post : ${Posts}">
+                    <td>1</td>
+                    <td th:text="${post.title}"></td>
+                    <td th:if="${post.category} != null" th:text="${post.category.name}">Xã hội</td>
+                    <td th:if="${post.category} == null"></td>
+                    <td th:text="${post.createdBy}">PhanVietdz</td>
+                    <td th th:text="${post.createdDate}">13/9/2002</td>
+                    <td><i class="fa-solid fa-book-bookmark icon"></i></td>
+                    <td class="container__table-select">
+                        <input type="checkbox" class="container__table-input">
+                    </td>
+                </tr>
 
-                    <tr class="container__table-row">
-                        <td>1</td>
-                        <td>Dit me Thuc</td>
-                        <td>Xã hội</td>
-                        <td>PhanVietdz</td>
-                        <td>13/9/2002</td>
-                        <td><i class="fa-solid fa-book-bookmark icon"></i></td>
-                        <td class="container__table-select">
-                            <input type="radio" class="container__table-input">
-                        </td>
-                    </tr>
 
-                    <tr class="container__table-row">
-                        <td>1</td>
-                        <td>Dit me Thuc</td>
-                        <td>Xã hội</td>
-                        <td>PhanVietdz</td>
-                        <td>13/9/2002</td>
-                        <td><i class="fa-solid fa-book-bookmark icon"></i></td>
-                        <td class="container__table-select">
-                            <input type="radio" class="container__table-input">
-                        </td>
-                    </tr>
 
-                    <tr class="container__table-row">
-                        <td>1</td>
-                        <td>Dit me Thuc</td>
-                        <td>Xã hội</td>
-                        <td>PhanVietdz</td>
-                        <td>13/9/2002</td>
-                        <td><i class="fa-solid fa-book-bookmark icon"></i></td>
-                        <td class="container__table-select">
-                            <input type="radio" class="container__table-input">
-                        </td>
-                    </tr>
+            </table>
+            <button class="btn btn--animation container__confirm">Xác nhận</button>
+            <div class="container__pagination">
+                <button class="btn firstBtn">
+                    <i class="fa-solid fa-angles-left container__pagination-icon"></i>
+                </button>
 
-                    <tr class="container__table-row">
-                        <td>1</td>
-                        <td>Dit me Thuc</td>
-                        <td>Xã hội</td>
-                        <td>PhanVietdz</td>
-                        <td>13/9/2002</td>
-                        <td><i class="fa-solid fa-book-bookmark icon"></i></td>
-                        <td class="container__table-select">
-                            <input type="radio" class="container__table-input">
-                        </td>
-                    </tr>
+                <button class="btn prevBtn">
+                    <i class="fa-solid fa-angle-left container__pagination-icon"></i>
+                </button>
 
-                    <tr class="container__table-row">
-                        <td>1</td>
-                        <td>Dit me Thuc</td>
-                        <td>Xã hội</td>
-                        <td>PhanVietdz</td>
-                        <td>13/9/2002</td>
-                        <td><i class="fa-solid fa-book-bookmark icon"></i></td>
-                        <td class="container__table-select">
-                            <input type="radio" class="container__table-input">
-                        </td>
-                    </tr>
+                <ul class="container__pagination-lists">
 
-                    <tr class="container__table-row">
-                        <td>1</td>
-                        <td>Dit me Thuc</td>
-                        <td>Xã hội</td>
-                        <td>PhanVietdz</td>
-                        <td>13/9/2002</td>
-                        <td><i class="fa-solid fa-book-bookmark icon"></i></td>
-                        <td class="container__table-select">
-                            <input type="radio" class="container__table-input">
-                        </td>
-                    </tr>
+                </ul>
 
-                    <tr class="container__table-row">
-                        <td>1</td>
-                        <td>Dit me Thuc</td>
-                        <td>Xã hội</td>
-                        <td>PhanVietdz</td>
-                        <td>13/9/2002</td>
-                        <td><i class="fa-solid fa-book-bookmark icon"></i></td>
-                        <td class="container__table-select">
-                            <input type="radio" class="container__table-input">
-                        </td>
-                    </tr>
+                <button class="btn nextBtn">
+                    <i class="fa-solid fa-angle-right container__pagination-icon"></i>
+                </button>
 
-                    <tr class="container__table-row">
-                        <td>1</td>
-                        <td>Dit me Thuc</td>
-                        <td>Xã hội</td>
-                        <td>PhanVietdz</td>
-                        <td>13/9/2002</td>
-                        <td><i class="fa-solid fa-book-bookmark icon"></i></td>
-                        <td class="container__table-select">
-                            <input type="radio" class="container__table-input">
-                        </td>
-                    </tr>
-
-                    <tr class="container__table-row">
-                        <td>1</td>
-                        <td>Dit me Thuc</td>
-                        <td>Xã hội</td>
-                        <td>PhanVietdz</td>
-                        <td>13/9/2002</td>
-                        <td><i class="fa-solid fa-book-bookmark icon"></i></td>
-                        <td class="container__table-select">
-                            <input type="radio" class="container__table-input">
-                        </td>
-                    </tr>
-
-                    <tr class="container__table-row">
-                        <td>1</td>
-                        <td>Dit me Thuc</td>
-                        <td>Xã hội</td>
-                        <td>PhanVietdz</td>
-                        <td>13/9/2002</td>
-                        <td><i class="fa-solid fa-book-bookmark icon"></i></td>
-                        <td class="container__table-select">
-                            <input type="radio" class="container__table-input">
-                        </td>
-                    </tr>
-
-                </table>
-                <button class="btn btn--animation container__confirm">Xác nhận</button>
-
-                <div class="container__pagination">
-                    <button class="btn firstBtn">
-                        <i class="fa-solid fa-angles-left container__pagination-icon"></i>
-                    </button>
-
-                    <button class="btn prevBtn">
-                        <i class="fa-solid fa-angle-left container__pagination-icon"></i>
-                    </button>
-
-                    <ul class="container__pagination-lists">
-
-                    </ul>
-
-                    <button class="btn nextBtn">
-                        <i class="fa-solid fa-angle-right container__pagination-icon"></i>
-                    </button>
-
-                    <button class="btn lastBtn">
-                        <i class="fa-solid fa-angles-right container__pagination-icon"></i>
-                    </button>
-                </div>
+                <button class="btn lastBtn">
+                    <i class="fa-solid fa-angles-right container__pagination-icon"></i>
+                </button>
             </div>
         </div>
     </div>
+</div>
 
 </body>
 <script src="/static/admin/JS/post_js.js"></script>
+<script>
+    var btnConfirm = document.querySelector('.container__confirm')
+    btnConfirm.onclick = function (){
+        var data = app.sendInfOfEachUser()
+        console.log(data)
+    }
+</script>
 </html>

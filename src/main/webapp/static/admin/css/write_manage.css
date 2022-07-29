@@ -1,0 +1,164 @@
+        body {
+            margin-top: 20px;
+            font-size: 20px;
+            display: flex;
+        }
+        
+        .sideBar {
+            width: 200px;
+            height: auto;
+            background-color: #afd5de;
+            margin-bottom: 25px;
+        }
+        
+        .sideBar__logo-img {
+            width: 200px;
+        }
+        
+        .sideBar__lists {
+            font-size: 16px;
+            padding-inline-start: 0px;
+        }
+        
+        .sideBar__lists>a {
+            list-style-type: none;
+            text-decoration: none;
+        }
+        
+        .sideBar__item {
+            padding: 14px 8px;
+            color: #fff;
+        }
+        
+        .sideBar__item.active {
+            background-color: #8bb1bc;
+        }
+        
+        .sideBar__item:hover {
+            background-color: #8bb1bc;
+            cursor: pointer;
+        }
+        
+        .sidebar__item.active-sideBar {
+            background: #ccc;
+        }
+        
+        .writer {
+            text-align: center;
+        }
+        
+        #avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 75px;
+        }
+        
+        #name>a {
+            text-decoration: none;
+            color: gray;
+        }
+        
+        #name>a:hover {
+            color: rgb(152, 209, 220);
+        }
+        
+        .content-right {
+            width: 75%;
+            border: 2px solid rgb(229, 234, 240);
+            border-radius: 6px;
+            margin-left: 2%;
+            margin-right: 2%;
+            padding: 3% 10%;
+        }
+        
+        .title {
+            font-size: 28px;
+            color: rgb(152, 209, 220);
+            margin-bottom: 20px;
+        }
+        
+        .return {
+            margin-left: 98%;
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgb(115, 196, 212);
+            border-radius: 20px;
+        }
+        
+        .return_icon {
+            font-size: 18px;
+            padding-left: 12px;
+            padding-top: 11px;
+            color: rgb(115, 196, 212);
+        }
+        
+        .theme>a {
+            text-decoration: none;
+            color: rgb(113, 116, 113);
+            font-style: italic;
+        }
+        
+        .theme>a:hover {
+            color: rgb(152, 209, 220);
+        }
+        
+        .content-right>h1 {
+            text-align: center;
+            margin-top: 10px;
+        }
+        
+        .content-right>h5 {
+            font-style: italic;
+            color: gray;
+            margin-top: 5px;
+            text-align: center;
+        }
+        
+        .content-read>#img_1 {
+            display: block;
+            width: 100%;
+            margin: 30px auto 5px auto;
+            border-radius: 3px;
+        }
+        
+        .content-read>#note_img {
+            font-size: 16px;
+            text-align: center;
+            margin-bottom: 15px;
+            color: gray;
+        }
+        
+        .content-read>p {
+            text-indent: 40px;
+        }
+        
+        #heading_paragraph {
+            font-size: 24px;
+            padding-top: 20px;
+        }
+        
+        #date {
+            padding-left: 85%;
+        }
+        
+        .agree {
+            margin-top: 30px;
+            padding-left: 83%;
+        }
+        
+        .agree>button {
+            width: 150px;
+            height: 50px;
+            font-size: 16px;
+            border-radius: 20px;
+            background-color: #fff;
+            color: rgb(152, 209, 220);
+            border: 1px solid rgb(152, 209, 220);
+        }
+        
+        .agree>button:active {
+            cursor: pointer;
+            background-color: #fff;
+            color: rgb(220, 215, 215);
+            border-color: #fff;
+        }

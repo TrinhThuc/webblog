@@ -1,5 +1,7 @@
 package com.example.webblog.dto;
 
+import com.example.webblog.entity.CategoryEntity;
+
 public class PostDTO extends AbstractDTO<PostDTO>{
 	private String title;
 	private String thumbnail;
@@ -8,7 +10,16 @@ public class PostDTO extends AbstractDTO<PostDTO>{
 	private Long view;
 	private Long categoryId;
 
-	private String categoryCode;
+	private CategoryDTO category;
+
+	public CategoryDTO getCategory() {
+		return category;
+	}
+
+	public void setCategory(CategoryDTO category) {
+		this.category = category;
+	}
+
 	public Long getView() {
 		return view;
 	}
@@ -46,10 +57,5 @@ public class PostDTO extends AbstractDTO<PostDTO>{
 	public void setCategoryId(Long categoryId) {
 		this.categoryId = categoryId;
 	}
-	public String getCategoryCode() {
-		return categoryCode;
-	}
-	public void setCategoryCode(String categoryCode) {
-		this.categoryCode = categoryCode;
-	}
+
 }

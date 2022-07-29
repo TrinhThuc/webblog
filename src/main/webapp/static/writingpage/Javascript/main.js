@@ -57,8 +57,14 @@ const application = () => {
         // confirmSubmitBtn.addEventListener('click', submitForm);
     });
         
-    BalloonEditor.create(document.querySelector(".editor"), {
+     let editor = BalloonEditor.create(document.querySelector(".editor"), {
         placeholder: "Nội dung bài viết",
+        filebrowserBrowseUrl : '/ckfinder/ckfinder.html',
+        filebrowserImageBrowseUrl : '/ckfinder/ckfinder.html?type=Images',
+        filebrowserFlashBrowseUrl : '/ckfinder/ckfinder.html?type=Flash',
+        filebrowserUploadUrl : '/ckfinder/core/connector/java/connector.java?command=QuickUpload&amp;type=Files',
+        filebrowserImageUploadUrl : '/ckfinder/core/connector/java/connector.java?command=QuickUpload&amp;type=Images',
+        filebrowserFlashUploadUrl : '/ckfinder/core/connector/java/connector.java?command=QuickUpload&amp;type=Flash'
     })
         .then((editor) => {
             console.log(editor);
@@ -66,6 +72,7 @@ const application = () => {
         .catch((error) => {
             console.error(error);
         });
+     CKFinder.setupCKEditor(editor, '/static/writingpage/ckfinder/')
 
     var createPostBtn = document.querySelector('#createPostBtn')
     function createPost(data, callback){

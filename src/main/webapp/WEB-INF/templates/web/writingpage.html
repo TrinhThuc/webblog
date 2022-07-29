@@ -51,7 +51,7 @@
                         name = "content">
                         <div
                             class="writing-blog__editor editor"
-                            placeholder="Nội dung bài viết"
+                            id="content"  placeholder="Nội dung bài viết"
                         ></div>
                     </div>
                     <div class="writing-blog__submit-btn">
@@ -181,7 +181,21 @@
         </div>
     </body>
     <script src="/static/writingpage/ckeditor5-build-balloon/ckeditor.js"></script>
+    <script src="/static/writingpage/ckfinder/ckfinder.js"></script>
     <script src="/static/writingpage/Javascript/main.js"></script>
-
+<!--    <script>-->
+<!--        let editor = BalloonEditor-->
+<!--            .create(-->
+<!--                'content',-->
+<!--                {-->
+<!--                    filebrowserBrowseUrl : 'ckfinder/ckfinder.html',-->
+<!--                    filebrowserImageBrowseUrl : 'ckfinder/ckfinder.html?type=Images',-->
+<!--                    filebrowserFlashBrowseUrl : 'ckfinder/ckfinder.html?type=Flash',-->
+<!--                    filebrowserUploadUrl : 'ckfinder/core/connector/java/connector.java?command=QuickUpload&amp;type=Files',-->
+<!--                    filebrowserImageUploadUrl : 'ckfinder/core/connector/java/connector.java?command=QuickUpload&amp;type=Images',-->
+<!--                    filebrowserFlashUploadUrl : 'ckfinder/core/connector/java/connector.java?command=QuickUpload&amp;type=Flash'-->
+<!--                });-->
+<!--        CKFinder.setupCKEditor(editor,'/ckfinder/')-->
+<!--    </script>-->
 
 </html>

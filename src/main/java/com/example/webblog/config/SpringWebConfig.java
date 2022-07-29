@@ -50,4 +50,12 @@ public class SpringWebConfig implements WebMvcConfigurer {
 //    public void addResourceHandlers(final ResourceHandlerRegistry registry){
 //        registry.addResourceHandler("/static/**").addResourceLocations("/static/");
 //    }
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/public/image/**").addResourceLocations("/static/writingpage/uploadmedia/");
+        registry.addResourceHandler("/static/**").addResourceLocations("/static/");
+        registry.addResourceHandler("/ckfinder/**").addResourceLocations("/static/writingpage/ckfinder/");
+        WebMvcConfigurer.super.addResourceHandlers(registry);
+    }
 }

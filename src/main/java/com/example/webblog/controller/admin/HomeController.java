@@ -71,10 +71,24 @@ public class HomeController {
     }
 
     @RequestMapping(value = "/quan-tri/bai-viet", method = RequestMethod.GET)
-    public ModelAndView listPost() {
+    public ModelAndView listPost(@RequestParam("page") int page,
+                                 @RequestParam("limit") int limit) {
+        PostDTO model = new PostDTO();
+        model.setPage(page);
+        model.setLimit(limit);
+        Pageable pageable = PageRequest.of(page-1,limit);
+        List<PostDTO> Posts = postService.findAll(pageable);
         ModelAndView mav = new ModelAndView("admin/posts-manage");
+        mav.addObject("Posts", Posts);
         return mav;
     }
+
+    @RequestMapping(value = "/quan-tri/the-loai", method = RequestMethod.GET)
+    public ModelAndView listCategory() {
+        ModelAndView mav = new ModelAndView("admin/category_manage");
+        return mav;
+    }
+
 
 
 }

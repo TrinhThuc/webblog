@@ -14,8 +14,12 @@ public class PostConverter {
 	@Autowired
 	ModelMapper modelMapper;
 
+	@Autowired
+	CategoryConverter categoryConverter;
+
 	public PostDTO toDto(PostEntity entity) {
 		PostDTO result = modelMapper.map(entity, PostDTO.class);
+//		result.setCategory(categoryConverter.toDto(entity.getCategory()));
 		return result;
 	}
 	

@@ -396,7 +396,7 @@
         fetch("http://localhost:8080/api/user/"+data.id, options)
             .then(function (response){
                 console.log(response)
-                // window.location.href = "http://localhost:8080/bai-dang/viet-bai"
+                window.location.href = "http://localhost:8080/quan-tri/trang-chu/nguoi-dung?page=1&limit=5"
                 return response.json()
             })
             .then(callback)

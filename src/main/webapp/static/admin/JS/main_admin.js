@@ -1,3 +1,6 @@
+// NOTE
+// hàm sendRoleInf để lấy 1 obj có name với code nhé
+
 // Begin
 const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
@@ -14,9 +17,9 @@ const paginationBar = $('.container__pagination');
 // Interface variales
 const memberList = $('.container__table');
 const memberContainer = $('.container__table-list');
-const iconEyes = $$('.container__table-icon:nth-child(1)');
-const iconEdits = $$('.container__table-icon:nth-child(2)');
-const iconDeletes = $$('.container__table-icon:nth-child(3)');
+const iconEyes = $$('.fa-solid.fa-eye.container__table-icon');
+const iconEdits = $$('.fa-solid.fa-pen.container__table-icon');
+const iconDeletes = $$('.fa-solid.fa-trash.container__table-icon');
 const addMoreBtn = $('.container__addMore-btn');
 const containerWrappers = $$('.container__wrapper');
 const filterItems = $$('.container__filter-title');
@@ -38,26 +41,18 @@ const closeBtns = $$('.modal__close');
 const confirmBtns = $$('.modal__edit-confirm');
 const cancelBtns = $$('.modal__edit-cancel');
 
-
-
-// const inputEditRoles = $$('.modal__role-input');
-
 // sideBar variables
 const sideBarItems = $$('.sideBar__item');
 
 // test variables
 
 
-
 const app = {
     currentIndex: 0,
-    visibleUser: 10,
     currentPage: 0,
+    visibleUser: 10,
     isActive: false,
     arr: [memberList.innerHTML],
-
-    paginations: [1, 2, 3, 4, 5],
-
     Members: [
         {
             STT: 1,
@@ -191,6 +186,12 @@ const app = {
         },
     ],
 
+    paginations: [1, 2, 3, 4, 5],
+
+    paginations2: function() {
+        console.log(Members);
+    },
+
     render_member: function () {
         const visibleUser = this.visibleUser;
         const currentPage = this.currentPage;
@@ -219,13 +220,12 @@ const app = {
         });
 
         memberList.innerHTML = htmls_member.join('');
-        // memberList.innerHTML = htmls_member.join('');
     },
 
     render: function () {
         const htmls = this.paginations.map((pagination, index) => {
             return `
-                <li class="container__pagination-item ${index === this.currentIndex ? 'active' : ''}" data-index="${index}">${pagination}</li>
+                <li class="container__pagination-item ${ index === this.currentIndex ? 'active' : ''}" data-index="${ index }">${ pagination }</li>
             `;
         })
 
@@ -260,13 +260,14 @@ const app = {
 
             const paginationNode = e.target.closest('.container__pagination-item:not(.active)');
             app.currentPage = e.target.dataset.index;
-
-            // app.render_member();
-
-            // if (paginationNode) {
-            //     app.currentIndex = Number(paginationNode.dataset.index);
-            //     app.render();
-            // }
+            app.currentIndex = Number(paginationNode.dataset.index);
+            app.render();
+            app.render_member();
+            
+            if (paginationNode) {
+                app.currentIndex = Number(paginationNode.dataset.index);
+                app.render();
+            }
         }
 
         //Lang nghe hanh vi click vao detele btn
@@ -345,8 +346,9 @@ const app = {
         //hoặc cancel trong modal edit
         confirmBtns.forEach(confirmBtn => {
             confirmBtn.onclick = function () {
-                app.sendAllInputChecked(this);
-                app.sendStatusBlock(this);
+                // app.sendAllInputChecked(this);
+                // app.sendStatusBlock(this);
+                app.sendRoleInf(this);
             }
         })
 
@@ -386,7 +388,7 @@ const app = {
         }
 
         this.render();
-        // this.render_member();
+        this.render_member();
     },
 
     prevPage: function () {
@@ -399,19 +401,19 @@ const app = {
         }
 
         this.render();
-        // this.render_member();
+        this.render_member();
     },
 
     lastPage: function () {
         this.currentIndex = this.paginations.length - 1;
         this.render();
-        // this.render_member();
+        this.render_member();
     },
 
     firstPage: function () {
         this.currentIndex = 0;
         this.render();
-        // this.render_member();
+        this.render_member();
     },
 
 
@@ -513,14 +515,14 @@ const app = {
 
     sendAllInputChecked: function (value) {
         const parentEle = value.closest('.modal__edit-role');
-        const array = [];
         const valueOfInputs = parentEle.querySelectorAll('.modal__role-input');
+        const array = [];
         valueOfInputs.forEach(valueOfInput => {
             if (valueOfInput.checked) {
                 array.push(valueOfInput.closest('.modal__role-item').querySelector('.modal__role-label').getAttribute('id')); 
             }
         })
-        return array;
+        console.log(array);
     },
 
     sendStatusBlock: function (value) {
@@ -534,10 +536,24 @@ const app = {
         }
     },
 
+    sendRoleInf: function (value) {
+        const parentEle = value.closest('.container__table-row');
+        const code = parentEle.querySelector('.modal__edit-input[name="code"]').value;
+        const name = parentEle.querySelector('.modal__edit-input[name="name"]').value;
+        const ID = parentEle.getAttribute('id');
+        const obj = {
+            id: ID,
+            code: code,
+            name: name,
+        }
+        console.log(obj);
+        return obj;
+    },
+
     //Ham de bat dau khoi dong chuong trinh
     start: function () {
         // render cac trang trong list ra html
-        // this.render_member();
+        this.render_member();
         if (this.Members.length > 10) {
             this.render();
             paginationBar.classList.add('appear-flex');

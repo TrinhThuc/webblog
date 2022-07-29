@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>admin_role</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;900&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+    <link rel="stylesheet" href="/static/homepage/css/base.css"/>
+    <link rel="stylesheet" href="/static/admin/css/base_admin.css">
+    <link rel="stylesheet" href="/static/admin/css/main_role.css"/>
+</head>
+
+<body>
+    <div class="main">
+        <div th:replace="../fragments/admin/menu :: menu"></div>
+
+        <div class="container">
+            <div class="container__wrapper active">
+                <div class="container__top">
+                    <div class="container__title">Quản lý thể loại</div>
+                    <div class="container__refresh-btn">
+                        <i class="fa-solid fa-arrow-rotate-right"></i>
+                    </div>
+                </div>
+                
+
+                <table class="container__table">
+                    <tr class="container__table-row border-bottom-1px">
+                        <th>STT</th>
+                        <th>Mã code</th>
+                        <th>Chức năng</th>
+                        <th class="container__addMore-btn">
+                            <i class="fa-solid fa-plus"></i>
+                            Thêm mới
+                        </th>
+                    </tr>
+
+                    <tr id="1" class="container__table-row">
+                        <td>1</td>
+                        <td>ADMIN</td>
+                        <td>Quản trị viên</td>
+                        <td>
+                            <i class="fa-solid fa-pen container__table-icon"></i>
+                            <i class="fa-solid fa-trash container__table-icon"></i>
+                            <div class="modal">
+                                <!-- modal delete -->
+                                <div class="modal__wrap modal__wrap--delete">
+                                    <div class="modal__header">
+                                        <img src="/static/admin/warning-img.png" alt="" class="modal__img">
+                                    </div>
+                                    <div class="modal__title">Bạn có chắc chắn muốn xóa không?</div>
+                                    <div class="modal__choose">
+                                        <button class="btn modal__choose--yes">Yes</button>
+                                        <button class="btn modal__choose--no">No</button>
+                                    </div>
+                                </div>
+
+                                <!-- modal edit role -->
+                                <div class="modal__wrap modal__wrap--edit">
+                                    <i class="fas fa-times modal__close"></i>
+                                    <!-- Edit info -->
+                                    <div class="modal__edit-inf">
+                                        <ul class="modal__edit-list">
+                                            <li class="modal__edit-item">
+                                                <p class="modal__edit-text">
+                                                    Mã code
+                                                    <i class="fas fa-asterisk modal__edit-icon"></i>
+                                                </p>
+                                                <input type="text" class="modal__edit-input" name="code" required>
+                                            </li>
+
+                                            <li class="modal__edit-item">
+                                                <p class="modal__edit-text">
+                                                    Tên Role
+                                                    <i class="fas fa-asterisk modal__edit-icon"></i>
+                                                </p>
+                                                <input type="text" class="modal__edit-input" name="name" required>
+                                            </li>
+
+                                            <!-- Edit Roles -->
+                                            <div class="modal__edit-role">
+                                                <p class="modal__edit-text">
+                                                    Thể loại
+                                                    <i class="fas fa-asterisk modal__edit-icon"></i>
+                                                </p>
+                                                <div class="modal__role-container">
+                                                    <ul class="modal__role-list">
+                                                        <li class="modal__role-item">
+                                                            <label id="1" for="" class="modal__role-label">Sửa bài viết</label>
+                                                            <input type="checkbox" class="modal__role-input">
+                                                        </li>
+                                                        <li class="modal__role-item">
+                                                            <label id="2" for="" class="modal__role-label">Xóa bài viết</label>
+                                                            <input type="checkbox" class="modal__role-input">
+                                                        </li>
+                                                        <li class="modal__role-item">
+                                                            <label id="3" for="" class="modal__role-label">Tạo mới bài viết</label>
+                                                            <input type="checkbox" class="modal__role-input">
+                                                        </li>
+                                                        <li class="modal__role-item">
+                                                            <label id="4" for="" class="modal__role-label">Xem bài viết</label>
+                                                            <input type="checkbox" class="modal__role-input">
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="modal__edit-footer">
+                                                    <button class="btn modal__edit-cancel">
+                                                        Hủy bỏ
+                                                    </button>
+    
+                                                    <button class="btn modal__edit-confirm">
+                                                        Xác nhận
+                                                    </button>
+                                                </div>
+                                            </div>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr id="2" class="container__table-row">
+                        <td>2</td>
+                        <td>ADMIN</td>
+                        <td>Quản trị viên</td>
+                        <td>
+                            <i class="fa-solid fa-pen container__table-icon"></i>
+                            <i class="fa-solid fa-trash container__table-icon"></i>
+                            <div class="modal">
+                                <!-- modal delete -->
+                                <div class="modal__wrap modal__wrap--delete">
+                                    <div class="modal__header">
+                                        <img src="/static/admin/warning-img.png" alt="" class="modal__img">
+                                    </div>
+                                    <div class="modal__title">Bạn có chắc chắn muốn xóa không?</div>
+                                    <div class="modal__choose">
+                                        <button class="btn modal__choose--yes">Yes</button>
+                                        <button class="btn modal__choose--no">No</button>
+                                    </div>
+                                </div>
+
+                                <!-- modal edit role -->
+                                <div class="modal__wrap modal__wrap--edit">
+                                    <i class="fas fa-times modal__close"></i>
+                                    <!-- Edit info -->
+                                    <div class="modal__edit-inf">
+                                        <ul class="modal__edit-list">
+                                            <li class="modal__edit-item">
+                                                <p class="modal__edit-text">
+                                                    Mã code
+                                                    <i class="fas fa-asterisk modal__edit-icon"></i>
+                                                </p>
+                                                <input type="text" class="modal__edit-input" name="code" required>
+                                            </li>
+
+                                            <li class="modal__edit-item">
+                                                <p class="modal__edit-text">
+                                                    Thể loại
+                                                    <i class="fas fa-asterisk modal__edit-icon"></i>
+                                                </p>
+                                                <input type="text" class="modal__edit-input" name="name" required>
+                                            </li>
+
+                                            <!-- Edit Roles -->
+                                            <div class="modal__edit-role">
+                                                <p class="modal__edit-text">
+                                                    Chức năng
+                                                    <i class="fas fa-asterisk modal__edit-icon"></i>
+                                                </p>
+                                                <div class="modal__role-container">
+                                                    <ul class="modal__role-list">
+                                                        <li class="modal__role-item">
+                                                            <label id="1" for="" class="modal__role-label">Sửa bài viết</label>
+                                                            <input type="checkbox" class="modal__role-input">
+                                                        </li>
+                                                        <li class="modal__role-item">
+                                                            <label id="2" for="" class="modal__role-label">Xóa bài viết</label>
+                                                            <input type="checkbox" class="modal__role-input">
+                                                        </li>
+                                                        <li class="modal__role-item">
+                                                            <label id="3" for="" class="modal__role-label">Tạo mới bài viết</label>
+                                                            <input type="checkbox" class="modal__role-input">
+                                                        </li>
+                                                        <li class="modal__role-item">
+                                                            <label id="4" for="" class="modal__role-label">Xem bài viết</label>
+                                                            <input type="checkbox" class="modal__role-input">
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="modal__edit-footer">
+                                                    <button class="btn modal__edit-cancel">
+                                                        Hủy bỏ
+                                                    </button>
+    
+                                                    <button class="btn modal__edit-confirm">
+                                                        Xác nhận
+                                                    </button>
+                                                </div>
+                                            </div>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+
+                </table>
+
+                <div class="container__pagination">
+                    <button class="btn firstBtn">
+                        <i class="fa-solid fa-angles-left container__pagination-icon"></i>
+                    </button>
+
+                    <button class="btn prevBtn">
+                        <i class="fa-solid fa-angle-left container__pagination-icon"></i>
+                    </button>
+
+                    <ul class="container__pagination-lists">
+
+                    </ul>
+
+                    <button class="btn nextBtn">
+                        <i class="fa-solid fa-angle-right container__pagination-icon"></i>
+                    </button>
+
+                    <button class="btn lastBtn">
+                        <i class="fa-solid fa-angles-right container__pagination-icon"></i>
+                    </button>
+                </div>
+               
+            </div>
+        </div>
+    </div>
+
+</body>
+<!-- <script src="./asset/JS/roleManage.js"></script> -->
+<script src="/static/admin/JS/main_admin.js"></script>
+<script>
+    
+</script>
+
+</html>

@@ -36,7 +36,6 @@ const app = function () {
     let flag = false;
     let isDown = false;
     let lastScrollValue = window.scrollY;
-    let isOpen = false;
     let startX;
     let scrollLeft;
     const topicSlideWidth = topicSlide.clientWidth;
@@ -167,37 +166,6 @@ const app = function () {
         });
     });
 
-    const styleChangePsw = function () {
-        if (isOpen) {
-            modalChangePswBtn.style.opacity = 0;
-            modalChangePswBtn.style.transform = `translateY(-15px)`;
-            isOpen = !isOpen;
-            setTimeout(() => {
-                modalChangePswBtn.style.display = 'none';
-            }, 301);
-            return;
-        }
-        modalChangePswBtn.style.display = 'block';
-        modalChangePswBtn.style.opacity = 0;
-        setTimeout(() => {
-            modalChangePswBtn.style.opacity = 1;
-            modalChangePswBtn.style.transform = `translateY(0)`;
-            isOpen = !isOpen;
-        }, 0.1);
-
-        // modalChangePswBtn.style.display = 'block';
-    };
-
-    const hideModalEdit = function () {
-        modalEdit.classList.remove('appear-block');
-        containerContent.classList.add('appear-block');
-    };
-
-    const hideContainerContent = function () {
-        modalEdit.classList.add('appear-block');
-        containerContent.classList.remove('appear-block');
-    };
-
     // test click and drag slider in header
     const mouseDownFunc = function (e) {
         isDown = true;
@@ -214,7 +182,6 @@ const app = function () {
     const mouseLeaveFunc = function () {
         isDown = false;
         topicSlide.classList.remove('active');
-
     };
     
     const mouseMoveFunc = function (e) {
@@ -247,6 +214,16 @@ const app = function () {
         })
     };
 
+    const closeWhenClickOutside = (e) => {
+        if(!e.target.closest(".active") && !e.target.closest(".fa-bell") && !e.target.closest("a")) {
+            console.log(e.target)
+            modalNotification.classList.remove("active");
+        }
+        if(!e.target.closest(".active") && !e.target.closest("a") && !e.target.closest("img") ) {
+            modalUserNavbar.classList.remove("active");
+        }   
+    }
+
     const toggleUserNavbar = () => {
         modalUserNavbar.classList.toggle("active");
     }
@@ -255,8 +232,11 @@ const app = function () {
         modalNotification.classList.toggle("active");
     }
 
-    userAvatar.addEventListener("click", toggleUserNavbar)
-    notificationIcon.addEventListener("click", toggleNotification)
+    if(userAvatar && notificationIcon) {
+        document.addEventListener("click", closeWhenClickOutside)
+        userAvatar.addEventListener("click", toggleUserNavbar)
+        notificationIcon.addEventListener("click", toggleNotification)
+    }
     topicSlideNextBtn.addEventListener("click", moveToRight);
     topicSlidePrevBtn.addEventListener("click", moveToLeft);
     headerCloseSearchButton.addEventListener("click", closeSearchBar);
@@ -272,17 +252,6 @@ const app = function () {
         headerLink.addEventListener('mousedown', waitASec);
     });
     
-    // Event in personal page
-    chooseContents.forEach(chooseContent => {
-        chooseContent.onclick = function () {
-            document.querySelector('.content__header span.active').classList.remove('active');
-            chooseContent.classList.add('active');
-        }
-    });
-    
-    modalBtn.addEventListener('click', styleChangePsw);
-    modalCancelBtn.addEventListener('click', hideModalEdit);
-    userEdit.addEventListener('click', hideContainerContent);
     
 }
 

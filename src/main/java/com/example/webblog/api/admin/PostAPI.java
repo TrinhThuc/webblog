@@ -21,6 +21,15 @@ public class PostAPI {
         return postService.save(postDTO);
     }
 
+    @PutMapping("api/admin/post/active")
+    public void activePost(@RequestBody PostDTO postDTO){
+        for(Long id : postDTO.getIds()){
+            PostDTO dto = postService.findById(id);
+            dto.setActive(true);
+            postService.save(dto);
+        }
+    }
+
     @DeleteMapping("api/post")
     public void deletePost(@RequestBody long[] ids) {
         postService.delete(ids);

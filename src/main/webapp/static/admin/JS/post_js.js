@@ -22,143 +22,150 @@ const paginationBar = $('.container__pagination');
 const app = {
     currentIndex: 0,
     currentPage: 0,
-    paginations: [1, 2, 3, 4, 5],
+    paginations: function() {
+        const pages = totalPages.getAttribute('value');
+        let pagesArray = [];
+        for(let i = 1; i <= pages; ++i) {
+            pagesArray.push(i);
+        }
+        return pagesArray;
+    },
 
-    Members: [
-        {
-            STT: 1,
-            Name: 'Trần Thị Bích Diệp',
-            UserName: 'BichDiep1309',
-            Role: 'admin',
-            UserType: 'Trưởng nhóm truyền thông',
-            Team: 'truyền thông',
-            Status: 'Online',
+    // Members: [
+    //     {
+    //         STT: 1,
+    //         Name: 'Trần Thị Bích Diệp',
+    //         UserName: 'BichDiep1309',
+    //         Role: 'admin',
+    //         UserType: 'Trưởng nhóm truyền thông',
+    //         Team: 'truyền thông',
+    //         Status: 'Online',
 
-        },
-        {
-            STT: 2,
-            Name: 'Trần Thị Bích Diệp',
-            UserName: 'BichDiep1309',
-            Role: 'admin',
-            UserType: 'Trưởng nhóm truyền thông',
-            Team: 'truyền thông',
-            Status: 'Online',
+    //     },
+    //     {
+    //         STT: 2,
+    //         Name: 'Trần Thị Bích Diệp',
+    //         UserName: 'BichDiep1309',
+    //         Role: 'admin',
+    //         UserType: 'Trưởng nhóm truyền thông',
+    //         Team: 'truyền thông',
+    //         Status: 'Online',
 
-        },
-        {
-            STT: 3,
-            Name: 'Trần Thị Bích Diệp',
-            UserName: 'BichDiep1309',
-            Role: 'admin',
-            UserType: 'Trưởng nhóm truyền thông',
-            Team: 'truyền thông',
-            Status: 'Online',
+    //     },
+    //     {
+    //         STT: 3,
+    //         Name: 'Trần Thị Bích Diệp',
+    //         UserName: 'BichDiep1309',
+    //         Role: 'admin',
+    //         UserType: 'Trưởng nhóm truyền thông',
+    //         Team: 'truyền thông',
+    //         Status: 'Online',
 
-        },
-        {
-            STT: 4,
-            Name: 'Trần Thị Bích Diệp',
-            UserName: 'BichDiep1309',
-            Role: 'admin',
-            UserType: 'Trưởng nhóm truyền thông',
-            Team: 'truyền thông',
-            Status: 'Online',
+    //     },
+    //     {
+    //         STT: 4,
+    //         Name: 'Trần Thị Bích Diệp',
+    //         UserName: 'BichDiep1309',
+    //         Role: 'admin',
+    //         UserType: 'Trưởng nhóm truyền thông',
+    //         Team: 'truyền thông',
+    //         Status: 'Online',
 
-        },
-        {
-            STT: 5,
-            Name: 'Trần Thị Bích Diệp',
-            UserName: 'BichDiep1309',
-            Role: 'admin',
-            UserType: 'Trưởng nhóm truyền thông',
-            Team: 'truyền thông',
-            Status: 'Online',
+    //     },
+    //     {
+    //         STT: 5,
+    //         Name: 'Trần Thị Bích Diệp',
+    //         UserName: 'BichDiep1309',
+    //         Role: 'admin',
+    //         UserType: 'Trưởng nhóm truyền thông',
+    //         Team: 'truyền thông',
+    //         Status: 'Online',
 
-        },
-        {
-            STT: 6,
-            Name: 'Trần Thị Bích Diệp',
-            UserName: 'BichDiep1309',
-            Role: 'admin',
-            UserType: 'Trưởng nhóm truyền thông',
-            Team: 'truyền thông',
-            Status: 'Online',
+    //     },
+    //     {
+    //         STT: 6,
+    //         Name: 'Trần Thị Bích Diệp',
+    //         UserName: 'BichDiep1309',
+    //         Role: 'admin',
+    //         UserType: 'Trưởng nhóm truyền thông',
+    //         Team: 'truyền thông',
+    //         Status: 'Online',
 
-        },
-        {
-            STT: 7,
-            Name: 'Trần Thị Bích Diệp',
-            UserName: 'BichDiep1309',
-            Role: 'admin',
-            UserType: 'Trưởng nhóm truyền thông',
-            Team: 'truyền thông',
-            Status: 'Online',
+    //     },
+    //     {
+    //         STT: 7,
+    //         Name: 'Trần Thị Bích Diệp',
+    //         UserName: 'BichDiep1309',
+    //         Role: 'admin',
+    //         UserType: 'Trưởng nhóm truyền thông',
+    //         Team: 'truyền thông',
+    //         Status: 'Online',
 
-        },
-        {
-            STT: 8,
-            Name: 'Trần Thị Bích Diệp',
-            UserName: 'BichDiep1309',
-            Role: 'admin',
-            UserType: 'Trưởng nhóm truyền thông',
-            Team: 'truyền thông',
-            Status: 'Online',
+    //     },
+    //     {
+    //         STT: 8,
+    //         Name: 'Trần Thị Bích Diệp',
+    //         UserName: 'BichDiep1309',
+    //         Role: 'admin',
+    //         UserType: 'Trưởng nhóm truyền thông',
+    //         Team: 'truyền thông',
+    //         Status: 'Online',
 
-        },
-        {
-            STT: 9,
-            Name: 'Trần Thị Bích Diệp',
-            UserName: 'BichDiep1309',
-            Role: 'admin',
-            UserType: 'Trưởng nhóm truyền thông',
-            Team: 'truyền thông',
-            Status: 'Online',
+    //     },
+    //     {
+    //         STT: 9,
+    //         Name: 'Trần Thị Bích Diệp',
+    //         UserName: 'BichDiep1309',
+    //         Role: 'admin',
+    //         UserType: 'Trưởng nhóm truyền thông',
+    //         Team: 'truyền thông',
+    //         Status: 'Online',
 
-        },
-        {
-            STT: 10,
-            Name: 'Trần Thị Bích Diệp',
-            UserName: 'BichDiep1309',
-            Role: 'admin',
-            UserType: 'Trưởng nhóm truyền thông',
-            Team: 'truyền thông',
-            Status: 'Online',
+    //     },
+    //     {
+    //         STT: 10,
+    //         Name: 'Trần Thị Bích Diệp',
+    //         UserName: 'BichDiep1309',
+    //         Role: 'admin',
+    //         UserType: 'Trưởng nhóm truyền thông',
+    //         Team: 'truyền thông',
+    //         Status: 'Online',
 
-        },
-        {
-            STT: 11,
-            Name: 'Trần Thị Bích Diệp',
-            UserName: 'BichDiep1309',
-            Role: 'admin',
-            UserType: 'Trưởng nhóm truyền thông',
-            Team: 'truyền thông',
-            Status: 'Online',
+    //     },
+    //     {
+    //         STT: 11,
+    //         Name: 'Trần Thị Bích Diệp',
+    //         UserName: 'BichDiep1309',
+    //         Role: 'admin',
+    //         UserType: 'Trưởng nhóm truyền thông',
+    //         Team: 'truyền thông',
+    //         Status: 'Online',
 
-        },
-        {
-            STT: 12,
-            Name: 'Trần Thị Bích Diệp',
-            UserName: 'BichDiep1309',
-            Role: 'admin',
-            UserType: 'Trưởng nhóm truyền thông',
-            Team: 'truyền thông',
-            Status: 'Online',
+    //     },
+    //     {
+    //         STT: 12,
+    //         Name: 'Trần Thị Bích Diệp',
+    //         UserName: 'BichDiep1309',
+    //         Role: 'admin',
+    //         UserType: 'Trưởng nhóm truyền thông',
+    //         Team: 'truyền thông',
+    //         Status: 'Online',
 
-        },
-        {
-            STT: 13,
-            Name: 'Trần Thị Bích Diệp',
-            UserName: 'BichDiep1309',
-            Role: 'admin',
-            UserType: 'Trưởng nhóm truyền thông',
-            Team: 'truyền thông',
-            Status: 'Online',
+    //     },
+    //     {
+    //         STT: 13,
+    //         Name: 'Trần Thị Bích Diệp',
+    //         UserName: 'BichDiep1309',
+    //         Role: 'admin',
+    //         UserType: 'Trưởng nhóm truyền thông',
+    //         Team: 'truyền thông',
+    //         Status: 'Online',
 
-        },
-    ],
+    //     },
+    // ],
 
     render: function () {
-        const htmls = this.paginations.map((pagination, index) => {
+        const htmls = this.paginations().map((pagination, index) => {
             return `
                 <li class="container__pagination-item ${index === this.currentIndex ? 'active' : ''}" data-index="${index}">${pagination}</li>
             `;
@@ -242,7 +249,7 @@ const app = {
     nextPage: function () {
         this.currentIndex++;
         this.currentPage++;
-        if (this.currentIndex >= this.paginations.length) {
+        if (this.currentIndex >=  this.paginations().length) {
             this.currentPage = 0;
             this.currentIndex = 0;
         }
@@ -256,8 +263,8 @@ const app = {
         this.currentPage--;
 
         if (this.currentIndex < 0) {
-            this.currentPage = this.paginations.length - 1;
-            this.currentIndex = this.paginations.length - 1;
+            this.currentPage =  this.paginations().length - 1;
+            this.currentIndex =  this.paginations().length - 1;
         }
 
         this.render();
@@ -265,7 +272,7 @@ const app = {
     },
 
     lastPage: function () {
-        this.currentIndex = this.paginations.length - 1;
+        this.currentIndex =  this.paginations().length - 1;
         this.render();
         // this.render_member();
     },
@@ -280,23 +287,16 @@ const app = {
     sendInfOfEachUser: function () {
         const allUser = document.querySelectorAll('.container__table-row[id]'); 
         var status = document.querySelector('.container__action span').textContent;
-        if (status == 'Duyệt bài') {
-            status = 'post';
-        }
-        if (status == 'Gỡ bài') {
-            status = 'remove';
-        }
-        if (status == 'Xóa bài') {
-            status = 'delete';
-        }
+
         const arr = [];
         allUser.forEach(user => {
             if (user.querySelector('.container__table-input').checked) {
+
                 arr.push(user.getAttribute('id'));
             }
         });
         const obj = {
-            arr: arr,
+            ids: arr,
             status: status
         }
         return obj;

@@ -44,10 +44,9 @@ li {
     list-style: none;
 }
 
-.active {
+/* .active {
     display: block !important;
-   
-}
+} */
 
 .text-strong {
     font-weight: 700;

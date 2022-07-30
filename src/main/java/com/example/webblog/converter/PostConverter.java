@@ -19,7 +19,8 @@ public class PostConverter {
 
 	public PostDTO toDto(PostEntity entity) {
 		PostDTO result = modelMapper.map(entity, PostDTO.class);
-//		result.setCategory(categoryConverter.toDto(entity.getCategory()));
+		if(entity.getCategory() != null)
+		result.setCategoryDTO(categoryConverter.toDto(entity.getCategory()));
 		return result;
 	}
 	
@@ -29,6 +30,7 @@ public class PostConverter {
 	}
 	
 	public PostEntity toEntity(PostEntity result, PostDTO dto) {
+		result.setActive(dto.isActive());
 		result.setTitle(dto.getTitle());
 		result.setShortDescription(dto.getShortDescription());
 		result.setContent(dto.getContent());

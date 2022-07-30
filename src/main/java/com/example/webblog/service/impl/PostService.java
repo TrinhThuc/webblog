@@ -43,16 +43,27 @@ public class PostService implements IPostService {
 
 	@Override
 	@Transactional
+	public PostDTO findById(Long id) {
+		PostEntity postEntity = postRepository.findPostEntitiesById(id);
+		PostDTO postDTO = postConverter.toDto(postEntity);
+		return postDTO;
+	}
+
+	@Override
+	@Transactional
 	public PostDTO save(PostDTO dto) {
-		CategoryEntity category = categoryRepository.findOneById(dto.getCategoryId());
+		CategoryEntity category = categoryRepository.findCategoryEntitiesById(dto.getCategoryId());
+		Long id = dto.getCategoryId();
 		PostEntity postEntity = new PostEntity();
 		if (dto.getId() != null) {
-			PostEntity oldNew = postRepository.getById(dto.getId());
+			PostEntity oldNew = postRepository.findPostEntitiesById(dto.getId());
 			oldNew.setCategory(category);
 			postEntity = postConverter.toEntity(oldNew, dto);
+
 		} else {
 			postEntity = postConverter.toEntity(dto);
 			postEntity.setCategory(category);
+			postEntity.setActive(false);
 		}
 		return postConverter.toDto(postRepository.save(postEntity));
 	}

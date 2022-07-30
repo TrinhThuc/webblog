@@ -20,9 +20,7 @@ public class CategoryEntity extends BaseEntity{
 	@Column(name = "code")
 	private String code;
 	
-	@OneToMany(mappedBy = "category")
-	private List<PostEntity> news = new ArrayList<>();
-
-
+//	@OneToMany(mappedBy = "category")
+//	private List<PostEntity> news = new ArrayList<>();
 
 }

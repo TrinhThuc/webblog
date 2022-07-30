@@ -59,12 +59,12 @@ const application = () => {
         
      let editor = BalloonEditor.create(document.querySelector(".editor"), {
         placeholder: "Nội dung bài viết",
-        filebrowserBrowseUrl : '/ckfinder/ckfinder.html',
-        filebrowserImageBrowseUrl : '/ckfinder/ckfinder.html?type=Images',
-        filebrowserFlashBrowseUrl : '/ckfinder/ckfinder.html?type=Flash',
-        filebrowserUploadUrl : '/ckfinder/core/connector/java/connector.java?command=QuickUpload&amp;type=Files',
-        filebrowserImageUploadUrl : '/ckfinder/core/connector/java/connector.java?command=QuickUpload&amp;type=Images',
-        filebrowserFlashUploadUrl : '/ckfinder/core/connector/java/connector.java?command=QuickUpload&amp;type=Flash'
+        // filebrowserBrowseUrl : '/ckfinder/ckfinder.html',
+        // filebrowserImageBrowseUrl : '/ckfinder/ckfinder.html?type=Images',
+        // filebrowserFlashBrowseUrl : '/ckfinder/ckfinder.html?type=Flash',
+        // filebrowserUploadUrl : '/ckfinder/core/connector/java/connector.java?command=QuickUpload&amp;type=Files',
+        // filebrowserImageUploadUrl : '/ckfinder/core/connector/java/connector.java?command=QuickUpload&amp;type=Images',
+        // filebrowserFlashUploadUrl : '/ckfinder/core/connector/java/connector.java?command=QuickUpload&amp;type=Flash'
     })
         .then((editor) => {
             console.log(editor);
@@ -72,7 +72,7 @@ const application = () => {
         .catch((error) => {
             console.error(error);
         });
-     CKFinder.setupCKEditor(editor, '/static/writingpage/ckfinder/')
+     // CKFinder.setupCKEditor(editor, '/static/writingpage/ckfinder/')
 
     var createPostBtn = document.querySelector('#createPostBtn')
     function createPost(data, callback){
@@ -86,7 +86,7 @@ const application = () => {
         fetch("http://localhost:8080/api/post", options)
             .then(function (response){
                 console.log(response)
-                window.location.href = "http://localhost:8080/bai-dang/viet-bai"
+                // window.location.href = "http://localhost:8080/bai-dang/viet-bai"
                 return response.json()
             })
             .then(callback)
@@ -103,6 +103,7 @@ const application = () => {
             categoryId : result
         }
         createPost(post)
+        console.log(post)
     }
 };
 

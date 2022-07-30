@@ -48,11 +48,11 @@
                     <th></th>
                 </tr>
 
-                <tr id="1" class="container__table-row" th:each="post : ${Posts}">
-                    <td>1</td>
+                <tr th:id="${post.id}" class="container__table-row" th:each="post : ${model.listResult}">
+                    <td th:text="${post.stt}">1</td>
                     <td th:text="${post.title}"></td>
-                    <td th:if="${post.category} != null" th:text="${post.category.name}">Xã hội</td>
-                    <td th:if="${post.category} == null"></td>
+                    <td th:if="${post.categoryDTO} != null" th:text="${post.categoryDTO.name}">Xã hội</td>
+                    <td th:if="${post.categoryDTO} == null"></td>
                     <td th:text="${post.createdBy}">PhanVietdz</td>
                     <td th th:text="${post.createdDate}">13/9/2002</td>
                     <td><i class="fa-solid fa-book-bookmark icon"></i></td>
@@ -96,7 +96,39 @@
     var btnConfirm = document.querySelector('.container__confirm')
     btnConfirm.onclick = function (){
         var data = app.sendInfOfEachUser()
+        // if (data.status == 'Duyệt bài') {
+        //     delete data.status;
+        //     activePost(data);
+        //     console.log(data)
+        // }
+        // else if (data.status == 'Gỡ bài') {
+        //     status = 'remove';
+        // }
+        // else if (data.status == 'Xóa bài') {
+        //     status = 'delete';
+        // }
         console.log(data)
+        delete data.status;
+        activePost(data);
+
+        // delete data.status
+        // console.log(data)
+    }
+    function activePost(data, callback){
+        var options = {
+            method : 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body : JSON.stringify(data)
+        };
+        fetch("http://localhost:8080/api/admin/post/active", options)
+            .then(function (response){
+                console.log(response)
+                // window.location.href = "http://localhost:8080/quan-tri/role"
+                return response.json()
+            })
+            .then(callback)
     }
 </script>
 </html>

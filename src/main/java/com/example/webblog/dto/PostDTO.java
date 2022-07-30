@@ -10,14 +10,23 @@ public class PostDTO extends AbstractDTO<PostDTO>{
 	private Long view;
 	private Long categoryId;
 
-	private CategoryDTO category;
+	private CategoryDTO categoryDTO;
+	private boolean isActive;
 
-	public CategoryDTO getCategory() {
-		return category;
+	public boolean isActive() {
+		return isActive;
 	}
 
-	public void setCategory(CategoryDTO category) {
-		this.category = category;
+	public void setActive(boolean active) {
+		isActive = active;
+	}
+
+	public CategoryDTO getCategoryDTO() {
+		return categoryDTO;
+	}
+
+	public void setCategoryDTO(CategoryDTO categoryDTO) {
+		this.categoryDTO = categoryDTO;
 	}
 
 	public Long getView() {

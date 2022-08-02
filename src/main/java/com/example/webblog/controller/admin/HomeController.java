@@ -1,9 +1,11 @@
 package com.example.webblog.controller.admin;
 
+import com.example.webblog.dto.CategoryDTO;
 import com.example.webblog.dto.PostDTO;
 import com.example.webblog.dto.RoleDTO;
 import com.example.webblog.dto.UserDTO;
 import com.example.webblog.entity.RoleEntity;
+import com.example.webblog.service.ICategoryService;
 import com.example.webblog.service.IPostService;
 import com.example.webblog.service.IRoleService;
 import com.example.webblog.service.IUserService;
@@ -33,6 +35,9 @@ public class HomeController {
 
     @Autowired
     private IPostService postService;
+
+    @Autowired
+    private ICategoryService categoryService;
 
     @RequestMapping(value = "/quan-tri/trang-chu", method = RequestMethod.GET)
     public ModelAndView homePage() {
@@ -94,7 +99,9 @@ public class HomeController {
 
     @RequestMapping(value = "/quan-tri/the-loai", method = RequestMethod.GET)
     public ModelAndView listCategory() {
+        List<CategoryDTO> listCategory = categoryService.getAll();
         ModelAndView mav = new ModelAndView("admin/category_manage");
+        mav.addObject("categoris", listCategory);
         return mav;
     }
 

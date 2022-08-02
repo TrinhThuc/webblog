@@ -18,9 +18,11 @@
 .container__table-row th:last-child {
     border: 2px solid var(--primary-color);
     padding: 10px;
+}
+
+.container__table-row th:last-child .addmore-content {
     color: var(--primary-color);
     text-align: center;
-    max-width: 40px;
 }
 
 .container__table-row th:last-child:hover {
@@ -51,4 +53,8 @@
 
 .container__table-icon:last-child {
     color: #f44336;
+}
+
+.modal__role-label {
+    font-size: 1.4rem;
 }

@@ -73,20 +73,24 @@ public class UserService implements IUserService {
     @Transactional
     public UserDTO save(UserDTO dto) {
         UserEntity userEntity = new UserEntity();
-
+        List<RoleEntity> entities = new ArrayList<>();
         if (dto.getPassword() != null) {
             dto.setPassword(passwordEncoder.encode(dto.getPassword()));
         }
-        UserEntity oldUser = userRepository.findOneById(dto.getId());
         if (dto.getRoleIds() != null) {
-            List<RoleEntity> entities = new ArrayList<>();
-            for (Long roleId : dto.getRoleIds()) {
+            for (Long roleId : dto.getRoleIds())
                 entities.add(roleRepository.findRoleEntityById(roleId));
-
-            }
-            oldUser.setRoles(entities);
         }
-        userEntity = userConverter.toEntity(oldUser, dto);
+        if(dto.getId() != null){
+            UserEntity oldUser = userRepository.findOneById(dto.getId());
+            if(entities != null)
+            oldUser.setRoles(entities);
+            userEntity = userConverter.toEntity(oldUser, dto);
+        }else{
+            userEntity = userConverter.toEntity(dto);
+            userEntity.setRoles(entities);
+        }
+
         return userConverter.toDto(userRepository.save(userEntity));
     }
 

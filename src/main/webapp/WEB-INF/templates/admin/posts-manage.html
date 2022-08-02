@@ -54,7 +54,7 @@
                     <td th:if="${post.categoryDTO} != null" th:text="${post.categoryDTO.name}">Xã hội</td>
                     <td th:if="${post.categoryDTO} == null"></td>
                     <td th:text="${post.createdBy}">PhanVietdz</td>
-                    <td th th:text="${post.createdDate}">13/9/2002</td>
+                    <td th th:text="${post.dateString}">13/9/2002</td>
                     <td><i class="fa-solid fa-book-bookmark icon"></i></td>
                     <td class="container__table-select">
                         <input type="checkbox" class="container__table-input">

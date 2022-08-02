@@ -34,12 +34,78 @@
                     <th>Mã code</th>
                     <th>Chức năng</th>
                     <th class="container__addMore-btn">
+                    <div class="addmore-content">
                         <i class="fa-solid fa-plus"></i>
-                        Thêm mới
+                        <span>Thêm mới</span>
+                    </div>
+                    <div class="modal">
+                        <!-- modal edit role -->
+                        <div class="modal__wrap modal__wrap--edit">
+                            <i class="fas fa-times modal__close"></i>
+                            <!-- Edit info -->
+                            <div class="modal__edit-inf">
+                                <ul class="modal__edit-list">
+                                    <li class="modal__edit-item">
+                                        <p class="modal__edit-text">
+                                            Mã code
+                                            <i class="fas fa-asterisk modal__edit-icon"></i>
+                                        </p>
+                                        <input type="text" class="modal__edit-input" name="code" required>
+                                    </li>
+
+                                    <li class="modal__edit-item">
+                                        <p class="modal__edit-text">
+                                            Tên Role
+                                            <i class="fas fa-asterisk modal__edit-icon"></i>
+                                        </p>
+                                        <input type="text" class="modal__edit-input" name="name" required>
+                                    </li>
+
+                                    <!-- Edit Roles -->
+                                    <div class="modal__edit-role">
+                                        <p class="modal__edit-text">
+                                            Thể loại
+                                            <i class="fas fa-asterisk modal__edit-icon"></i>
+                                        </p>
+                                        <div class="modal__role-container">
+                                            <ul class="modal__role-list">
+                                                <li class="modal__role-item">
+                                                    <label id="1" for="" class="modal__role-label">Sửa bài viết</label>
+                                                    <input type="checkbox" class="modal__role-input">
+                                                </li>
+                                                <li class="modal__role-item">
+                                                    <label id="2" for="" class="modal__role-label">Xóa bài viết</label>
+                                                    <input type="checkbox" class="modal__role-input">
+                                                </li>
+                                                <li class="modal__role-item">
+                                                    <label id="3" for="" class="modal__role-label">Tạo mới bài viết</label>
+                                                    <input type="checkbox" class="modal__role-input">
+                                                </li>
+                                                <li class="modal__role-item">
+                                                    <label id="4" for="" class="modal__role-label">Xem bài viết</label>
+                                                    <input type="checkbox" class="modal__role-input">
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="modal__edit-footer">
+                                            <button class="btn modal__edit-cancel">
+                                                Hủy bỏ
+                                            </button>
+
+                                            <button class="btn modal__edit-confirm">
+                                                Xác nhận
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                     </th>
                 </tr>
 
-                <tr id="1" class="container__table-row" th:each="role : ${roles}">
+                <tr th:id="${role.id}" class="container__table-row" th:each="role : ${roles}">
                     <td th:text="${role.id}"></td>
                     <td th:text="${role.code}"></td>
                     <td th:text="${role.name}"></td>
@@ -54,7 +120,7 @@
                                 </div>
                                 <div class="modal__title">Bạn có chắc chắn muốn xóa không?</div>
                                 <div class="modal__choose">
-                                    <button class="btn modal__choose--yes">Yes</button>
+                                    <button class="btn modal__choose--yes" th:id="${role.id}">Yes</button>
                                     <button class="btn modal__choose--no">No</button>
                                 </div>
                             </div>
@@ -114,7 +180,7 @@
                                                     Hủy bỏ
                                                 </button>
 
-                                                <button class="btn modal__edit-confirm" th:id="${role.id}">
+                                                <button class="btn modal__edit-confirm" >
                                                     Xác nhận
                                                 </button>
                                             </div>
@@ -132,27 +198,6 @@
 
             </table>
 
-<!--            <div class="container__pagination">-->
-<!--                <button class="btn firstBtn">-->
-<!--                    <i class="fa-solid fa-angles-left container__pagination-icon"></i>-->
-<!--                </button>-->
-
-<!--                <button class="btn prevBtn">-->
-<!--                    <i class="fa-solid fa-angle-left container__pagination-icon"></i>-->
-<!--                </button>-->
-
-<!--                <ul class="container__pagination-lists">-->
-
-<!--                </ul>-->
-
-<!--                <button class="btn nextBtn">-->
-<!--                    <i class="fa-solid fa-angle-right container__pagination-icon"></i>-->
-<!--                </button>-->
-
-<!--                <button class="btn lastBtn">-->
-<!--                    <i class="fa-solid fa-angles-right container__pagination-icon"></i>-->
-<!--                </button>-->
-<!--            </div>-->
 
         </div>
     </div>
@@ -166,24 +211,73 @@
     btnEdit.onclick = function (){
         var data = app.sendRoleInf(btnEdit);
         console.log(data)
-        updateRole(data)
+        if(data.id != null)
+            updateRole(data)
+        else
+            createRole(data)
+
     }
-    function updateRole(data, callback){
-            var options = {
-                method : 'PUT',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body : JSON.stringify(data)
-            };
-            fetch("http://localhost:8080/api/role/"+data.id, options)
-                .then(function (response){
-                    console.log(response)
-                    window.location.href = "http://localhost:8080/quan-tri/role"
-                    return response.json()
-                })
-                .then(callback)
-    }
+
 })
+
+    var btnDeletes = document.querySelectorAll('.modal__choose--yes')
+    btnDeletes.forEach(btnDelete => {
+        btnDelete.onclick = function (){
+            var id = btnDelete.getAttribute('id')
+            var ids = []
+            ids.push(id)
+            console.log(ids);
+            deleteRole(ids);
+        }
+    })
+
+    function updateRole(data, callback){
+        var options = {
+            method : 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body : JSON.stringify(data)
+        };
+        fetch("http://localhost:8080/api/role/"+data.id, options)
+            .then(function (response){
+                console.log(response)
+                window.location.href = "http://localhost:8080/quan-tri/role"
+                return response.json()
+            })
+            .then(callback)
+    }
+    function createRole(data, callback){
+        var options = {
+            method : 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body : JSON.stringify(data)
+        };
+        fetch("http://localhost:8080/api/role", options)
+            .then(function (response){
+                console.log(response)
+                window.location.href = "http://localhost:8080/quan-tri/role"
+                return response.json()
+            })
+            .then(callback)
+    }
+    function deleteRole(data, callback){
+        var options = {
+            method : 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body : JSON.stringify(data)
+        };
+        fetch("http://localhost:8080/api/role", options)
+            .then(function (response){
+                console.log(response)
+                // window.location.href = "http://localhost:8080/quan-tri/trang-chu/nguoi-dung?page=1&limit=5"
+                return response.json()
+            })
+            .then(callback)
+    }
 </script>
 </html>

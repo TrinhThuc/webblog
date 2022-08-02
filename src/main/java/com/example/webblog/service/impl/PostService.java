@@ -50,6 +50,7 @@ public class PostService implements IPostService {
 		for(PostEntity post : postRepository.findAll(pageable).getContent()){
 			PostDTO postDTO = postConverter.toDto(post);
 			DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+			if(post.getCreatedDate() != null)
 			postDTO.setDateString(dateFormat.format(post.getCreatedDate()));
 			UserEntity user = userRepository.findOneByUserNameAndStatusAndEnabled(post.getCreatedBy(),1 ,true);
 			if(user != null)

@@ -1,19 +1,6 @@
-// NOTE
-// hàm sendRoleInf để lấy 1 obj có name với code nhé
-
 // Begin
 const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
-
-// pagination variables
-// const numberOfPaginations = $$('.container__pagination-item');
-// const paginationList = $('.container__pagination-lists');
-// const firstBtn = $('.firstBtn');
-// const prevBtn = $('.prevBtn');
-// const nextBtn = $('.nextBtn');
-// const lastBtn = $('.lastBtn');
-// const paginationBar = $('.container__pagination');
-// const totalPages = $('.container__pagination__total-page');
 
 // Interface variales
 const memberList = $('.container__table');
@@ -111,12 +98,13 @@ const app = {
             }
         })
 
-        //Lắng nghe hành vi click vào nút 'Thêm mới' 
-        //trong danh sách người dùng
-        // addMoreBtn.onclick = function () {
-        //     app.appearModal(this.dataset.value);
-        //     app.appearEditTable(this.dataset.value);
-        // }
+        // Lắng nghe hành vi click vào nút 'Thêm mới' 
+        // trong danh sách người dùng
+        addMoreBtn.onclick = function () {
+            const value = this.closest('.container__table-row');
+            app.appearModal(value);
+            app.appearEditTable(value);
+        }
 
         // Lắng nghe hành vi click vào nút close 
         //trong modal edit
@@ -130,9 +118,9 @@ const app = {
         //hoặc cancel trong modal edit
         confirmBtns.forEach(confirmBtn => {
             confirmBtn.onclick = function () {
-                // app.sendAllInputChecked(this);
-                // app.sendStatusBlock(this);
-                app.sendRoleInf(this);
+                // app.sendAllInputChecked(this); // checked
+                // app.sendStatusBlock(this);  // checked
+                // app.sendRoleInf(this);
             }
         })
 
@@ -269,6 +257,7 @@ const app = {
             }
         })
         console.log(array);
+        return array;
     },
 
     sendStatusBlock: function (value) {

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8" />
@@ -34,31 +34,11 @@
                         <th>Mã code</th>
                         <th>Chức năng</th>
                         <th class="container__addMore-btn">
-                            <i class="fa-solid fa-plus"></i>
-                            Thêm mới
-                        </th>
-                    </tr>
-
-                    <tr id="1" class="container__table-row">
-                        <td>1</td>
-                        <td>ADMIN</td>
-                        <td>Quản trị viên</td>
-                        <td>
-                            <i class="fa-solid fa-pen container__table-icon"></i>
-                            <i class="fa-solid fa-trash container__table-icon"></i>
+                            <div class="addmore-content">
+                                <i class="fa-solid fa-plus"></i>
+                                <span>Thêm mới</span>
+                            </div>
                             <div class="modal">
-                                <!-- modal delete -->
-                                <div class="modal__wrap modal__wrap--delete">
-                                    <div class="modal__header">
-                                        <img src="/static/admin/img/warning-img.png" alt="" class="modal__img">
-                                    </div>
-                                    <div class="modal__title">Bạn có chắc chắn muốn xóa không?</div>
-                                    <div class="modal__choose">
-                                        <button class="btn modal__choose--yes">Yes</button>
-                                        <button class="btn modal__choose--no">No</button>
-                                    </div>
-                                </div>
-
                                 <!-- modal edit role -->
                                 <div class="modal__wrap modal__wrap--edit">
                                     <i class="fas fa-times modal__close"></i>
@@ -111,7 +91,7 @@
                                                     <button class="btn modal__edit-cancel">
                                                         Hủy bỏ
                                                     </button>
-    
+
                                                     <button class="btn modal__edit-confirm">
                                                         Xác nhận
                                                     </button>
@@ -122,13 +102,13 @@
                                     </div>
                                 </div>
                             </div>
-                        </td>
+                        </th>
                     </tr>
 
-                    <tr id="2" class="container__table-row">
-                        <td>2</td>
-                        <td>ADMIN</td>
-                        <td>Quản trị viên</td>
+                    <tr th:id="${category.id}" class="container__table-row" th:each="category : ${categoris}">
+                        <td th:text="${category.id}">1</td>
+                        <td th:text="${category.code}">ADMIN</td>
+                        <td th:text="${category.name}">Quản trị viên</td>
                         <td>
                             <i class="fa-solid fa-pen container__table-icon"></i>
                             <i class="fa-solid fa-trash container__table-icon"></i>
@@ -156,21 +136,23 @@
                                                     Mã code
                                                     <i class="fas fa-asterisk modal__edit-icon"></i>
                                                 </p>
-                                                <input type="text" class="modal__edit-input" name="code" required>
+                                                <input type="text" class="modal__edit-input" name="code" required
+                                                th:placeholder="${category.code}">
                                             </li>
 
                                             <li class="modal__edit-item">
                                                 <p class="modal__edit-text">
-                                                    Thể loại
+                                                    Tên Role
                                                     <i class="fas fa-asterisk modal__edit-icon"></i>
                                                 </p>
-                                                <input type="text" class="modal__edit-input" name="name" required>
+                                                <input type="text" class="modal__edit-input" name="name" required
+                                                th:placeholder="${category.name}">
                                             </li>
 
                                             <!-- Edit Roles -->
                                             <div class="modal__edit-role">
                                                 <p class="modal__edit-text">
-                                                    Chức năng
+                                                    Thể loại
                                                     <i class="fas fa-asterisk modal__edit-icon"></i>
                                                 </p>
                                                 <div class="modal__role-container">
@@ -198,7 +180,7 @@
                                                         Hủy bỏ
                                                     </button>
     
-                                                    <button class="btn modal__edit-confirm">
+                                                    <button class="btn modal__edit-confirm" >
                                                         Xác nhận
                                                     </button>
                                                 </div>
@@ -212,29 +194,10 @@
                     </tr>
 
 
+
                 </table>
 
-<!--                <div class="container__pagination">-->
-<!--                    <button class="btn firstBtn">-->
-<!--                        <i class="fa-solid fa-angles-left container__pagination-icon"></i>-->
-<!--                    </button>-->
 
-<!--                    <button class="btn prevBtn">-->
-<!--                        <i class="fa-solid fa-angle-left container__pagination-icon"></i>-->
-<!--                    </button>-->
-
-<!--                    <ul class="container__pagination-lists">-->
-
-<!--                    </ul>-->
-
-<!--                    <button class="btn nextBtn">-->
-<!--                        <i class="fa-solid fa-angle-right container__pagination-icon"></i>-->
-<!--                    </button>-->
-
-<!--                    <button class="btn lastBtn">-->
-<!--                        <i class="fa-solid fa-angles-right container__pagination-icon"></i>-->
-<!--                    </button>-->
-<!--                </div>-->
                
             </div>
         </div>
@@ -244,7 +207,79 @@
 <!-- <script src="./asset/JS/roleManage.js"></script> -->
 <script src="/static/admin/JS/main_admin.js"></script>
 <script>
-    
+    var btnEdits = document.querySelectorAll('.modal__edit-confirm')
+    btnEdits.forEach(btnEdit => {
+        btnEdit.onclick = function (){
+            var data = app.sendRoleInf(btnEdit);
+            console.log(data)
+            if(data.id != null)
+                updateCategory(data)
+            else
+                createCategory(data)
+
+        }
+
+    })
+
+    var btnDeletes = document.querySelectorAll('.modal__choose--yes')
+    btnDeletes.forEach(btnDelete => {
+        btnDelete.onclick = function (){
+            var id = btnDelete.getAttribute('id')
+            var ids = []
+            ids.push(id)
+            console.log(ids);
+            deleteCategory(ids);
+        }
+    })
+
+    function updateCategory(data, callback){
+        var options = {
+            method : 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body : JSON.stringify(data)
+        };
+        fetch("http://localhost:8080/api/category/"+data.id, options)
+            .then(function (response){
+                console.log(response)
+                // window.location.href = "http://localhost:8080/quan-tri/role"
+                return response.json()
+            })
+            .then(callback)
+    }
+    function createCategory(data, callback){
+        var options = {
+            method : 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body : JSON.stringify(data)
+        };
+        fetch("http://localhost:8080/api/category", options)
+            .then(function (response){
+                console.log(response)
+                // window.location.href = "http://localhost:8080/quan-tri/role"
+                return response.json()
+            })
+            .then(callback)
+    }
+    function deleteCategory(data, callback){
+        var options = {
+            method : 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body : JSON.stringify(data)
+        };
+        fetch("http://localhost:8080/api/category", options)
+            .then(function (response){
+                console.log(response)
+                // window.location.href = "http://localhost:8080/quan-tri/trang-chu/nguoi-dung?page=1&limit=5"
+                return response.json()
+            })
+            .then(callback)
+    }
 </script>
 
 </html>

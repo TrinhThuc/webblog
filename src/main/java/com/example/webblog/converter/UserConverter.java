@@ -43,7 +43,8 @@ public class UserConverter {
             entity.setEmail(dto.getEmail());
         if (dto.getAvatar() != null && dto.getAvatar() != "")
             entity.setAvatar(dto.getAvatar());
-
+        if(dto.getStatus()!= null)
+            entity.setStatus(dto.getStatus());
         return entity;
     }
 

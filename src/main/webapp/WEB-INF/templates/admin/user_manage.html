@@ -73,8 +73,84 @@
                             <th>Nhóm</th>
                             <th>Trạng thái</th>
                             <th class="container__addMore-btn">
-                                <i class="fa-solid fa-plus"></i>
-                                Thêm mới
+                                <div class="addmore-content">
+                                    <i class="fa-solid fa-plus"></i>
+                                    <span>Thêm mới</span>
+                                </div>
+                                <div class="modal">
+                                    <!-- Modal edit -->
+                                    <div class="modal__wrap modal__wrap--edit">
+                                        <i class="fas fa-times modal__close"></i>
+                                        <!-- Edit info -->
+                                        <div class="modal__edit-inf">
+                                            <ul class="modal__edit-list">
+                                                <li class="modal__edit-item">
+                                                    <p class="modal__edit-text" >
+                                                        Tên đăng nhập
+                                                        <i class="fas fa-asterisk modal__edit-icon"></i>
+                                                    </p>
+                                                    <input type="text" class="modal__edit-input" name ="userName" required>
+                                                </li>
+
+                                                <li class="modal__edit-item">
+                                                    <p class="modal__edit-text">
+                                                        Mật khẩu
+                                                        <i class="fas fa-asterisk modal__edit-icon"></i>
+                                                    </p>
+                                                    <input type="password" class="modal__edit-input"  name ="password"required>
+                                                </li>
+
+                                                <li class="modal__edit-item">
+                                                    <p class="modal__edit-text" >
+                                                        Họ và tên
+                                                        <i class="fas fa-asterisk modal__edit-icon"></i>
+                                                    </p>
+                                                    <input type="text" class="modal__edit-input" name ="fullname" required>
+                                                </li>
+
+                                                <li class="modal__edit-item">
+                                                    <p class="modal__edit-text">Email</p>
+                                                    <input type="email" class="modal__edit-input" name = "email">
+                                                </li>
+                                                <li class="modal__edit-item manage__user">
+                                                    <div>
+                                                        <input type="checkbox" id="switch" class="switch-input" />
+                                                        <label for="switch" class="switch"></label>
+                                                    </div>
+                                                    <span class="modal__edit-text">Khóa tài khoản</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                        <!-- Edit role -->
+                                        <div class="modal__edit-role">
+                                            <p class="modal__edit-text">
+                                                Roles
+                                                <i class="fas fa-asterisk modal__edit-icon"></i>
+                                            </p>
+                                            <div class="modal__role-container">
+                                                <ul class="modal__role-list" >
+                                                    <li class="modal__role-item" th:each="role : ${roles}">
+                                                        <label th:id="${role.id}" for="" class="modal__role-label"
+                                                               th:text="${role.name}">
+                                                        </label>
+                                                        <input type="checkbox"  class="modal__role-input">
+
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="modal__edit-footer">
+                                                <button class="btn modal__edit-cancel">
+                                                    Hủy bỏ
+                                                </button>
+
+                                                <button class="btn modal__edit-confirm">
+                                                    Xác nhận
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </th>
                         </tr>
 
@@ -107,7 +183,7 @@
                                             </div>
                                             <div class="modal__title">Bạn có chắc chắn muốn xóa không?</div>
                                             <div class="modal__choose">
-                                                <button class="btn modal__choose--yes">Yes</button>
+                                                <button class="btn modal__choose--yes" th:id="${user.id}" >Yes</button>
                                                 <button class="btn modal__choose--no">No</button>
                                             </div>
                                         </div>
@@ -132,7 +208,8 @@
                                                             Mật khẩu
                                                             <i class="fas fa-asterisk modal__edit-icon"></i>
                                                         </p>
-                                                        <input type="password" class="modal__edit-input" required>
+                                                        <input type="password" class="modal__edit-input" required
+                                                        name = "password">
                                                     </li>
 
                                                     <li class="modal__edit-item">
@@ -151,7 +228,10 @@
                                                     </li>
                                                     <li class="modal__edit-item manage__user">
                                                         <div>
-                                                            <input type="checkbox" th:id="'switch' + ${user.id}" class="switch-input" />
+                                                            <input type="checkbox" th:id="'switch' + ${user.id}" class="switch-input"
+                                                            th:if="${user.status} == 0" checked/>
+                                                            <input type="checkbox" th:id="'switch' + ${user.id}" class="switch-input"
+                                                                   th:if="${user.status} == 1" />
                                                             <label th:for="'switch' + ${user.id}" class="switch"></label>
                                                         </div>
                                                         <span class="modal__edit-text">Khóa tài khoản</span>
@@ -288,23 +368,60 @@
         btnEdit.onclick = function (){
             const inf = btnEdit.closest('.modal__wrap--edit')
             var userName = inf.querySelector('input[name="userName"]').value
+            if(userName == "")
+                userName = inf.querySelector('input[name="userName"]').getAttribute('placeholder')
             var fullname = inf.querySelector('input[name="fullname"]').value
+            if(fullname == "")
+                fullname = inf.querySelector('input[name="fullname"]').getAttribute('placeholder')
             var email = inf.querySelector('input[name="email"]').value
+            if(email == "")
+                email = inf.querySelector('input[name="email"]').getAttribute('placeholder')
+            var password = inf.querySelector('input[name="password"]').value
             var id = btnEdit.getAttribute('id')
             var rolreIds = app.sendAllInputChecked(btnEdit)
             var status = app.sendStatusBlock(btnEdit)
-            var user = {
-                roleIds : rolreIds,
-                status : status,
-                userName : userName,
-                fullname : fullname,
-                email : email,
-                id : id
+            if(id != null){
+                var user = {
+                    roleIds : rolreIds,
+                    status : status,
+                    userName : userName,
+                    fullname : fullname,
+                    email : email,
+                    id : id
+                }
+                console.log(user)
+                updateUser(user)
             }
-            console.log(user)
-            updateUser(user)
+            else {
+                var user ={
+                    roleIds : rolreIds,
+                    status : status,
+                    userName : userName,
+                    fullname : fullname,
+                    email : email,
+                    password : password,
+                    enabled : true,
+                    id : id
+                }
+                console.log(user)
+                createUser(user)
+            }
+
+
         }
     })
+
+    var btnDeletes = document.querySelectorAll('.modal__choose--yes')
+    btnDeletes.forEach(btnDelete => {
+        btnDelete.onclick = function (){
+            var id = btnDelete.getAttribute('id')
+            var ids = []
+            ids.push(id)
+            console.log(ids);
+            deleteUser(ids);
+        }
+    })
+
     function updateUser(data, callback){
         var options = {
             method : 'PUT',
@@ -314,6 +431,39 @@
             body : JSON.stringify(data)
         };
         fetch("http://localhost:8080/api/user/"+data.id, options)
+            .then(function (response){
+                console.log(response)
+                // window.location.href = "http://localhost:8080/quan-tri/trang-chu/nguoi-dung?page=1&limit=5"
+                return response.json()
+            })
+            .then(callback)
+    }
+
+    function createUser(data, callback){
+        var options = {
+            method : 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body : JSON.stringify(data)
+        };
+        fetch("http://localhost:8080/api/user", options)
+            .then(function (response){
+                console.log(response)
+                // window.location.href = "http://localhost:8080/quan-tri/trang-chu/nguoi-dung?page=1&limit=5"
+                return response.json()
+            })
+            .then(callback)
+    }
+    function deleteUser(data, callback){
+        var options = {
+            method : 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body : JSON.stringify(data)
+        };
+        fetch("http://localhost:8080/api/user", options)
             .then(function (response){
                 console.log(response)
                 // window.location.href = "http://localhost:8080/quan-tri/trang-chu/nguoi-dung?page=1&limit=5"

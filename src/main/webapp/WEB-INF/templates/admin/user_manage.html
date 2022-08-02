@@ -214,20 +214,23 @@
                                                     Tất cả các bài viết
                                                 </header>
                                                 <ul class="modal__container-list">
-                                                    <a href="" class="modal__item-link">
+                                                    <a href="" class="modal__item-link"
+                                                    th:each="post : ${user.postEntities}">
                                                         <li class="modal__container-item">
                                                             <img src="/static/admin/img/post_view1.jpg" alt=""
                                                                 class="modal__container-img">
                                                             <ul class="modal__container-info">
-                                                                <li class="modal__container-tag">Quan điểm - tranh luận
+                                                                <li class="modal__container-tag" th:if="${post.category} != null"
+                                                                    th:text="${post.category.name}">
                                                                 </li>
-                                                                <li class="modal__container-title">
+                                                                <li class="modal__container-tag" th:if="${post.category} == null">
+                                                                </li>
+                                                                <li class="modal__container-title"
+                                                                th:text="${post.title}">
                                                                     4 Bài học sau khi xem series phim tài liệu Việt Nam
                                                                 </li>
-                                                                <li class="modal__container-desc">Ở đây tôi không muốn
-                                                                    nói về quan điểm chính trị, mà
-                                                                    muốn
-                                                                    akdjfalksdjflakdsfaakldsfj</li>
+                                                                <li class="modal__container-desc"
+                                                                    th:text="${post.shortDescription}"></li>
                                                                 <li class="modal__container-time">
                                                                     <span>6</span>
                                                                     giờ trước
@@ -235,92 +238,7 @@
                                                             </ul>
                                                         </li>
                                                     </a>
-                                                    <a href="" class="modal__item-link">
-                                                        <li class="modal__container-item">
-                                                            <img src="/static/admin/img/post_view.jpg" alt=""
-                                                                class="modal__container-img">
-                                                            <ul class="modal__container-info">
-                                                                <li class="modal__container-tag">Quan điểm - tranh luận
-                                                                </li>
-                                                                <li class="modal__container-title">
-                                                                    4 Bài học sau khi xem series phim tài liệu Việt Nam
-                                                                </li>
-                                                                <li class="modal__container-desc">
-                                                                    Lorem ipsum dolor, sit amet consectetur adipisicing
-                                                                    elit. Nostrum rerum repellendus
-                                                                    mollitia itaque provident optio. Maiores omnis
-                                                                    praesentium quisquam labore, dolorem
-                                                                    veniam fugiat deserunt blanditiis eos explicabo!
-                                                                    Illum, enim corporis.
-                                                                </li>
-                                                                <li class="modal__container-time">
-                                                                    <span>6</span>
-                                                                    giờ trước
-                                                                </li>
-                                                            </ul>
-                                                        </li>
-                                                    </a>
-                                                    <a href="" class="modal__item-link">
-                                                        <li class="modal__container-item">
-                                                            <img src="/static/admin/img/post_view2.jpg" alt=""
-                                                                class="modal__container-img">
-                                                            <ul class="modal__container-info">
-                                                                <li class="modal__container-tag">Quan điểm - tranh luận
-                                                                </li>
-                                                                <li class="modal__container-title">
-                                                                    4 Bài học sau khi xem series phim tài liệu Việt Nam
-                                                                </li>
-                                                                <li class="modal__container-desc">Ở đây tôi không muốn
-                                                                    nói về quan điểm chính trị, mà
-                                                                    muốn
-                                                                    akdjfalksdjflakdsfaakldsfj</li>
-                                                                <li class="modal__container-time">
-                                                                    <span>6</span>
-                                                                    giờ trước
-                                                                </li>
-                                                            </ul>
-                                                        </li>
-                                                    </a>
-                                                    <a href="" class="modal__item-link">
-                                                        <li class="modal__container-item">
-                                                            <img src="/static/admin/img/post_view2.jpg" alt=""
-                                                                class="modal__container-img">
-                                                            <ul class="modal__container-info">
-                                                                <li class="modal__container-tag">Quan điểm - tranh luận
-                                                                </li>
-                                                                <li class="modal__container-title">
-                                                                    4 Bài học sau khi xem series phim tài liệu Việt Nam
-                                                                </li>
-                                                                <li class="modal__container-desc">Ở đây tôi không muốn
-                                                                    nói về quan điểm chính trị, mà
-                                                                    muốn
-                                                                    akdjfalksdjflakdsfaakldsfj</li>
-                                                                <li class="modal__container-time">
-                                                                    <span>6</span>
-                                                                    giờ trước
-                                                                </li>
-                                                            </ul>
-                                                        </li>
-                                                    </a>
-                                                    <a href="" class="modal__item-link">
-                                                        <li class="modal__container-item">
-                                                            <img src="/static/admin/img/post_view2.jpg" alt=""
-                                                                class="modal__container-img">
-                                                            <ul class="modal__container-info">
-                                                                <li class="modal__container-tag">Quan điểm - tranh luận
-                                                                </li>
-                                                                <li class="modal__container-title">
-                                                                    4 Bài học sau khi xem series phim tài liệu Việt Nam
-                                                                </li>
-                                                                <li class="modal__container-desc">Ở đây tôi không muốn
-                                                                    nói về quan </li>
-                                                                <li class="modal__container-time">
-                                                                    <span>6</span>
-                                                                    giờ trước
-                                                                </li>
-                                                            </ul>
-                                                        </li>
-                                                    </a>
+
                                                 </ul>
                                             </div>
                                         </div>
@@ -363,6 +281,7 @@
 
 </body>
 <script src="/static/admin/JS/main_admin.js"></script>
+<script src="/static/admin/JS/pagination.js"></script>
 <script>
     var btnEdits = document.querySelectorAll('.modal__edit-confirm')
     btnEdits.forEach(btnEdit => {
@@ -397,7 +316,7 @@
         fetch("http://localhost:8080/api/user/"+data.id, options)
             .then(function (response){
                 console.log(response)
-                window.location.href = "http://localhost:8080/quan-tri/trang-chu/nguoi-dung?page=1&limit=5"
+                // window.location.href = "http://localhost:8080/quan-tri/trang-chu/nguoi-dung?page=1&limit=5"
                 return response.json()
             })
             .then(callback)

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>write_manage</title>
+    <meta charset="ult-f8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;900&display=swap"
+          rel="stylesheet" />
+    <link rel="stylesheet" href="/static/admin/css/write_manage.css">
+    <link rel="stylesheet" href="/static/admin/css/sidebase.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+</head>
+
+<body>
+    <div th:replace="../fragments/admin/menu :: menu"></div>
+
+
+    <div class="content-right">
+        <div class="return">
+            <a href=""> <i class="fas fa-arrow-left return_icon"></i></a>
+        </div>
+        <div class="title">Quản lý bài viết</div>
+        <div class="writer">
+            <a href=""><img id="avatar" src="/static/admin/img/meo.jpg" alt="anh dai dien"></a>
+            <p id="name"><a href="">Meomap</a></p>
+        </div>
+        <div class="theme">
+            <a href="">Quan điểm</a>
+        </div>
+        <h1>Những điều được trong công việc từ The Pursuit of Happiness</h1>
+        <h5>Lần đầu tiên mình xem The Pursuit of happyness là gần chục năm trước và đây là bộ phim mình xem đi xem lại
+            không biết bao nhiêu lần.</h5>
+        <div class="content-read">
+            <div class="content">
+            </div>
+            <div id="date">
+                <29 /04/2022>
+            </div>
+
+            <div class="agree">
+                <button>
+                    DUYỆT BÀI
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    var content = "        <div class=\"writing-blog__editor editor ck ck-content ck-editor__editable ck-rounded-corners ck-editor__editable_inline ck-blurred\" id=\"content\" placeholder=\"Nội dung bài viết\" lang=\"en\" dir=\"ltr\" role=\"textbox\" aria-label=\"Rich Text Editor, main\" contenteditable=\"true\"><p data-placeholder=\"Nội dung bài viết\">adấdfad</p></div>\n"
+    var contentTag = document.querySelector('.content')
+    contentTag.innerHTML = content
+    // console.log(contentTag);
+</script>
+
+</html>

@@ -3,19 +3,24 @@ package com.example.webblog.service.impl;
 
 
 import com.example.webblog.converter.PostConverter;
+import com.example.webblog.converter.UserConverter;
 import com.example.webblog.dto.PostDTO;
 import com.example.webblog.dto.RoleDTO;
 import com.example.webblog.entity.CategoryEntity;
 import com.example.webblog.entity.PostEntity;
 import com.example.webblog.entity.RoleEntity;
+import com.example.webblog.entity.UserEntity;
 import com.example.webblog.respository.CategoryRepository;
 import com.example.webblog.respository.PostRepository;
+import com.example.webblog.respository.UserRepository;
 import com.example.webblog.service.IPostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,16 +33,30 @@ public class PostService implements IPostService {
 	
 	@Autowired
 	private CategoryRepository categoryRepository;
+
+	@Autowired
+	private UserRepository userRepository;
 	
 	@Autowired
 	private PostConverter postConverter;
+
+	@Autowired
+	private UserConverter userConverter;
 
 	@Override
 	@Transactional
 	public List<PostDTO> findAll(Pageable pageable) {
 		List<PostDTO> postDTOS = new ArrayList<>();
-		for(PostEntity post : postRepository.findAll(pageable).getContent())
-			postDTOS.add(postConverter.toDto(post));
+		for(PostEntity post : postRepository.findAll(pageable).getContent()){
+			PostDTO postDTO = postConverter.toDto(post);
+			DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+			postDTO.setDateString(dateFormat.format(post.getCreatedDate()));
+			UserEntity user = userRepository.findOneByUserNameAndStatusAndEnabled(post.getCreatedBy(),1 ,true);
+			if(user != null)
+			postDTO.setAuthor(userConverter.toDto(user));
+			postDTOS.add(postDTO);
+		}
+
 		return postDTOS;
 	}
 
@@ -46,6 +65,9 @@ public class PostService implements IPostService {
 	public PostDTO findById(Long id) {
 		PostEntity postEntity = postRepository.findPostEntitiesById(id);
 		PostDTO postDTO = postConverter.toDto(postEntity);
+		UserEntity user = userRepository.findOneByUserNameAndStatusAndEnabled(postDTO.getCreatedBy(),1 ,true);
+		if(user != null)
+			postDTO.setAuthor(userConverter.toDto(user));
 		return postDTO;
 	}
 

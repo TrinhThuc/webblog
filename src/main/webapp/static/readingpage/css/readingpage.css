@@ -1,0 +1,389 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+    background-color: #fff;
+}
+
+.content-readpage {
+    margin-top: 100px;
+    padding-left: 22%;
+    padding-right: 10%;
+    display: flex;
+    font-size: 21px;
+}
+
+.content-readpage_left {
+    width: 80%;
+    line-height: 30px;
+}
+
+.theme>a {
+    text-decoration: none;
+    color: rgb(113, 116, 113);
+    font-style: italic;
+}
+
+.theme>a:hover {
+    color: rgb(57, 52, 52);
+    text-decoration: underline;
+}
+
+.content-readpage_left>h1 {
+    text-align: center;
+    margin-top: 10px;
+    line-height: 50px;
+}
+
+.content-readpage_left>h5 {
+    font-style: italic;
+    color: gray;
+    margin: 10px 0 25px 0;
+    text-align: center;
+    line-height: 22px;
+}
+
+.content-read>#img_1 {
+    display: block;
+    width: 100%;
+    margin: 30px auto 5px auto;
+    border-radius: 3px;
+}
+
+.content-read>#heading_paragraph {
+    margin: 20px 0;
+    font-size: 24px;
+    color: rgb(33, 30, 30);
+}
+
+.content-read>#note_img {
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 15px;
+    color: gray;
+}
+
+.content-read>p {
+    text-indent: 40px;
+    /* text-align: justify; */
+}
+
+.content-read>hr {
+    margin-top: 30px;
+    border-width: 0.3px;
+    margin-bottom: 20px;
+}
+
+#date {
+    padding-left: 80%;
+    font-size: 16px;
+    padding-top: 0px;
+}
+
+.note>a {
+    color: rgb(7, 7, 7);
+    padding-left: 10px;
+    font-size: 18px;
+}
+
+.like {
+    margin-bottom: 15px;
+}
+
+#like-icon {
+    color: black;
+    font-size: 20px;
+}
+
+#like-icon:active {
+    color: rgb(64, 64, 145);
+}
+
+.special_text {
+    position: relative;
+    margin-top: 60px;
+    font-size: 22px;
+}
+
+/* slider section */
+.slick-slider {
+    display: flex !important;
+}
+
+.slick-arrow {
+    position: absolute;
+    border-radius: 5px;
+    width: 50px;
+    height: 150px;
+    top: 36%;
+    z-index: 999;
+    border: none;
+    background: rgba(22, 22, 22, .1);
+    transition: background 0.3s ease-in-out;
+    box-shadow: 0 10px 15px -3pxrgba(47, 181, 250, .05), 0 4px 6px -2px rgba(47, 181, 250, .025) !important;
+}
+
+.slick-arrow i {
+    font-size: 3rem;
+}
+
+.slick-arrow:hover {
+    border: none;
+    background: rgba(49, 159, 255, 0.35);
+    cursor: pointer;
+}
+
+.prev-btn {
+    left: -28px;
+}
+
+.next-btn {
+    right: -22px;
+}
+
+
+/* End of slider section */
+
+.total_text {
+    width: 100%;
+    height: 450px;
+    border: 1px solid rgb(223, 230, 237);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+    text-align: center;
+    padding-inline-start: 0px;
+    margin-top: 20px;
+}
+
+.total_text li {
+    width: 100%;
+    padding-left: 20px;
+}
+
+.total_text li>a {
+    text-decoration: none;
+    color: rgb(93, 89, 89);
+}
+
+.total_text li>a>p {
+    margin-right: 20px;
+}
+
+.total_text li>a>img {
+    display: block;
+    border-radius: 4px;
+    width: 90%;
+    height: 50%;
+}
+
+.comment {
+    margin-top: 80px;
+}
+
+.comment>p {
+    font-size: 22px;
+}
+
+#forminput {
+    margin-top: 15px;
+    min-width: 100%;
+    height: 50px;
+    border-radius: 4px;
+    font-size: 18px;
+    border: 1px solid rgb(180, 187, 194);
+    outline-color: none;
+}
+
+#forminput::placeholder {
+    padding-left: 10px;
+}
+
+#forminput:enabled {
+    outline-color: rgb(161, 173, 166);
+    transition: 0.5s;
+}
+
+.commention {
+    margin-top: 20px;
+    display: block;
+    min-width: 100%;
+    border: 1px solid rgb(180, 187, 194);
+    border-radius: 4px;
+}
+
+.comments {
+    margin-top: 18px;
+    width: 100%;
+    display: flex;
+}
+
+#avatar_commentator {
+    display: block;
+    width: 50px;
+    height: 50px;
+    margin-left: 10px;
+    border-radius: 25px;
+    transform: scale(1);
+}
+
+#commentator {
+    padding-left: 6px;
+    font-size: 16px;
+}
+
+.replycomment {
+    margin-top: 8px;
+    padding-left: 10%;
+    display: flex;
+}
+
+#avatar_replycommentator {
+    display: block;
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    transform: scale(1);
+}
+
+#replycommentator {
+    padding-left: 6px;
+    font-size: 16px;
+}
+
+#commentator>a,
+#replycommentator>a {
+    display: block;
+    padding-top: 5px;
+    color: rgb(119, 113, 113);
+    text-decoration: none;
+    transform: scale(1);
+}
+
+#comment_1,
+#replycomment_1 {
+    padding-left: 20px;
+    padding-top: 10px;
+    font-size: 18px;
+}
+
+#avatar_commentator:hover,
+#avatar_replycommentator:hover {
+    transform: scale(1.1);
+    transition: all 0.5s;
+}
+
+#commentator:hover,
+#replycommentator:hover {
+    color: black;
+    transform: scale(1.1);
+    transition: all 0.5s;
+}
+
+.content-readpage_right {
+    height: 400px;
+    padding-top: 60px;
+    margin-left: 5%;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    left: 75%;
+}
+
+.writer>#notice {
+    padding-bottom: 8px;
+    color: rgb(158, 152, 152);
+    font-size: 18px;
+}
+
+#avatar {
+    display: block;
+    width: 90px;
+    height: 90px;
+    border-radius: 45px;
+    margin-left: auto;
+    margin-right: auto;
+    transform: scale(1)
+}
+
+#avatar:hover {
+    transform: scale(1.1);
+    transition: all 0.5s;
+}
+
+.writer>#name {
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+#name>a {
+    text-decoration: none;
+    color: rgb(158, 142, 142);
+    font-size: 20px;
+    text-transform: capitalize;
+}
+
+#name>a:hover {
+    color: rgb(90, 132, 132);
+    text-decoration: underline;
+}
+
+.writer>button {
+    width: 90px;
+    font-size: 18px;
+    min-height: 35px;
+    border: 0.5px solid rgb(180, 187, 194);
+    border-radius: 4px;
+    background-color: #fff;
+    color: rgb(158, 142, 142);
+}
+
+.writer>button:hover {
+    background-color: aliceblue;
+    font-style: italic;
+    cursor: pointer;
+    color: rgb(90, 132, 132);
+}
+
+body>hr {
+    margin-top: 60px;
+}
+
+.footer {
+    width: 100%;
+    height: 300px;
+    background-color: #fff;
+    text-align: center;
+    font-size: 20px;
+}
+
+.share {
+    padding-top: 100px;
+}
+
+#iconheart {
+    color: rgb(113, 18, 18);
+}
+
+.followus {
+    padding-top: 10px;
+}
+
+#icon_follow {
+    color: black;
+    padding-left: 10px;
+    font-size: 18px;
+}
+
+.term {
+    padding-top: 45px;
+}
+
+.term>a {
+    color: black;
+    text-decoration: none;
+}
+
+.term>:hover {
+    text-decoration: underline;
+}

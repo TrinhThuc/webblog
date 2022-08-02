@@ -1,0 +1,79 @@
+:root {
+    --primary-color: #afd5de;
+    --primary-color-lighter: #8bb1bc;
+    --text-color: #333;
+    --white-color: #fff;
+    --black-color: #000;
+    --header-height: 135px;
+    --border-color: #dbdbdb;
+    --header-wrap-height: 80px;
+    --blue-500: 47, 181, 250;
+    --login-color: #04c35c;
+    --login-color-lighter: #2bbd6f;
+    --max-width-grid: 1200px;
+    --confirm-color: #187ff5;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+    line-height: 1.6rem;
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+}
+
+.sideBar {
+    /* width: var(--width-sideBar); */
+    max-width: 200px;
+    height: auto;
+    background-color: var(--primary-color);
+    margin-bottom: 25px;
+}
+
+.sideBar__logo-img {
+    width: 200px;
+}
+
+.sideBar__lists {
+    font-size: 1.4rem;
+}
+
+.sideBar__item {
+    padding: 14px 8px;
+    color: var(--white-color);
+}
+
+.sideBar__item.active {
+    background-color: var(--primary-color-lighter);
+}
+
+.sideBar__item:hover {
+    background-color: var(--primary-color-lighter);
+    cursor: pointer;
+}
+
+.sidebar__item.active-sideBar {
+    background: #ccc;
+}
+
+.sideBar__item-icon {
+    margin-right: 4px;
+}

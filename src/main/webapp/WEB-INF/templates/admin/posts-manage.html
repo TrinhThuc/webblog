@@ -85,6 +85,7 @@
                 <button class="btn lastBtn">
                     <i class="fa-solid fa-angles-right container__pagination-icon"></i>
                 </button>
+                <input class="container__pagination__total-page" type="hidden" th:value="${model.totalPage}">
             </div>
         </div>
     </div>
@@ -92,6 +93,7 @@
 
 </body>
 <script src="/static/admin/JS/post_js.js"></script>
+<script src="/static/admin/JS/pagination.js"></script>
 <script>
     var btnConfirm = document.querySelector('.container__confirm')
     btnConfirm.onclick = function (){

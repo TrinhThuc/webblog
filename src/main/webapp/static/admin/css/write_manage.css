@@ -1,46 +1,5 @@
         body {
-            margin-top: 20px;
-            font-size: 20px;
             display: flex;
-        }
-        
-        .sideBar {
-            width: 200px;
-            height: auto;
-            background-color: #afd5de;
-            margin-bottom: 25px;
-        }
-        
-        .sideBar__logo-img {
-            width: 200px;
-        }
-        
-        .sideBar__lists {
-            font-size: 16px;
-            padding-inline-start: 0px;
-        }
-        
-        .sideBar__lists>a {
-            list-style-type: none;
-            text-decoration: none;
-        }
-        
-        .sideBar__item {
-            padding: 14px 8px;
-            color: #fff;
-        }
-        
-        .sideBar__item.active {
-            background-color: #8bb1bc;
-        }
-        
-        .sideBar__item:hover {
-            background-color: #8bb1bc;
-            cursor: pointer;
-        }
-        
-        .sidebar__item.active-sideBar {
-            background: #ccc;
         }
         
         .writer {
@@ -51,6 +10,13 @@
             width: 150px;
             height: 150px;
             border-radius: 75px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        #name {
+            margin-top: 20px;
+            margin-bottom: 25px;
         }
         
         #name>a {
@@ -63,12 +29,13 @@
         }
         
         .content-right {
-            width: 75%;
+            margin-top: 20px;
+            width: 85%;
             border: 2px solid rgb(229, 234, 240);
             border-radius: 6px;
-            margin-left: 2%;
-            margin-right: 2%;
+            margin-left: 1%;
             padding: 3% 10%;
+            font-size: 20px;
         }
         
         .title {
@@ -92,6 +59,10 @@
             color: rgb(115, 196, 212);
         }
         
+        .theme {
+            margin-bottom: 20px;
+        }
+        
         .theme>a {
             text-decoration: none;
             color: rgb(113, 116, 113);
@@ -105,6 +76,7 @@
         .content-right>h1 {
             text-align: center;
             margin-top: 10px;
+            line-height: 40px;
         }
         
         .content-right>h5 {
@@ -112,32 +84,37 @@
             color: gray;
             margin-top: 5px;
             text-align: center;
+            line-height: 25px;
+            margin-bottom: 20px;
         }
         
         .content-read>#img_1 {
             display: block;
             width: 100%;
-            margin: 30px auto 5px auto;
+            margin: 30px auto 10px auto;
             border-radius: 3px;
         }
         
         .content-read>#note_img {
             font-size: 16px;
             text-align: center;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             color: gray;
         }
         
         .content-read>p {
             text-indent: 40px;
+            line-height: 25px;
         }
         
         #heading_paragraph {
             font-size: 24px;
             padding-top: 20px;
+            margin-bottom: 20px;
         }
         
         #date {
+            margin-top: 20px;
             padding-left: 85%;
         }
         

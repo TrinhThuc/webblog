@@ -84,10 +84,8 @@
 
 .container__confirm {
     border: 1px solid var(--primary-color);
-    position: relative;
-    float: right;
-    margin-right: 50px;
-    margin-bottom: 24px;
+    margin: 0 50px 24px auto;
+    width: 150px;
     padding: 8px 16px;
     border-radius: 20px;
     font-size: 1.6rem;

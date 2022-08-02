@@ -1,11 +1,19 @@
 package com.example.webblog.controller.web;
 
 import com.example.webblog.dto.CategoryDTO;
+import com.example.webblog.dto.MyUser;
+import com.example.webblog.dto.PostDTO;
 import com.example.webblog.dto.UserDTO;
 import com.example.webblog.service.ICategoryService;
+import com.example.webblog.service.IPostService;
 import com.example.webblog.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.query.Param;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +25,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
+import java.security.Principal;
+import java.util.List;
 
 @Controller(value = "homeontrollerOfWeb")
 public class HomeController {
@@ -28,11 +38,27 @@ public class HomeController {
     private ICategoryService categoryService;
 
     @Autowired
+    private IPostService postService;
+
+
+    @Autowired
     private PasswordEncoder passwordEncoder;
 
     @GetMapping(value = {"/trang-chu", "/", ""})
-    public ModelAndView homePage() {
+    public ModelAndView homePage(Principal principal) {
+        Pageable pageable = PageRequest.of(0, 3, Sort.by(Sort.Direction.DESC, "createdDate"));
+        List<PostDTO> listTrending = postService.findAll(pageable);
+        List<PostDTO> newPost = postService.findAll(PageRequest.of(0,6,Sort.by(Sort.Direction.DESC, "createdDate")));
+        List<PostDTO> listPopular = postService.findAll(pageable);
         ModelAndView mav = new ModelAndView("web/homepage");
+        mav.addObject("listTrending", listTrending);
+        mav.addObject("newPost", newPost);
+        mav.addObject("listPopular", listPopular);
+        if(principal != null) {
+            MyUser user = (MyUser) ((Authentication) principal).getPrincipal();
+            mav.addObject("userInfor", user);
+        }
+
         return mav;
     }
 
@@ -87,6 +113,15 @@ public class HomeController {
         categoryDTO.setListResult(categoryService.getAll());
         ModelAndView mav = new ModelAndView("web/writingpage");
         mav.addObject("Categories", categoryDTO.getListResult());
+        return mav;
+
+    }
+
+    @GetMapping("/bai-dang/{id}")
+    public ModelAndView PageDetail(@PathVariable(name= "id") Long id) {
+        PostDTO post = postService.findById(id);
+        ModelAndView mav = new ModelAndView("web/readingpage");
+        mav.addObject("post", post);
         return mav;
 
     }

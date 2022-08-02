@@ -1,5 +1,6 @@
 package com.example.webblog.dto;
 
+import com.example.webblog.entity.PostEntity;
 import com.example.webblog.entity.RoleEntity;
 
 import javax.persistence.Column;
@@ -17,6 +18,15 @@ public class UserDTO extends AbstractDTO<UserDTO>{
     private boolean enabled;
     private List<Long> roleIds = new ArrayList<>();
     private List<RoleEntity> roles= new ArrayList<>();
+    private List<PostEntity> postEntities = new ArrayList<>();
+
+    public List<PostEntity> getPostEntities() {
+        return postEntities;
+    }
+
+    public void setPostEntities(List<PostEntity> postEntities) {
+        this.postEntities = postEntities;
+    }
 
     public boolean isEnabled() {
         return enabled;

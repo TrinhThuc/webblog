@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Readingpage</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="/static/readingpage/css/readingpage.css">
+    <link rel="stylesheet" href="/static/homepage/css/base.css">
+    <link rel="stylesheet" href="/static/homepage/css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"
+        integrity="sha512-yHknP1/AwR+yx26cB1y0cjvQUMvEa2PFzt1c9LlS4pRQ5NOTZFWbhBig+X9G9eYW/8m0/4OXNx8pxJ6z57x0dw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+
+    <header th:replace="../fragments/web/header :: header"></header>
+    <div class="goToHeader">
+        <i class="fa-solid fa-arrow-up"></i>
+    </div>
+    <div class="content-readpage">
+
+
+        <div class="content-readpage_left">
+            <div class="theme">
+                <a href="" th:text="${post.categoryDTO.name}">Quan điểm</a>
+            </div>
+            <h1 th:text="${post.title}">Những điều được trong công việc từ The Pursuit of Happiness</h1>
+            <h5 th:text="${post.shortDescription}">Lần đầu tiên mình xem The Pursuit of happyness là gần chục năm trước và đây là bộ phim mình xem đi xem lại không biết bao nhiêu lần.</h5>
+            <div class="content-read">
+                <p>Lần đầu tiên mình xem The Pursuit of Happyness (TPoH) là từ gần chục năm trước, và đây là bộ phim mình xem đi xem lại không biết bao lần mỗi lúc tâm trạng hơi chán chán chút. Bộ phim hay và ý nghĩa, từ niềm tin, ý chí của nhân vật chính
+                    hay tình phụ tử rất thắm thiết (những điều rất quan trọng đối với mình). Đợt này Covid ở nhà nên mình lại có thời gian để chiêm nghiệm thêm những góc nhìn mới, và nhận ra là phim này có khá nhiều điều hay có thể học được trong công
+                    việc.
+                </p>
+                <img id="img_1" src="https://s3-ap-southeast-1.amazonaws.com/images.spiderum.com/sp-images/a10f2bc0b29511ec9e885d697ffaf790.png" alt="">
+                <div id="heading_paragraph">1. Khi tuyển dụng.</div>
+                <p>Chris Garder (gọi tắt là Chris) đang là một người bán máy đo loãng xương, nhưng do tình hình kinh doanh đi xuống nên có chuyển sang thi tuyển vào vị trí thực tập sinh của hãng môi giới chứng khoán Dean Witter. Sau khi nộp xong đơn ứng
+                    tuyển thì tầm gần tháng sau Chris đến gặp người quản lý nhân sự Jay Twistle, nhưng đúng lúc ông này bận và từ chối việc gặp Chris. Nếu là người thường thì chắc đi về thôi, nhưng Chris lại rất thông minh và tinh ý khi cũng nói luôn
+                    đi cùng đường cùng Jay, qua đó có cơ hội để chứng tỏ các khả năng của mình với Jay</p>
+                <img id="img_1" src="https://s3-ap-southeast-1.amazonaws.com/images.spiderum.com/sp-images/b48d0150b28f11ec9e885d697ffaf790.png" alt="">
+                <p id="note_img">Khi Chris đến gặp Jay Twistle(quản lý nhân sự của Dean Witter) </p>
+                <p>Sau đó khi đã chứng minh được chút đỉnh với Jay, Chris được mời đến phỏng vấn. Tình huống oái oăm đối với Chris khi ngày hôm sau phỏng vấn thì hôm trước còn bị bắt vì chưa nộp thuế, đã thế trước khi bị bắt thì đang sơn tường, nên cực kỳ
+                    lem nhem khi đi phỏng vấn. Điều này khác xa với phong cách chỉn chu bình thường của Chris, nên người khác chỉ nhìn nhận đây là 1 sự cố mà Chris gặp phải, chứ không phải bản tính là luộm thuộm (lát sau có người cross check lại điểm
+                    này). Từ đó cho thấy trong công việc và cuộc sống, luôn cố gắng có được 1 nét đặc trưng về bạn (hay nhiều khi gọi là thương hiệu cá nhân) sẽ giúp bạn ghi điểm trong mắt rất nhiều người. Mình lấy ví dụ với mình đi đâu cũng có tiếng
+                    là Excel của mình cực tốt (và vì thế lại được tiếp xúc với nhiều case khác nhau và làm mình lại càng tốt Excel thêm).</p>
+                <img id="img_1" src="https://s3-ap-southeast-1.amazonaws.com/images.spiderum.com/sp-images/0e2a7bb0b29111ec9e885d697ffaf790.png" alt="">
+                <p id="note_img">Chris đi phỏng vấn ngay sau khi bị bắt vì chưa nộp thuế</p>
+                <p>Ngoài ra khi phỏng vấn và thấy người phỏng vấn chưa đánh giá, ghi nhận hết khả năng của mình, Chris rất tự tin khi xin đề nghị được "chứng minh thêm ". Tất nhiên anh chỉ nói những gì anh có, một cách thực sự chân thành. Và cuối cùng sự
+                    chân thành đó đem lại thành công lớn lao.</p>
+                <img id="img_1" src="https://s3-ap-southeast-1.amazonaws.com/images.spiderum.com/sp-images/969ee300b29111ec9e885d697ffaf790.png" alt="">
+                <p id="note_img">Chris chứng minh năng lực bản thân khi gặp lại Jay Twistle trong cuộc phỏng vấn</p>
+                <p>Mình cũng đã đi phỏng vấn khá nhiều nơi và cũng đã ở vai phải phỏng vấn khá nhiều bạn. Đúng là không phải lúc nào người tuyển dụng cũng có thời gian/điều kiện đọc và hiểu hết những điểm mạnh của ứng viên. Do đó hãy thể hiện những điều
+                    nó ra nếu bạn đánh giá là nó cần thiết, quan trọng với buổi phỏng vấn. Hãy làm với sự chân thành, cũng như chỉ show ra cái bạn có chứ đừng chém gió về những kỹ năng, khả năng mà bạn chưa thực sự mạnh. Ví dụ khi đi phỏng vấn vị trí
+                    thực tập kiểm toán, nếu bạn lại còn học trái ngành nhưng bạn tự tin bạn có khả năng tự học tốt, kiên trì, kỷ luật (như đã pass 2,3 môn ACCA) thì bạn hoàn toàn có thể giơ tay xin nói thêm như cách mà Chris nói </p>
+                <div id="heading_paragraph">2. Trong công việc </div>
+                <p>Với vị trí của Chris thì anh được giao cho 1 list khách hàng để gọi điện tư vấn họ sử dụng dịch vụ của Dean Witter. Sau 1 thời gian gọi mãi không chốt được mối nào, Chris xác định gọi cho ông khách hàng (Mr. Ribbon) có lượng tài sản lớn
+                    nhất, và may sao lại hẹn được luôn. Đôi khi trong công việc ta cứ ngại ngần nhưng không thử sao biết.</p>
+                <p>Đen cái là Chris lại lỡ hẹn (do phải đỗ xe hộ 1 ông senior siêu khó tính). Nhưng Chris lại không dễ đầu hàng thế khi sau đó có tạt qua nhà ông Ribbon để xin lỗi về việc trễ hẹn, và lại đúng lúc nhà ông ấy đi xem bóng. Lần này thì do Chris
+                    gặp may khi được mời đi xem cùng (xem ở khu VIP riêng rất đắt đỏ), và thế là tha hồ có cơ hội để được gặp khách VIP và thảo luận, tư vấn.</p>
+                <img id="img_1" src="https://s3-ap-southeast-1.amazonaws.com/images.spiderum.com/sp-images/238506e0b29311ec9e885d697ffaf790.png" alt="">
+                <p id="note_img">Chris đến nhà ông Ribbon để xin lỗi vì đã trễ hẹn.</p>
+                <p>Tất nhiên trong trường hợp này ông Ribbon đã rất tử tế mời Chris đi, nhưng nếu Chris không tự tạo ra cơ hội này (bằng việc đi qua xin lỗi) thì cũng không thể nào có được. Luôn luôn chủ động trong công việc và các cơ hội sẽ luôn tìm đến.
+                    Ngoài ra Chris cũng tận dụng khá tốt các mối quan hệ có được từ những người bạn của ông Ribbon (tất nhiên rồi, bạn của người giàu mà). Trao danh thiếp và nhận được nhiều mối quan hệ mà rất khó được tiếp cận nếu không có dịp may như
+                    thế này.</p>
+                <img id="img_1" src="https://s3-ap-southeast-1.amazonaws.com/images.spiderum.com/sp-images/0d7702d0b29411ec9e885d697ffaf790.png " alt="">
+                <p id="note_img">Chris tình cờ gặp được những người bạn của ông Ribbon</p>
+                <p>Đến cuối phim thì Chris là nhân viên duy nhất vượt qua vòng thực tập và được giữ lại. Tất nhiên thì lần này anh đã mặc cho mình chiếc áo đẹp nhất luôn để chuẩn bị cho ngày làm việc đầu tiên ở vị trí nhân viên chính thức.</p>
+                <img id="img_1" src="https://s3-ap-southeast-1.amazonaws.com/images.spiderum.com/sp-images/a6ceaff0b29411ec9e885d697ffaf790.png " alt="">
+                <p id="note_img">Chris được trở thành nhân viên chính thức tại Dean Witter</p>
+                <p>Mặc dù TPoH không phải một bộ phim về công sở, nhưng với mình nó đem lại những bài học khá hay không chỉ về đời sống mà còn cả công việc nữa. Nhất là với những ai theo đuổi những nghề mang tính "professional " như kế toán, kiểm toán, tài
+                    chính, chứng khoán, hay đầu tư. Đây cũng là bộ phim đầu tiên của Will Smith mà mình xem, và khá là kết các phim từ đó của anh, trong đó phải kể đến King Richard mà anh vừa đạt Oscar năm nay.</p>
+                <div id="date">
+                    <29/04/2022>
+                </div>
+                <hr>
+                <div class="note">
+                    <div class="like">
+                        Like bài viết:
+                        <span id="like-icon"> <i class="fa-solid fa-thumbs-up"></i></span>
+                    </div>
+                    Nếu bài viết có ích cho bạn, nó cũng sẽ có ích cho người khác, hãy chia sẻ:
+                    <a href=""><i class="fa-brands fa-facebook" ></i></a>
+                    <a href=""><i class="fa-brands fa-invision" ></i></a>
+                    <a href=""><i class="fa-brands fa-pinterest" ></i></a>
+                </div>
+            </div>
+
+            <div class="special_text">
+                <p>Bài viết nổi bật</p>
+
+                <button class="prev-btn" aria-label="Previous" type="button"> 
+                    <i class="fa-solid fa-angle-left"></i>
+                 </button>
+                <ul class="total_text slider">
+                    <li id="text">
+                        <a href=""><img id="img_text" src="/static/readingpage/img/meo.jpg" alt=""></a>
+                        <a href="">
+                            <p id="title_text">Những điều được trong công việc từ The Pursuit of Happiness</p>
+                        </a>
+                    </li>
+                    <li id="text">
+                        <a href=""><img id="img_text" src="/static/readingpage/img/meo.jpg" alt=""></a>
+                        <a href="">
+                            <p id="title_text">Những điều được trong công việc từ The Pursuit of Happiness</p>
+                        </a>
+
+                    </li>
+                    <li id="text">
+                        <a href=""><img id="img_text" src="/static/readingpage/img/meo.jpg" alt=""></a>
+                        <a href="">
+                            <p id="title_text">Những điều được trong công việc từ The Pursuit of Happiness</p>
+                        </a>
+
+                    </li>
+                    <li id="text">
+                        <a href=""><img id="img_text" src="/static/readingpage/img/meo.jpg" alt=""></a>
+                        <a href="">
+                            <p id="title_text">Những điều được trong công việc từ The Pursuit of Happiness</p>
+                        </a>
+                    </li>
+                </ul>
+                <button class="next-btn" aria-label="Next" type="button">
+                    <i class="fa-solid fa-angle-right"></i>
+                </button>
+            </div>
+
+            <div class="comment">
+                <p>Bình luận</p>
+                <form action="" method="post" name="Bình luận về bài viết">
+                    <input id="forminput" type="text" placeholder="Bình luận về bài viết">
+                    <input type="submit" style="display: none;">
+                </form>
+                <div class="commention">
+                    <div class="comments">
+                        <a href=""><img id="avatar_commentator" src="/static/readingpage/img/anh.jpg" alt="anh dai dien">
+                            <p id="commentator"><a href="">Diem</a></p>
+                        </a>
+                        <br>
+                        <br>
+                        <p id="comment_1">Bài viết hay quá!</p>
+                    </div>
+                    <div class="replycomment">
+                        <a href=""><img id="avatar_replycommentator" src="/static/readingpage/img/meo.jpg" alt="anh dai dien">
+                            <p id="replycommentator"><a href="">Meomap</a></p>
+                        </a>
+                        <br>
+                        <br>
+                        <br>
+                        <p id="replycomment_1">Cảm ơn bạn</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="content-readpage_right">
+            <div class="writer">
+                <p id="notice">Bài viết được đăng bởi</p>
+                <a href=""><img id="avatar" src="/static/readingpage/img/meo.jpg" alt="anh dai dien"></a>
+                <p id="name"><a href="">meomap</a></p>
+
+                <button>Theo dõi</button>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="footer">
+        <div class="share">Hãy chia sẻ những câu chuyện của bạn đến với chúng tôi
+            <i id="iconheart" class="fa-solid fa-heart"></i>
+            <i id="iconheart" class="fa-solid fa-heart"></i>
+            <i id="iconheart" class="fa-solid fa-heart">.</i>
+        </div>
+        <div class="followus">
+            Theo dõi chúng tôi:
+            <a href="" id="icon_follow"><i class="fa-brands fa-facebook" ></i></a>
+            <a href="" id="icon_follow"><i class="fa-brands fa-invision" ></i></a>
+            <a href="" id="icon_follow"><i class="fa-brands fa-pinterest" ></i></a>
+        </div>
+        <div class="term">
+            <a href="">Chính sách & điều khoản sử dụng.</a>
+        </div>
+    </div>
+
+</body>
+<!--<script src="/static/readingpage/js/main.js"></script>-->
+<script src="/static/homepage/JS/mainjs.js"></script>
+</html>

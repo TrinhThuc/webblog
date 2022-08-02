@@ -13,6 +13,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -94,6 +95,14 @@ public class HomeController {
     @RequestMapping(value = "/quan-tri/the-loai", method = RequestMethod.GET)
     public ModelAndView listCategory() {
         ModelAndView mav = new ModelAndView("admin/category_manage");
+        return mav;
+    }
+
+    @RequestMapping(value = "/quan-tri/bai-viet/{id}", method = RequestMethod.GET)
+    public ModelAndView postDetail(@PathVariable(name = "id")Long id ) {
+        PostDTO postDTO = postService.findById(id);
+        ModelAndView mav = new ModelAndView("admin/write_manage");
+        mav.addObject("post", postDTO);
         return mav;
     }
 

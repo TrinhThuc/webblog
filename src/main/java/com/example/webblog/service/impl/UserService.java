@@ -1,5 +1,6 @@
 package com.example.webblog.service.impl;
 
+import com.example.webblog.converter.PostConverter;
 import com.example.webblog.converter.UserConverter;
 import com.example.webblog.dto.PostDTO;
 import com.example.webblog.dto.UserDTO;
@@ -8,6 +9,7 @@ import com.example.webblog.entity.PostEntity;
 import com.example.webblog.entity.RoleEntity;
 import com.example.webblog.entity.UserEntity;
 import com.example.webblog.respository.CategoryRepository;
+import com.example.webblog.respository.PostRepository;
 import com.example.webblog.respository.RoleRepository;
 import com.example.webblog.respository.UserRepository;
 import com.example.webblog.service.IUserService;
@@ -34,6 +36,12 @@ public class UserService implements IUserService {
 
     @Autowired
     RoleRepository roleRepository;
+
+    @Autowired
+    PostRepository postRepository;
+
+    @Autowired
+    PostConverter postConverter;
 
     @Autowired
     UserConverter userConverter;
@@ -66,12 +74,11 @@ public class UserService implements IUserService {
     public UserDTO save(UserDTO dto) {
         UserEntity userEntity = new UserEntity();
 
-        if(dto.getPassword() !=null ){
+        if (dto.getPassword() != null) {
             dto.setPassword(passwordEncoder.encode(dto.getPassword()));
         }
         UserEntity oldUser = userRepository.findOneById(dto.getId());
-        if(dto.getRoleIds() != null)
-        {
+        if (dto.getRoleIds() != null) {
             List<RoleEntity> entities = new ArrayList<>();
             for (Long roleId : dto.getRoleIds()) {
                 entities.add(roleRepository.findRoleEntityById(roleId));
@@ -101,8 +108,11 @@ public class UserService implements IUserService {
         List<UserEntity> entities = userRepository.findAll(pageable).getContent();
         for (UserEntity user : entities) {
             UserDTO userDTO = userConverter.toDto(user);
+            List<PostEntity> posts = postRepository.findAllByCreatedBy(user.getUserName());
+            userDTO.setPostEntities(posts);
             models.add(userDTO);
         }
+
         return models;
     }
 

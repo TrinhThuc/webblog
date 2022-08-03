@@ -62,10 +62,29 @@ public class PostService implements IPostService {
 	}
 
 	@Override
+	public List<PostDTO> findAllByAuthor(String name) {
+		List<PostDTO> postDTOS = new ArrayList<>();
+		for(PostEntity post : postRepository.findAllByCreatedBy(name)){
+			PostDTO postDTO = postConverter.toDto(post);
+			DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+			if(post.getCreatedDate() != null)
+				postDTO.setDateString(dateFormat.format(post.getCreatedDate()));
+			UserEntity user = userRepository.findOneByUserNameAndStatusAndEnabled(post.getCreatedBy(),1 ,true);
+			if(user != null)
+				postDTO.setAuthor(userConverter.toDto(user));
+			postDTOS.add(postDTO);
+		}
+		return postDTOS;
+	}
+
+	@Override
 	@Transactional
 	public PostDTO findById(Long id) {
 		PostEntity postEntity = postRepository.findPostEntitiesById(id);
 		PostDTO postDTO = postConverter.toDto(postEntity);
+		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		if(postEntity.getCreatedDate() != null)
+			postDTO.setDateString(dateFormat.format(postEntity.getCreatedDate()));
 		UserEntity user = userRepository.findOneByUserNameAndStatusAndEnabled(postDTO.getCreatedBy(),1 ,true);
 		if(user != null)
 			postDTO.setAuthor(userConverter.toDto(user));

@@ -26,6 +26,7 @@ import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller(value = "homeontrollerOfWeb")
@@ -56,7 +57,7 @@ public class HomeController {
         mav.addObject("listPopular", listPopular);
         if(principal != null) {
             MyUser user = (MyUser) ((Authentication) principal).getPrincipal();
-            mav.addObject("userInfor", user);
+            mav.addObject("userInf", user);
         }
 
         return mav;
@@ -118,12 +119,40 @@ public class HomeController {
     }
 
     @GetMapping("/bai-dang/{id}")
-    public ModelAndView PageDetail(@PathVariable(name= "id") Long id) {
+    public ModelAndView PageDetail(@PathVariable(name= "id") Long id, Principal principal) {
         PostDTO post = postService.findById(id);
         ModelAndView mav = new ModelAndView("web/readingpage");
         mav.addObject("post", post);
+        if(principal != null) {
+            MyUser user = (MyUser) ((Authentication) principal).getPrincipal();
+            mav.addObject("userInf", user);
+        }
         return mav;
 
+    }
+
+    @GetMapping("/nguoi-dung/{username}")
+    public ModelAndView personalPage(@PathVariable(name= "username") String username, Principal principal,
+                                     @RequestParam(name = "tab", required = false) String tab) {
+        ModelAndView mav = new ModelAndView("web/personal_page");
+        if(principal != null) {
+            MyUser user = (MyUser) ((Authentication) principal).getPrincipal();
+            mav.addObject("userInf", user);
+        }
+        List<PostDTO> postDTOList = postService.findAllByAuthor(username);
+        List<PostDTO> listIsActive = new ArrayList<>();
+        List<PostDTO> listInActive = new ArrayList<>();
+        for(PostDTO dto :postDTOList){
+            if(dto.isActive())
+                listIsActive.add(dto);
+            else
+                listInActive.add(dto);
+        }
+        if(tab.equals("savedPost"))
+            mav.addObject("listInActive", listInActive);
+        else
+            mav.addObject("listIsActive", listIsActive);
+        return mav;
     }
 
 }

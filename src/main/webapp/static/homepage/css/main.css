@@ -606,6 +606,7 @@
     margin-top: 15px;
     font-weight: 500;
     line-height: 2rem;
+    cursor: default;
 }
 
 .container__post-userAndTime {
@@ -643,6 +644,7 @@
     margin-right: 20px;
     font-size: 1.4rem;
     font-weight: 700;
+    cursor: default;
 }
 
 
@@ -697,7 +699,16 @@
 .slider .container__post--large {
     display: flex !important;
     margin-top: 50px;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
+}
+
+.container__post--large .container__post-img--large__wrapper {
+    margin-right: 30px;
+}
+
+.container__post-img--large__wrapper a {
+    display: block;
+    width: 420px;
 }
 
 .trending--title {
@@ -732,8 +743,8 @@
     object-fit: fill;
     min-height: 285px;
     height: 385px;
-    width: 400px;
-    margin-right: 40px;
+    width: 420px;
+    margin-right: 0;
 }
 
 
@@ -805,9 +816,17 @@
     font-size: 1.8rem;
 }
 
+.container__post--small__img {
+    margin-right: 20px;
+}
+
+.container__post--small__img a {
+    display: block;
+    width: 130px;
+}
+
 .container__post-img--small {
-    width: 60%;
-    height: 115px;
+    height: 130px;
     -o-object-fit: fill;
     object-fit: fill;
 }

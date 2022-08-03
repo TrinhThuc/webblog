@@ -80,20 +80,22 @@
                                     <img src="/static/homepage/img/avt.jpg" alt="">
                                 </div>
                                 <div class="modal__user-navbar__information">
-                                    <div class="user-navbar__display-name">
+                                    <div class="user-navbar__display-name"
+                                    th:text="${userInf.username}">
                                         Hòa Vũ
                                     </div>
                                     <div class="user-navbar__user-name">
                                         @lamzii
                                     </div>
-                                    <a href="#">
+
+                                    <a th:href="@{'/nguoi-dung/'+ ${userInf.username}}">
                                         Xem trang cá nhân
                                     </a>
                                 </div>
                             </div>
                             <div class="modal__user-navbar__feature">
                                 <ul class="user-navbar__items">
-                                    <a href="#">
+                                    <a th:href="@{'/nguoi-dung/'+ ${userInf.username}}">
                                         <li class="user-navbar__item">
                                             <i class="fa-solid fa-pen"></i>
                                             Bài viết của tôi

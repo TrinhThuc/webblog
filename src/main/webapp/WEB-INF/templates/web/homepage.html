@@ -39,41 +39,47 @@
                 <div class="slider">
 
                     <div class="container__post--large container__post " th:each="post : ${listTrending}">
-                        <img src="/static/homepage/img/post.jpg" alt=""
-                             class="container__post-img container__post-img--large" />
+                        <div class="container__post-img--large__wrapper">
+                            <a th:href="@{'/bai-dang/'+ ${post.id}}">
+                                <img src="/static/homepage/img/post.jpg" alt=""
+                                     class="container__post-img container__post-img--large" />
+                            </a>
+                        </div>
                         <div class="container__post-content container__post-content--large">
                             <div class="container__post-information">
-                                <h1 class="container__post-title container__post-title--large"
-                                th:text="${post.title}">
-                                    Your most unhappy customers are your greatest
-                                    source of learning.
-                                </h1>
+                                <a th:href="@{'/bai-dang/'+ ${post.id}}">
+                                    <h1 class="container__post-title container__post-title--large"
+                                        th:text="${post.title}">
+                                        Your most unhappy customers are your greatest
+                                        source of learning.
+                                    </h1>
+                                </a>
                                 <div class="container__post-desc container__post-desc--large display-paragraph-3"
-                                th:text="${post.shortDescription}">
+                                     th:text="${post.shortDescription}">
                                     Far far away, behind the word mountains, far
                                     from the countries Vokalia and Consonantia,
                                     there live the blind texts. Separated they live
                                     in Bookmarksgrove right at the coast of the
                                     Semantics, a large language ocean
                                 </div>
-
                             </div>
                             <div class="container__post-userAndTime">
-                                <div class="container__post-user">
-                                    <img src="/static/homepage/img/avt.jpg" alt="" class="container__post-user-avt" />
-                                    <div class="container__post-user-inf">
-                                        <div class="container__post-user-name"
-                                        th:text="${post.createdBy}">
-                                            Phan Việt
-                                        </div>
-                                        <div class="container__post-user-ID">
-                                            ID:
-                                        </div>
-                                        <div class="container__post-user-IdNumber">
-                                            672002
+                                <a href="#">
+                                    <div class="container__post-user">
+                                        <img src="/static/homepage/img/avt.jpg" alt="" class="container__post-user-avt" />
+                                        <div class="container__post-user-inf">
+                                            <div class="container__post-user-name">
+                                                Phan Việt
+                                            </div>
+                                            <div class="container__post-user-ID">
+                                                ID:
+                                            </div>
+                                            <div class="container__post-user-IdNumber">
+                                                672002
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                </a>
 
                                 <div class="container__post-time" th:text="${post.dateString}">
                                     6 phút đọc
@@ -99,32 +105,39 @@
 
                     <div class="container__new-post--displayed">
                         <div class="container__post container__post--medium"
-                        th:each="post : ${newPost}">
-                            <img src="/static/homepage/img/post.jpg" alt=""
-                                 class="container__post-img container__post-img--medium" />
+                             th:each="post : ${newPost}">
+                            <a th:href="@{'/bai-dang/'+ ${post.id}}">
+                                <img src="/static/homepage/img/post.jpg" alt=""
+                                     class="container__post-img container__post-img--medium" />
+                            </a>
                             <div class="container__post-content container__post-content--medium">
-                                <h2 class="container__post-title container__post-title--medium"
-                                th:text="${post.title}">
-                                </h2>
+                                <a th:href="@{'/bai-dang/'+ ${post.id}}">
+                                    <h2 class="container__post-title container__post-title--medium"
+                                        th:text="${post.title}">
+                                        Your most unhappy customers are your greatest
+                                        source of learning.
+                                    </h2>
+                                </a>
                                 <div class="container__post-desc container__post-desc--medium display-paragraph-2"
                                      th:text="${post.shortDescription}">
-
                                 </div>
                                 <div class="container__post-userAndTime">
-                                    <div class="container__post-user">
-                                        <img src="/static/homepage/img/avt.jpg" alt="" class="container__post-user-avt" />
-                                        <div class="container__post-user-inf">
-                                            <div class="container__post-user-name">
-                                                Phan Việt
-                                            </div>
-                                            <div class="container__post-user-ID">
-                                                ID:
-                                            </div>
-                                            <div class="container__post-user-IdNumber">
-                                                672002
+                                    <a href="#">
+                                        <div class="container__post-user">
+                                            <img src="/static/homepage/img/avt.jpg" alt="" class="container__post-user-avt" />
+                                            <div class="container__post-user-inf">
+                                                <div class="container__post-user-name">
+                                                    Phan Việt
+                                                </div>
+                                                <div class="container__post-user-ID">
+                                                    ID:
+                                                </div>
+                                                <div class="container__post-user-IdNumber">
+                                                    672002
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </a>
 
                                     <div class="container__post-time" th:text="${post.dateString}">
                                         6 phút đọc
@@ -146,17 +159,23 @@
                 <div class="slider">
 
                     <div class="container__post--large container__post " th:each="post : ${listPopular}">
-                        <img src="/static/homepage/img/post.jpg" alt=""
-                             class="container__post-img container__post-img--large" />
+                        <div class="container__post-img--large__wrapper">
+                            <a th:href="@{'/bai-dang/'+ ${post.id}}">
+                                <img src="/static/homepage/img/post.jpg" alt=""
+                                     class="container__post-img container__post-img--large" />
+                            </a>
+                        </div>
                         <div class="container__post-content container__post-content--large">
                             <div class="container__post-information">
-                                <h1 class="container__post-title container__post-title--large"
-                                th:text="${post.title}">
-                                    Your most unhappy customers are your greatest
-                                    source of learning.
-                                </h1>
+                                <a th:href="@{'/bai-dang/'+ ${post.id}}">
+                                    <h1 class="container__post-title container__post-title--large"
+                                        th:text="${post.title}">
+                                        Your most unhappy customers are your greatest
+                                        source of learning.
+                                    </h1>
+                                </a>
                                 <div class="container__post-desc container__post-desc--large display-paragraph-3"
-                                th:text="${post.shortDescription}">
+                                     th:text="${post.shortDescription}">
                                     Far far away, behind the word mountains, far
                                     from the countries Vokalia and Consonantia,
                                     there live the blind texts. Separated they live
@@ -165,28 +184,30 @@
                                 </div>
                             </div>
                             <div class="container__post-userAndTime">
-                                <div class="container__post-user">
-                                    <img src="/static/homepage/img/avt.jpg" alt="" class="container__post-user-avt" />
-                                    <div class="container__post-user-inf">
-                                        <div class="container__post-user-name">
-                                            Phan Việt
-                                        </div>
-                                        <div class="container__post-user-ID">
-                                            ID:
-                                        </div>
-                                        <div class="container__post-user-IdNumber">
-                                            672002
+                                <a href="#">
+                                    <div class="container__post-user">
+                                        <img src="static/homepage/img/avt.jpg" alt="" class="container__post-user-avt" />
+                                        <div class="container__post-user-inf">
+                                            <div class="container__post-user-name">
+                                                Phan Việt
+                                            </div>
+                                            <div class="container__post-user-ID">
+                                                ID:
+                                            </div>
+                                            <div class="container__post-user-IdNumber">
+                                                672002
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                </a>
 
-                                <div class="container__post-time" th:text="${post.dateString}">
+                                <div class="container__post-time"
+                                     th:text="${post.dateString}">
                                     6 phút đọc
                                 </div>
                             </div>
                         </div>
                     </div>
-
 
 
                 </div>
@@ -201,28 +222,36 @@
                     </h1>
 
                     <div class="container__post container__post--small">
-                        <img src="/static/homepage/img/post.jpg" alt=""
-                             class="container__post-img container__post-img--small" />
+                        <div class="container__post--small__img">
+                            <a href="#">
+                                <img src="/static/homepage/img/post.jpg" alt=""
+                                     class="container__post-img container__post-img--small" />
+                            </a>
+                        </div>
                         <div class="container__post-content container__post-content--small">
-                            <h2 class="container__post-title container__post--small-title">
-                                Your most unhappy customers are your greatest
-                                source of learning.
-                            </h2>
+                            <a href="#">
+                                <h2 class="container__post-title container__post--small-title">
+                                    Your most unhappy customers are your greatest
+                                    source of learning.
+                                </h2>
+                            </a>
                             <div class="container__post-userAndTime">
-                                <div class="container__post-user">
-                                    <img src="/static/homepage/img/avt.jpg" alt="" class="container__post-user-avt" />
-                                    <div class="container__post-user-inf">
-                                        <div class="container__post-user-name">
-                                            Phan Việt
-                                        </div>
-                                        <div class="container__post-user-ID">
-                                            ID:
-                                        </div>
-                                        <div class="container__post-user-IdNumber">
-                                            672002
+                                <a href="#">
+                                    <div class="container__post-user">
+                                        <img src="./static/homepage/img/avt.jpg" alt="" class="container__post-user-avt" />
+                                        <div class="container__post-user-inf">
+                                            <div class="container__post-user-name">
+                                                Phan Việt
+                                            </div>
+                                            <div class="container__post-user-ID">
+                                                ID:
+                                            </div>
+                                            <div class="container__post-user-IdNumber">
+                                                672002
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                </a>
 
                                 <div class="container__post-time">
                                     6 phút đọc
@@ -232,28 +261,36 @@
                     </div>
 
                     <div class="container__post container__post--small">
-                        <img src="/static/homepage/img/post.jpg" alt=""
-                             class="container__post-img container__post-img--small" />
+                        <div class="container__post--small__img">
+                            <a href="#">
+                                <img src="/static/homepage/img/post.jpg" alt=""
+                                     class="container__post-img container__post-img--small" />
+                            </a>
+                        </div>
                         <div class="container__post-content container__post-content--small">
-                            <h2 class="container__post-title container__post--small-title">
-                                Your most unhappy customers are your greatest
-                                source of learning.
-                            </h2>
+                            <a href="#">
+                                <h2 class="container__post-title container__post--small-title">
+                                    Your most unhappy customers are your greatest
+                                    source of learning.
+                                </h2>
+                            </a>
                             <div class="container__post-userAndTime">
-                                <div class="container__post-user">
-                                    <img src="/static/homepage/img/avt.jpg" alt="" class="container__post-user-avt" />
-                                    <div class="container__post-user-inf">
-                                        <div class="container__post-user-name">
-                                            Phan Việt
-                                        </div>
-                                        <div class="container__post-user-ID">
-                                            ID:
-                                        </div>
-                                        <div class="container__post-user-IdNumber">
-                                            672002
+                                <a href="#">
+                                    <div class="container__post-user">
+                                        <img src="/static/homepage/img/avt.jpg" alt="" class="container__post-user-avt" />
+                                        <div class="container__post-user-inf">
+                                            <div class="container__post-user-name">
+                                                Phan Việt
+                                            </div>
+                                            <div class="container__post-user-ID">
+                                                ID:
+                                            </div>
+                                            <div class="container__post-user-IdNumber">
+                                                672002
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                </a>
 
                                 <div class="container__post-time">
                                     6 phút đọc
@@ -263,28 +300,36 @@
                     </div>
 
                     <div class="container__post container__post--small">
-                        <img src="/static/homepage/img/post.jpg" alt=""
-                             class="container__post-img container__post-img--small" />
+                        <div class="container__post--small__img">
+                            <a href="#">
+                                <img src="/static/homepage/img/post.jpg" alt=""
+                                     class="container__post-img container__post-img--small" />
+                            </a>
+                        </div>
                         <div class="container__post-content container__post-content--small">
-                            <h2 class="container__post-title container__post--small-title">
-                                Your most unhappy customers are your greatest
-                                source of learning.
-                            </h2>
+                            <a href="#">
+                                <h2 class="container__post-title container__post--small-title">
+                                    Your most unhappy customers are your greatest
+                                    source of learning.
+                                </h2>
+                            </a>
                             <div class="container__post-userAndTime">
-                                <div class="container__post-user">
-                                    <img src="/static/homepage/img/avt.jpg" alt="" class="container__post-user-avt" />
-                                    <div class="container__post-user-inf">
-                                        <div class="container__post-user-name">
-                                            Phan Việt
-                                        </div>
-                                        <div class="container__post-user-ID">
-                                            ID:
-                                        </div>
-                                        <div class="container__post-user-IdNumber">
-                                            672002
+                                <a href="#">
+                                    <div class="container__post-user">
+                                        <img src="/static/homepage/img/avt.jpg" alt="" class="container__post-user-avt" />
+                                        <div class="container__post-user-inf">
+                                            <div class="container__post-user-name">
+                                                Phan Việt
+                                            </div>
+                                            <div class="container__post-user-ID">
+                                                ID:
+                                            </div>
+                                            <div class="container__post-user-IdNumber">
+                                                672002
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                </a>
 
                                 <div class="container__post-time">
                                     6 phút đọc
@@ -300,28 +345,36 @@
                     </h1>
 
                     <div class="container__post container__post--small">
-                        <img src="/static/homepage/img/post.jpg" alt=""
-                             class="container__post-img container__post-img--small" />
+                        <div class="container__post--small__img">
+                            <a href="#">
+                                <img src="/static/homepage/img/post.jpg" alt=""
+                                     class="container__post-img container__post-img--small" />
+                            </a>
+                        </div>
                         <div class="container__post-content container__post-content--small">
-                            <h2 class="container__post-title container__post--small-title">
-                                Your most unhappy customers are your greatest
-                                source of learning.
-                            </h2>
+                            <a href="#">
+                                <h2 class="container__post-title container__post--small-title">
+                                    Your most unhappy customers are your greatest
+                                    source of learning.
+                                </h2>
+                            </a>
                             <div class="container__post-userAndTime">
-                                <div class="container__post-user">
-                                    <img src="/static/homepage/img/avt.jpg" alt="" class="container__post-user-avt" />
-                                    <div class="container__post-user-inf">
-                                        <div class="container__post-user-name">
-                                            Phan Việt
-                                        </div>
-                                        <div class="container__post-user-ID">
-                                            ID:
-                                        </div>
-                                        <div class="container__post-user-IdNumber">
-                                            672002
+                                <a href="#">
+                                    <div class="container__post-user">
+                                        <img src="/static/homepage/img/avt.jpg" alt="" class="container__post-user-avt" />
+                                        <div class="container__post-user-inf">
+                                            <div class="container__post-user-name">
+                                                Phan Việt
+                                            </div>
+                                            <div class="container__post-user-ID">
+                                                ID:
+                                            </div>
+                                            <div class="container__post-user-IdNumber">
+                                                672002
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                </a>
 
                                 <div class="container__post-time">
                                     6 phút đọc
@@ -331,28 +384,36 @@
                     </div>
 
                     <div class="container__post container__post--small">
-                        <img src="/static/homepage/img/post.jpg" alt=""
-                             class="container__post-img container__post-img--small" />
+                        <div class="container__post--small__img">
+                            <a href="#">
+                                <img src="/static/homepage/img/post.jpg" alt=""
+                                     class="container__post-img container__post-img--small" />
+                            </a>
+                        </div>
                         <div class="container__post-content container__post-content--small">
-                            <h2 class="container__post-title container__post--small-title">
-                                Your most unhappy customers are your greatest
-                                source of learning.
-                            </h2>
+                            <a href="#">
+                                <h2 class="container__post-title container__post--small-title">
+                                    Your most unhappy customers are your greatest
+                                    source of learning.
+                                </h2>
+                            </a>
                             <div class="container__post-userAndTime">
-                                <div class="container__post-user">
-                                    <img src="/static/homepage/img/avt.jpg" alt="" class="container__post-user-avt" />
-                                    <div class="container__post-user-inf">
-                                        <div class="container__post-user-name">
-                                            Phan Việt
-                                        </div>
-                                        <div class="container__post-user-ID">
-                                            ID:
-                                        </div>
-                                        <div class="container__post-user-IdNumber">
-                                            672002
+                                <a href="#">
+                                    <div class="container__post-user">
+                                        <img src="/static/homepage/img/avt.jpg" alt="" class="container__post-user-avt" />
+                                        <div class="container__post-user-inf">
+                                            <div class="container__post-user-name">
+                                                Phan Việt
+                                            </div>
+                                            <div class="container__post-user-ID">
+                                                ID:
+                                            </div>
+                                            <div class="container__post-user-IdNumber">
+                                                672002
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                </a>
 
                                 <div class="container__post-time">
                                     6 phút đọc
@@ -362,28 +423,36 @@
                     </div>
 
                     <div class="container__post container__post--small">
-                        <img src="/static/homepage/img/post.jpg" alt=""
-                             class="container__post-img container__post-img--small" />
+                        <div class="container__post--small__img">
+                            <a href="#">
+                                <img src="/static/homepage/img/post.jpg" alt=""
+                                     class="container__post-img container__post-img--small" />
+                            </a>
+                        </div>
                         <div class="container__post-content container__post-content--small">
-                            <h2 class="container__post-title container__post--small-title">
-                                Your most unhappy customers are your greatest
-                                source of learning.
-                            </h2>
+                            <a href="#">
+                                <h2 class="container__post-title container__post--small-title">
+                                    Your most unhappy customers are your greatest
+                                    source of learning.
+                                </h2>
+                            </a>
                             <div class="container__post-userAndTime">
-                                <div class="container__post-user">
-                                    <img src="/static/homepage/img/avt.jpg" alt="" class="container__post-user-avt" />
-                                    <div class="container__post-user-inf">
-                                        <div class="container__post-user-name">
-                                            Phan Việt
-                                        </div>
-                                        <div class="container__post-user-ID">
-                                            ID:
-                                        </div>
-                                        <div class="container__post-user-IdNumber">
-                                            672002
+                                <a href="#">
+                                    <div class="container__post-user">
+                                        <img src="/static/homepage/img/avt.jpg" alt="" class="container__post-user-avt" />
+                                        <div class="container__post-user-inf">
+                                            <div class="container__post-user-name">
+                                                Phan Việt
+                                            </div>
+                                            <div class="container__post-user-ID">
+                                                ID:
+                                            </div>
+                                            <div class="container__post-user-IdNumber">
+                                                672002
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                </a>
 
                                 <div class="container__post-time">
                                     6 phút đọc

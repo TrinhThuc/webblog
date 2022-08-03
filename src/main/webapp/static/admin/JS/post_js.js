@@ -58,23 +58,14 @@ const app = {
     sendInfOfEachUser: function () {
         const allUser = document.querySelectorAll('.container__table-row[id]'); 
         var status = document.querySelector('.container__action span').textContent;
-        if (status == 'Duyệt bài') {
-            status = 'post';
-        }
-        if (status == 'Gỡ bài') {
-            status = 'remove';
-        }
-        if (status == 'Xóa bài') {
-            status = 'delete';
-        }
-        const arr = [];
+        const ids = [];
         allUser.forEach(user => {
             if (user.querySelector('.container__table-input').checked) {
-                arr.push(user.getAttribute('id'));
+                ids.push(user.getAttribute('id'));
             }
         });
         const obj = {
-            arr: arr,
+            ids: ids,
             status: status
         }
         return obj;

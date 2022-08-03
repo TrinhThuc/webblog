@@ -30,6 +30,16 @@ public class PostAPI {
         }
     }
 
+    @PutMapping("api/post/remove")
+    public void removePost(@RequestBody PostDTO postDTO){
+        for(Long id : postDTO.getIds()){
+            PostDTO dto = postService.findById(id);
+            dto.setActive(false);
+            postService.save(dto);
+        }
+    }
+
+
     @DeleteMapping("api/post")
     public void deletePost(@RequestBody long[] ids) {
         postService.delete(ids);

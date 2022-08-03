@@ -20,39 +20,69 @@
 
     <div class="content-right">
         <div class="return">
-            <a href=""> <i class="fas fa-arrow-left return_icon"></i></a>
+            <a th:href="@{/quan-tri/bai-viet?page=1&limit=5}"> <i class="fas fa-arrow-left return_icon"></i></a>
         </div>
         <div class="title">Quản lý bài viết</div>
         <div class="writer">
             <a href=""><img id="avatar" src="/static/admin/img/meo.jpg" alt="anh dai dien"></a>
-            <p id="name"><a href="">Meomap</a></p>
+            <p id="name" th:text="${author.userName}" th:if="${author} != null"><a href="">Meomap</a></p>
+            <p id="name" th:if="${author} == null"><a href="">Meomap</a></p>
         </div>
-        <div class="theme">
+        <div class="theme" th:text="${post.categoryDTO.name}" th:if="${post.categoryDTO} != null">
             <a href="">Quan điểm</a>
         </div>
-        <h1>Những điều được trong công việc từ The Pursuit of Happiness</h1>
-        <h5>Lần đầu tiên mình xem The Pursuit of happyness là gần chục năm trước và đây là bộ phim mình xem đi xem lại
-            không biết bao nhiêu lần.</h5>
+        <div class="theme" th:if="${post.categoryDTO} == null">
+            <a href="">Quan điểm</a>
+        </div>
+        <h1 th:text="${post.title} ">Những điều được trong công việc từ The Pursuit of Happiness</h1>
+        <h5 th:text="${post.shortDescription}"></h5>
         <div class="content-read">
             <div class="content">
             </div>
-            <div id="date">
+            <div id="date" th:text="${post.dateString}">
                 <29 /04/2022>
             </div>
 
             <div class="agree">
-                <button>
+                <button th:id="${post.id}" name="btnConfirm">
                     DUYỆT BÀI
                 </button>
             </div>
         </div>
+        <input type="hidden" th:value="${post.content}" name="post_content">
     </div>
 </body>
 <script>
-    var content = "        <div class=\"writing-blog__editor editor ck ck-content ck-editor__editable ck-rounded-corners ck-editor__editable_inline ck-blurred\" id=\"content\" placeholder=\"Nội dung bài viết\" lang=\"en\" dir=\"ltr\" role=\"textbox\" aria-label=\"Rich Text Editor, main\" contenteditable=\"true\"><p data-placeholder=\"Nội dung bài viết\">adấdfad</p></div>\n"
+    var content = document.querySelector('input[name = "post_content"]').value
     var contentTag = document.querySelector('.content')
+    var btnConfirm = document.querySelector("button[name = 'btnConfirm']")
     contentTag.innerHTML = content
-    // console.log(contentTag);
+    btnConfirm.onclick = function (){
+        var id = btnConfirm.getAttribute('id')
+        var ids = []
+        ids.push(id)
+        var data = {
+            ids : ids
+        }
+        activePost(data)
+    }
+
+    function activePost(data, callback){
+        var options = {
+            method : 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body : JSON.stringify(data)
+        };
+        fetch("http://localhost:8080/api/admin/post/active", options)
+            .then(function (response){
+                console.log(response)
+                // window.location.href = "http://localhost:8080/quan-tri/role"
+                return response.json()
+            })
+            .then(callback)
+    }
 </script>
 
 </html>

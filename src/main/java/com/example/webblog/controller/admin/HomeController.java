@@ -108,8 +108,10 @@ public class HomeController {
     @RequestMapping(value = "/quan-tri/bai-viet/{id}", method = RequestMethod.GET)
     public ModelAndView postDetail(@PathVariable(name = "id")Long id ) {
         PostDTO postDTO = postService.findById(id);
+        UserDTO author = userService.findByUserName(postDTO.getCreatedBy());
         ModelAndView mav = new ModelAndView("admin/write_manage");
         mav.addObject("post", postDTO);
+        mav.addObject("author", author);
         return mav;
     }
 

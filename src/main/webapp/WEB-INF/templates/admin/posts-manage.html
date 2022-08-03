@@ -55,7 +55,12 @@
                     <td th:if="${post.categoryDTO} == null"></td>
                     <td th:text="${post.createdBy}">PhanVietdz</td>
                     <td th th:text="${post.dateString}">13/9/2002</td>
-                    <td><i class="fa-solid fa-book-bookmark icon"></i></td>
+                    <td>
+                        <a th:href="@{'/quan-tri/bai-viet/'+ ${post.id}}" >
+                            <i class="fa-solid fa-book-bookmark icon"></i>
+                        </a>
+
+                    </td>
                     <td class="container__table-select">
                         <input type="checkbox" class="container__table-input">
                     </td>
@@ -98,20 +103,23 @@
     var btnConfirm = document.querySelector('.container__confirm')
     btnConfirm.onclick = function (){
         var data = app.sendInfOfEachUser()
-        // if (data.status == 'Duyệt bài') {
-        //     delete data.status;
-        //     activePost(data);
-        //     console.log(data)
-        // }
-        // else if (data.status == 'Gỡ bài') {
-        //     status = 'remove';
-        // }
-        // else if (data.status == 'Xóa bài') {
-        //     status = 'delete';
-        // }
         console.log(data)
-        delete data.status;
-        activePost(data);
+        if (data.status == 'Duyệt bài') {
+            delete data.status;
+            activePost(data);
+            console.log(data)
+        }
+        if (data.status == 'Gỡ bài') {
+            delete data.status;
+            removePost(data);
+            console.log(data)
+        }
+        if (data.status == 'Xóa bài') {
+            delete data.status;
+            deletePost(data.ids);
+            console.log(data)
+        }
+
 
         // delete data.status
         // console.log(data)
@@ -125,6 +133,40 @@
             body : JSON.stringify(data)
         };
         fetch("http://localhost:8080/api/admin/post/active", options)
+            .then(function (response){
+                console.log(response)
+                // window.location.href = "http://localhost:8080/quan-tri/role"
+                return response.json()
+            })
+            .then(callback)
+    }
+
+    function removePost(data, callback){
+        var options = {
+            method : 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body : JSON.stringify(data)
+        };
+        fetch("http://localhost:8080/api/post/remove", options)
+            .then(function (response){
+                console.log(response)
+                // window.location.href = "http://localhost:8080/quan-tri/role"
+                return response.json()
+            })
+            .then(callback)
+    }
+
+    function deletePost(data, callback){
+        var options = {
+            method : 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body : JSON.stringify(data)
+        };
+        fetch("http://localhost:8080/api/post", options)
             .then(function (response){
                 console.log(response)
                 // window.location.href = "http://localhost:8080/quan-tri/role"

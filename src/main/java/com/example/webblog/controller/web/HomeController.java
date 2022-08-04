@@ -55,6 +55,8 @@ public class HomeController {
         mav.addObject("listTrending", listTrending);
         mav.addObject("newPost", newPost);
         mav.addObject("listPopular", listPopular);
+        List<CategoryDTO> categoryDTOS = categoryService.getAll();
+        mav.addObject("categories", categoryDTOS);
         if(principal != null) {
             MyUser user = (MyUser) ((Authentication) principal).getPrincipal();
             mav.addObject("userInf", user);
@@ -114,6 +116,8 @@ public class HomeController {
         categoryDTO.setListResult(categoryService.getAll());
         ModelAndView mav = new ModelAndView("web/writingpage");
         mav.addObject("Categories", categoryDTO.getListResult());
+        List<CategoryDTO> categoryDTOS = categoryService.getAll();
+        mav.addObject("categories", categoryDTOS);
         return mav;
 
     }
@@ -127,6 +131,8 @@ public class HomeController {
             MyUser user = (MyUser) ((Authentication) principal).getPrincipal();
             mav.addObject("userInf", user);
         }
+        List<CategoryDTO> categoryDTOS = categoryService.getAll();
+        mav.addObject("categories", categoryDTOS);
         return mav;
 
     }
@@ -142,6 +148,8 @@ public class HomeController {
         List<PostDTO> postDTOList = postService.findAllByAuthor(username);
         List<PostDTO> listIsActive = new ArrayList<>();
         List<PostDTO> listInActive = new ArrayList<>();
+        List<CategoryDTO> categoryDTOS = categoryService.getAll();
+        mav.addObject("categories", categoryDTOS);
         for(PostDTO dto :postDTOList){
             if(dto.isActive())
                 listIsActive.add(dto);
@@ -156,30 +164,42 @@ public class HomeController {
         return mav;
     }
 
-    @GetMapping("/danh-sach/{category}")
-    public ModelAndView listPost(@PathVariable(name = "category") String category ,Principal principal,
+    @GetMapping(value = {"/danh-sach/bai-viet/{category}", "/danh-sach/bai-viet"})
+    public ModelAndView listPost(@PathVariable(name = "category", required = false) String category ,Principal principal,
                                  @RequestParam("page") int page,
                                  @RequestParam("limit") int limit) {
         PostDTO model = new PostDTO();
         model.setPage(page);
         model.setLimit(limit);
         Pageable pageable = PageRequest.of(page-1, limit, Sort.by(Sort.Direction.DESC, "createdDate"));
-        List<PostDTO> dtos = postService.findAllByCategory(category, pageable);
+        List<PostDTO> dtos = new ArrayList<>();
+        if(category != null){
+            dtos = postService.findAllByCategory(category, pageable);
+            model.setTotalItem(postService.getTotalItemWithCategory_Name(category));
+            model.setCategoryDTO(categoryService.findByCode(category));
+        }
+        else{
+            dtos = postService.findAll(pageable);
+            model.setTotalItem(postService.getTotalItem());
+        }
+
         Integer i= (page-1)*limit +1;
         for(PostDTO postDTO : dtos){
             postDTO.setStt(i);
             i++;
         }
         model.setListResult(dtos);
-        model.setTotalItem(postService.getTotalItemWithCategory_Name(category));
+
         model.setTotalPage((int) Math.ceil((double) model.getTotalItem() / model.getLimit()));
         ModelAndView mav = new ModelAndView("web/list_page");
         if(principal != null) {
             MyUser user = (MyUser) ((Authentication) principal).getPrincipal();
             mav.addObject("userInf", user);
         }
+        List<CategoryDTO> categoryDTOS = categoryService.getAll();
+        mav.addObject("categories", categoryDTOS);
+        mav.addObject("model", model);
         return mav;
-
     }
 
 }

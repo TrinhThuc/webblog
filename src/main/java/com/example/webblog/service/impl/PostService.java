@@ -80,7 +80,7 @@ public class PostService implements IPostService {
 	@Override
 	public List<PostDTO> findAllByCategory(String category, Pageable pageable) {
 		List<PostDTO> postDTOS = new ArrayList<>();
-		List<PostEntity> postEntities = postRepository.findAllByCategory_Name(category, pageable).getContent();
+		List<PostEntity> postEntities = postRepository.findAllByCategory_Code(category, pageable).getContent();
 		for(PostEntity post : postEntities){
 			PostDTO postDTO = postConverter.toDto(post);
 			DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -111,7 +111,12 @@ public class PostService implements IPostService {
 
 	@Override
 	public int getTotalItemWithCategory_Name(String name) {
-		return postRepository.findAllByCategory_Name(name).size();
+		return postRepository.findAllByCategory_Code(name).size();
+	}
+
+	@Override
+	public int getTotalItem() {
+		return (int) postRepository.count();
 	}
 
 	@Override

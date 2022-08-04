@@ -8,6 +8,7 @@ import java.util.Map;
 
 public interface ICategoryService {
 	Map<String, String> findAll();
+	CategoryDTO findByCode(String code);
 	CategoryDTO save(CategoryDTO dto);
 	void delete(long[] ids);
 	List<CategoryDTO> getAll();

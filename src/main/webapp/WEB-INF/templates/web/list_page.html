@@ -32,117 +32,30 @@
         <div class="container">
             <div class="container__content appear-block">
                 <div class="content__header shadow__personal-page-25">
-                    <span class="content__header-choose active">Quan điểm - Tranh luận</span>
+                    <span class="content__header-choose active" th:if="${model.categoryDTO} == null">Tất cả</span>
+                    <span class="content__header-choose active" th:if="${model.categoryDTO} != null"
+                     th:text="${model.categoryDTO.name}"></span>
+
                 </div>
                 <ul class="content__table shadow__personal-page-25">
-                    <li class="content__table-item">
-                        <a href="" class="table__img-link">
+                    <li class="content__table-item" th:each="post : ${model.listResult}">
+                        <a th:href="@{'/bai-dang/'+ ${post.id}}" class="table__img-link">
                             <img src="/static/homepage/img/post.jpg" alt="">
                         </a>
                         <div class="table__content">
-                            <h4 class="table__tag">Quan điểm - tranh luận</h4>
+                            <h4 class="table__tag" th:if="${post.categoryDTO} != null"
+                            th:text="${post.categoryDTO.name}">Quan điểm - tranh luận</h4>
                             <h2 class="table__title">
-                                <a href="">
+                                <a th:href="@{'/bai-dang/'+ ${post.id}}" th:text="${post.title}">
                                     4 bài học sau khi xem phim tài liệu The VietNam war
                                 </a>
                             </h2>
-                            <div class="table__sub-title">Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse
-                                tenetur ullam voluptatum. Voluptate deleniti sit id. Voluptates, blanditiis enim aperiam
-                                ut recusandae hic libero ullam, magnam quae fugiat cumque suscipit!
+                            <div class="table__sub-title" th:text="${post.shortDescription}">
                             </div>
-                            <div class="table__time">6 giờ trước</div>
+                            <div class="table__time" th:text="${post.dateString}">6 giờ trước</div>
                         </div>
                     </li>
-                    <li class="content__table-item">
-                        <a href="" class="table__img-link">
-                            <img src="/static/homepage/img/post.jpg" alt="">
-                        </a>
-                        <div class="table__content">
-                            <h4 class="table__tag">Quan điểm - tranh luận</h4>
-                            <h2 class="table__title">
-                                <a href="">
-                                    4 bài học sau khi xem phim tài liệu The VietNam war
-                                </a>
-                            </h2>
-                            <div class="table__sub-title">Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse
-                                tenetur ullam voluptatum. Voluptate deleniti sit id. Voluptates, blanditiis enim aperiam
-                                ut recusandae hic libero ullam, magnam quae fugiat cumque suscipit!
-                            </div>
-                            <div class="table__time">6 giờ trước</div>
-                        </div>
-                    </li>
-                    <li class="content__table-item">
-                        <a href="" class="table__img-link">
-                            <img src="/static/homepage/img/post.jpg" alt="">
-                        </a>
-                        <div class="table__content">
-                            <h4 class="table__tag">Quan điểm - tranh luận</h4>
-                            <h2 class="table__title">
-                                <a href="">
-                                    4 bài học sau khi xem phim tài liệu The VietNam war
-                                </a>
-                            </h2>
-                            <div class="table__sub-title">Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse
-                                tenetur ullam voluptatum. Voluptate deleniti sit id. Voluptates, blanditiis enim aperiam
-                                ut recusandae hic libero ullam, magnam quae fugiat cumque suscipit!
-                            </div>
-                            <div class="table__time">6 giờ trước</div>
-                        </div>
-                    </li>
-                    <li class="content__table-item">
-                        <a href="" class="table__img-link">
-                            <img src="/static/homepage/img/post.jpg" alt="">
-                        </a>
-                        <div class="table__content">
-                            <h4 class="table__tag">Quan điểm - tranh luận</h4>
-                            <h2 class="table__title">
-                                <a href="">
-                                    4 bài học sau khi xem phim tài liệu The VietNam war
-                                </a>
-                            </h2>
-                            <div class="table__sub-title">Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse
-                                tenetur ullam voluptatum. Voluptate deleniti sit id. Voluptates, blanditiis enim aperiam
-                                ut recusandae hic libero ullam, magnam quae fugiat cumque suscipit!
-                            </div>
-                            <div class="table__time">6 giờ trước</div>
-                        </div>
-                    </li>
-                    <li class="content__table-item">
-                        <a href="" class="table__img-link">
-                            <img src="/static/homepage/img/post.jpg" alt="">
-                        </a>
-                        <div class="table__content">
-                            <h4 class="table__tag">Quan điểm - tranh luận</h4>
-                            <h2 class="table__title">
-                                <a href="">
-                                    4 bài học sau khi xem phim tài liệu The VietNam war
-                                </a>
-                            </h2>
-                            <div class="table__sub-title">Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse
-                                tenetur ullam voluptatum. Voluptate deleniti sit id. Voluptates, blanditiis enim aperiam
-                                ut recusandae hic libero ullam, magnam quae fugiat cumque suscipit!
-                            </div>
-                            <div class="table__time">6 giờ trước</div>
-                        </div>
-                    </li>
-                    <li class="content__table-item">
-                        <a href="" class="table__img-link">
-                            <img src="/static/homepage/img/post.jpg" alt="">
-                        </a>
-                        <div class="table__content">
-                            <h4 class="table__tag">Quan điểm - tranh luận</h4>
-                            <h2 class="table__title">
-                                <a href="">
-                                    4 bài học sau khi xem phim tài liệu The VietNam war
-                                </a>
-                            </h2>
-                            <div class="table__sub-title">Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse
-                                tenetur ullam voluptatum. Voluptate deleniti sit id. Voluptates, blanditiis enim aperiam
-                                ut recusandae hic libero ullam, magnam quae fugiat cumque suscipit!
-                            </div>
-                            <div class="table__time">6 giờ trước</div>
-                        </div>
-                    </li>
+
                 </ul>
             </div>
             <div class="container__pagination">
@@ -165,7 +78,7 @@
                 <button class="btn lastBtn">
                     <i class="fa-solid fa-angles-right container__pagination-icon"></i>
                 </button>
-                <input class="container__pagination__total-page" type="hidden" value="3">
+                <input class="container__pagination__total-page" type="hidden" th:value="${model.totalPage}">
             </div>
         </div>
         <footer class="footer">

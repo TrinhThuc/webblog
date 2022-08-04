@@ -9,4 +9,5 @@ import java.util.List;
 
 public interface CategoryRepository extends JpaRepository<CategoryEntity, Long>{
     CategoryEntity findCategoryEntitiesById(Long id);
+    CategoryEntity findByCode(String code);
 }

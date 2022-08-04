@@ -13,6 +13,7 @@ public interface IPostService {
 	List<PostDTO> findAllByCategory(String category, Pageable pageable);
 	PostDTO findById(Long id);
 	int getTotalItemWithCategory_Name(String name);
+	int getTotalItem();
 	PostDTO save(PostDTO dto);
 	void delete(long[] ids);
 }

@@ -111,8 +111,8 @@
                                         <li class="user-navbar__item">
                                             <i class="fa-solid fa-gear"></i>Tùy chỉnh tài khoản
                                         </li>
+                                    </a>
                                 </ul>
-                                </a>
                             </div>
                             <div class="modal__user-navbar__sign-off" >
                                 <a th:href="@{/dang-xuat}">
@@ -169,76 +169,10 @@
                 <div class="header__navbar-item header__navbar-topic-list-warrper">
                     <ul class="header__navbar-item header__navbar-topic-list">
                         <li class="header__navbar-item header__topic-list-item">
-                            <a href="">Tất cả</a>
-                        </li>
-                        <li class="header__navbar-item header__topic-list-item">
-                            <a href="">Khoa Học - công nghệ</a>
-                        </li>
-                        <li class="header__navbar-item header__topic-list-item">
-                            <a href="">Thể thao</a>
-                        </li>
-                        <li class="header__navbar-item header__topic-list-item">
-                            <a href="">truyền cảm hứng</a>
-                        </li>
-                        <li class="header__navbar-item header__topic-list-item">
-                            <a href="">game</a>
-                        </li>
-                        <li class="header__navbar-item header__topic-list-item">
-                            <a href="">Tất cả</a>
-                        </li>
-                        <li class="header__navbar-item header__topic-list-item">
-                            <a href="">Khoa Học - công nghệ</a>
-                        </li>
-                        <li class="header__navbar-item header__topic-list-item">
-                            <a href="">Thể thao</a>
-                        </li>
-                        <li class="header__navbar-item header__topic-list-item">
-                            <a href="">truyền cảm hứng</a>
-                        </li>
-                        <li class="header__navbar-item header__topic-list-item">
-                            <a href="">game</a>
-                        </li>
-                        <li class="header__navbar-item header__topic-list-item">
-                            <a href="">Thể thao</a>
-                        </li>
-                        <li class="header__navbar-item header__topic-list-item">
-                            <a href="">truyền cảm hứng</a>
-                        </li>
-                        <li class="header__navbar-item header__topic-list-item">
-                            <a href="">game</a>
-                        </li>
-                        <li class="header__navbar-item header__topic-list-item">
-                            <a href="">Khoa Học - công nghệ</a>
-                        </li>
-                        <li class="header__navbar-item header__topic-list-item">
-                            <a href="">Thể thao</a>
-                        </li>
-                        <li class="header__navbar-item header__topic-list-item">
-                            <a href="">truyền cảm hứng</a>
-                        </li>
-                        <li class="header__navbar-item header__topic-list-item">
-                            <a href="">game</a>
-                        </li>
-                        <li class="header__navbar-item header__topic-list-item">
-                            <a href="">Thể thao</a>
-                        </li>
-                        <li class="header__navbar-item header__topic-list-item">
-                            <a href="">truyền cảm hứng</a>
-                        </li>
-                        <li class="header__navbar-item header__topic-list-item">
-                            <a href="">game</a>
-                        </li>
-                        <li class="header__navbar-item header__topic-list-item">
-                            <a href="">truyền cảm hứng</a>
-                        </li>
-                        <li class="header__navbar-item header__topic-list-item">
-                            <a href="">truyền cảm hứng</a>
-                        </li>
-                        <li class="header__navbar-item header__topic-list-item">
-                            <a href="">truyền cảm hứng</a>
-                        </li>
-                        <li class="header__navbar-item header__topic-list-item">
-                            <a href="">truyền cảm hứng</a>
+                            <a th:href="@{'/danh-sach/bai-viet'+'?page=1&limit=5'}">Tất cả</a>
+                        </li >
+                        <li class="header__navbar-item header__topic-list-item" th:each="category : ${categories}">
+                            <a th:href="@{'/danh-sach/bai-viet/' + ${category.code} +'?page=1&limit=5'}" th:text="${category.name}">Khoa Học - công nghệ</a>
                         </li>
 
                     </ul>

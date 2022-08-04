@@ -60,14 +60,14 @@
                 <ul class="content__table shadow__personal-page-25">
                     <li class="content__table-item" th:if="${listIsActive} != null"
                     th:each="post : ${listIsActive}">
-                        <a href="" class="table__img-link">
+                        <a th:href="@{'/bai-dang/'+ ${post.id}}" class="table__img-link">
                             <img src="/static/homepage/img/post.jpg" alt="">
                         </a>
                         <div class="table__content">
                             <h4 class="table__tag" th:text="${post.categoryDTO.name}"
                             th:if="${post.categoryDTO} != null">Quan điểm - tranh luận</h4>
                             <h2 class="table__title">
-                                <a href="" th:text="${post.title}">
+                                <a th:href="@{'/bai-dang/'+ ${post.id}}" th:text="${post.title}">
                                     4 bài học sau khi xem phim tài liệu The VietNam war
                                 </a>
                             </h2>
@@ -78,14 +78,14 @@
                     </li>
                     <li class="content__table-item" th:if="${listIsActive} == null"
                         th:each="post : ${listInActive}">
-                        <a href="" class="table__img-link">
+                        <a th:href="@{'/bai-dang/'+ ${post.id}}" class="table__img-link">
                             <img src="/static/homepage/img/post.jpg" alt="">
                         </a>
                         <div class="table__content">
                             <h4 class="table__tag" th:text="${post.categoryDTO.name}"
                                 th:if="${post.categoryDTO} != null">Quan điểm - tranh luận</h4>
                             <h2 class="table__title">
-                                <a href="" th:text="${post.title}">
+                                <a th:href="@{'/bai-dang/'+ ${post.id}}" th:text="${post.title}">
                                     4 bài học sau khi xem phim tài liệu The VietNam war
                                 </a>
                             </h2>

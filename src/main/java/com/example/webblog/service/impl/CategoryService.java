@@ -35,6 +35,11 @@ public class CategoryService implements ICategoryService {
     }
 
     @Override
+    public CategoryDTO findByCode(String code) {
+        return categoryConverter.toDto(categoryRepository.findByCode(code));
+    }
+
+    @Override
     @Transactional
     public CategoryDTO save(CategoryDTO dto) {
         CategoryEntity category = new CategoryEntity();

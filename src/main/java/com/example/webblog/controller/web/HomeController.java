@@ -148,11 +148,38 @@ public class HomeController {
             else
                 listInActive.add(dto);
         }
-        if(tab.equals("savedPost"))
+        String savP = "savedPost";
+        if(savP.equals(tab))
             mav.addObject("listInActive", listInActive);
         else
             mav.addObject("listIsActive", listIsActive);
         return mav;
+    }
+
+    @GetMapping("/danh-sach/{category}")
+    public ModelAndView listPost(@PathVariable(name = "category") String category ,Principal principal,
+                                 @RequestParam("page") int page,
+                                 @RequestParam("limit") int limit) {
+        PostDTO model = new PostDTO();
+        model.setPage(page);
+        model.setLimit(limit);
+        Pageable pageable = PageRequest.of(page-1, limit, Sort.by(Sort.Direction.DESC, "createdDate"));
+        List<PostDTO> dtos = postService.findAllByCategory(category, pageable);
+        Integer i= (page-1)*limit +1;
+        for(PostDTO postDTO : dtos){
+            postDTO.setStt(i);
+            i++;
+        }
+        model.setListResult(dtos);
+        model.setTotalItem(postService.getTotalItemWithCategory_Name(category));
+        model.setTotalPage((int) Math.ceil((double) model.getTotalItem() / model.getLimit()));
+        ModelAndView mav = new ModelAndView("web/list_page");
+        if(principal != null) {
+            MyUser user = (MyUser) ((Authentication) principal).getPrincipal();
+            mav.addObject("userInf", user);
+        }
+        return mav;
+
     }
 
 }

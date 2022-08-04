@@ -78,6 +78,24 @@ public class PostService implements IPostService {
 	}
 
 	@Override
+	public List<PostDTO> findAllByCategory(String category, Pageable pageable) {
+		List<PostDTO> postDTOS = new ArrayList<>();
+		List<PostEntity> postEntities = postRepository.findAllByCategory_Name(category, pageable).getContent();
+		for(PostEntity post : postEntities){
+			PostDTO postDTO = postConverter.toDto(post);
+			DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+			if(post.getCreatedDate() != null)
+				postDTO.setDateString(dateFormat.format(post.getCreatedDate()));
+			UserEntity user = userRepository.findOneByUserNameAndStatusAndEnabled(post.getCreatedBy(),1 ,true);
+			if(user != null)
+				postDTO.setAuthor(userConverter.toDto(user));
+			postDTOS.add(postDTO);
+		}
+		return postDTOS;
+	}
+
+
+	@Override
 	@Transactional
 	public PostDTO findById(Long id) {
 		PostEntity postEntity = postRepository.findPostEntitiesById(id);
@@ -89,6 +107,11 @@ public class PostService implements IPostService {
 		if(user != null)
 			postDTO.setAuthor(userConverter.toDto(user));
 		return postDTO;
+	}
+
+	@Override
+	public int getTotalItemWithCategory_Name(String name) {
+		return postRepository.findAllByCategory_Name(name).size();
 	}
 
 	@Override

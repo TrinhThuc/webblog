@@ -72,7 +72,6 @@ const application = () => {
         .catch((error) => {
             console.error(error);
         });
-     // CKFinder.setupCKEditor(editor, '/static/writingpage/ckfinder/')
 
     var createPostBtn = document.querySelector('#createPostBtn')
     function createPost(data, callback){

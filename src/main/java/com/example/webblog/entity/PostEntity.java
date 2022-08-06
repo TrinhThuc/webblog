@@ -28,7 +28,7 @@ public class PostEntity extends BaseEntity{
 	@Column(name = "isActive")
 	private boolean isActive;
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
     private CategoryEntity category;
 

@@ -12,6 +12,11 @@ const modalEdit = document.querySelector('.modal__edit');
 const containerContent = document.querySelector('.container__content');
 const userEdit = document.querySelector('.user__edit');
 const userTable = document.querySelector('.container__user');
+const deleteBtn = document.querySelector('.table_icon .delete');
+
+// API
+
+// const urlPost = "http://localhost:3000/posts";
 
 const app = function () {
     let isOpen = false;
@@ -48,24 +53,64 @@ const app = function () {
     };
 
     const closeWhenClickOutside = (e) => {
-        if(!e.target.closest(".active") && !e.target.closest(".fa-bell")) {
+        if (!e.target.closest(".active") && !e.target.closest(".fa-bell")) {
             modalNotification.classList.remove("active");
         }
         console.log(e.target.closest(".active"))
-        if(!e.target.closest(".active") && !e.target.closest("img")) {
+        if (!e.target.closest(".active") && !e.target.closest("img")) {
             modalUserNavbar.classList.remove("active");
-        }   
+        }
     }
 
     const toggleUserNavbar = () => {
         modalUserNavbar.classList.toggle("active");
     }
-    
+
     const toggleNotification = () => {
         modalNotification.classList.toggle("active");
     }
 
-    if(userAvatar && notificationIcon) {
+    // const getPost = (callback) => {
+    //     fetch(urlPost)
+    //         .then((response) => response.json())
+    //         .then(callback)
+    // }
+
+
+
+    // const renderPost = (posts) => {
+    //     const listPost = document.querySelector(".content__table");
+    //     var htmls = posts.map((post) => {
+    //         return `
+    //         <li id="content__table-item-${post.id}" class="content__table-item">
+    //                     <a href="" class="table__img-link">
+    //                         <img src="${post.img}" alt="">
+    //                     </a>
+    //                     <div class="table__content">
+    //                         <h4 class="table__tag">${post.category}
+    //                             <div class="table_icon">
+    //                                 <a href="" id="modify"><i class="fa fa-pen"></i></a>
+    //                                 <i onclick="deletePost(${post.id})" class="fa fa-trash-can"></i>
+    //                             </div>
+    //                         </h4>
+    //                         <h2 class="table__title">
+    //                             <a href="">
+    //                             ${post.title}
+    //                             </a>
+    //                         </h2>
+    //                         <div class="table__sub-title">
+    //                         ${post.description}
+    //                         </div>
+    //                         <div class="table__time">${post.time}</div>
+    //                     </div>
+    //                 </li>
+    //         `
+    //     });
+
+    //     listPost.innerHTML = htmls.join('');
+    // }
+
+    if (userAvatar && notificationIcon) {
         document.addEventListener("click", closeWhenClickOutside)
         userAvatar.addEventListener("click", toggleUserNavbar)
         notificationIcon.addEventListener("click", toggleNotification)
@@ -77,11 +122,32 @@ const app = function () {
             chooseContent.classList.add('active');
         }
     });
-    
+
     modalBtn.addEventListener('click', styleChangePsw);
     modalCancelBtn.addEventListener('click', hideModalEdit);
     userEdit.addEventListener('click', hideContainerContent);
+    // getPost(renderPost);
 }
+
+// const deletePost = (id) => {
+//     options = {
+//         method: 'DELETE',
+//         headers: {
+//             'Content-Type': 'application/json'
+//             // 'Content-Type': 'application/x-www-form-urlencoded',
+//         },
+//         // body: JSON.stringify(id)
+//     }
+//     fetch(urlPost + "/" + id, options)
+//         .then((response) => {
+//             return response.json();
+//         })
+//         .then(function () {
+//             var postItem = document.querySelector("#content__table-item-" + id);
+
+//             postItem.remove();
+//         })
+// }
 
 
 app();

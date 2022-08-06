@@ -11,8 +11,10 @@ public interface IPostService {
 	List<PostDTO> findAll(Pageable pageable);
 	List<PostDTO> findAllByAuthor(String name);
 	List<PostDTO> findAllByCategory(String category, Pageable pageable);
+	List<PostDTO> findAllByTab(String tab, Pageable pageable);
 	PostDTO findById(Long id);
 	int getTotalItemWithCategory_Name(String name);
+	int getTotalItemWithTab(String tab);
 	int getTotalItem();
 	PostDTO save(PostDTO dto);
 	void delete(long[] ids);

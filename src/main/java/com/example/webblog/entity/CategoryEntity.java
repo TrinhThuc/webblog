@@ -5,10 +5,7 @@ import lombok.Data;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Data
@@ -20,7 +17,7 @@ public class CategoryEntity extends BaseEntity{
 	@Column(name = "code")
 	private String code;
 	
-//	@OneToMany(mappedBy = "category")
-//	private List<PostEntity> news = new ArrayList<>();
+	@OneToMany(mappedBy = "category", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<PostEntity> news = new ArrayList<>();
 
 }

@@ -29,13 +29,16 @@
             <i class="fa-solid fa-arrow-up"></i>
         </div>
         <header th:replace="../fragments/web/header :: header"></header>
-        <div class="container">
+        <div class="container" >
             <div class="container__content appear-block">
-                <div class="content__header shadow__personal-page-25">
+                <div class="content__header shadow__personal-page-25" th:if="${tab} == null">
                     <span class="content__header-choose active" th:if="${model.categoryDTO} == null">Tất cả</span>
                     <span class="content__header-choose active" th:if="${model.categoryDTO} != null"
                      th:text="${model.categoryDTO.name}"></span>
 
+                </div>
+                <div class="content__header shadow__personal-page-25" th:if="${tab} != null">
+                    <span class="content__header-choose active" th:text="${tab}"></span>
                 </div>
                 <ul class="content__table shadow__personal-page-25">
                     <li class="content__table-item" th:each="post : ${model.listResult}">
@@ -135,5 +138,5 @@
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script src="/static/admin/JS/pagination.js"></script>
 <script src="/static/homepage/JS/headerFeature.js"></script>
-
+<script src="/static/homepage/JS/searchBtn.js"></script>
 </html>

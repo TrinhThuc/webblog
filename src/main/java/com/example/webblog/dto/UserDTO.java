@@ -7,9 +7,10 @@ import javax.persistence.Column;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserDTO extends AbstractDTO<UserDTO>{
+public class UserDTO extends AbstractDTO<UserDTO> {
     private String userName;
     private String password;
+    private String newPassword;
     private String fullname;
     private Integer status;
     private String avatar;
@@ -17,7 +18,7 @@ public class UserDTO extends AbstractDTO<UserDTO>{
     private String verificationCode;
     private boolean enabled;
     private List<Long> roleIds = new ArrayList<>();
-    private List<RoleEntity> roles= new ArrayList<>();
+    private List<RoleEntity> roles = new ArrayList<>();
     private List<PostEntity> postEntities = new ArrayList<>();
 
     public List<PostEntity> getPostEntities() {
@@ -26,6 +27,14 @@ public class UserDTO extends AbstractDTO<UserDTO>{
 
     public void setPostEntities(List<PostEntity> postEntities) {
         this.postEntities = postEntities;
+    }
+
+    public String getNewPassword() {
+        return newPassword;
+    }
+
+    public void setNewPassword(String newPassword) {
+        this.newPassword = newPassword;
     }
 
     public boolean isEnabled() {
@@ -43,8 +52,6 @@ public class UserDTO extends AbstractDTO<UserDTO>{
     public void setVerificationCode(String verificationCode) {
         this.verificationCode = verificationCode;
     }
-
-
 
 
     public List<RoleEntity> getRoles() {
@@ -66,7 +73,6 @@ public class UserDTO extends AbstractDTO<UserDTO>{
     public UserDTO() {
 
     }
-
 
 
     public String getUserName() {

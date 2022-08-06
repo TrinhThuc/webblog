@@ -94,6 +94,23 @@ public class PostService implements IPostService {
 		return postDTOS;
 	}
 
+	@Override
+	public List<PostDTO> findAllByTab(String tab, Pageable pageable) {
+		List<PostDTO> postDTOS = new ArrayList<>();
+		List<PostEntity> postEntities = postRepository.findAllByTab(tab, pageable).getContent();
+		for(PostEntity post : postEntities){
+			PostDTO postDTO = postConverter.toDto(post);
+			DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+			if(post.getCreatedDate() != null)
+				postDTO.setDateString(dateFormat.format(post.getCreatedDate()));
+			UserEntity user = userRepository.findOneByUserNameAndStatusAndEnabled(post.getCreatedBy(),1 ,true);
+			if(user != null)
+				postDTO.setAuthor(userConverter.toDto(user));
+			postDTOS.add(postDTO);
+		}
+		return postDTOS;
+	}
+
 
 	@Override
 	@Transactional
@@ -112,6 +129,11 @@ public class PostService implements IPostService {
 	@Override
 	public int getTotalItemWithCategory_Name(String name) {
 		return postRepository.findAllByCategory_Code(name).size();
+	}
+
+	@Override
+	public int getTotalItemWithTab(String tab) {
+		return postRepository.findAllByTab(tab).size();
 	}
 
 	@Override

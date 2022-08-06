@@ -145,6 +145,8 @@ public class HomeController {
             MyUser user = (MyUser) ((Authentication) principal).getPrincipal();
             mav.addObject("userInf", user);
         }
+        UserDTO user = userService.findByUserName(username);
+        mav.addObject("user", user);
         List<PostDTO> postDTOList = postService.findAllByAuthor(username);
         List<PostDTO> listIsActive = new ArrayList<>();
         List<PostDTO> listInActive = new ArrayList<>();
@@ -199,6 +201,38 @@ public class HomeController {
         List<CategoryDTO> categoryDTOS = categoryService.getAll();
         mav.addObject("categories", categoryDTOS);
         mav.addObject("model", model);
+        return mav;
+    }
+
+    @GetMapping(value = {"/danh-sach/tim-kiem"})
+    public ModelAndView listSearch(@RequestParam(name = "tab", required = false) String tab,Principal principal,
+                                   @RequestParam("page") int page,
+                                   @RequestParam("limit") int limit){
+        PostDTO model = new PostDTO();
+        model.setPage(page);
+        model.setLimit(limit);
+        List<PostDTO> dtos = new ArrayList<>();
+        if(tab != ""){
+            Pageable pageable = PageRequest.of(page-1, limit);
+            dtos = postService.findAllByTab(tab, pageable);
+            Integer i= (page-1)*limit +1;
+            for(PostDTO postDTO : dtos){
+                postDTO.setStt(i);
+                i++;
+            }
+            model.setListResult(dtos);
+            model.setTotalItem(postService.getTotalItemWithTab(tab));
+            model.setTotalPage((int) Math.ceil((double) model.getTotalItem() / model.getLimit()));
+        }
+        ModelAndView mav = new ModelAndView("web/list_page");
+        if(principal != null) {
+            MyUser user = (MyUser) ((Authentication) principal).getPrincipal();
+            mav.addObject("userInf", user);
+        }
+        List<CategoryDTO> categoryDTOS = categoryService.getAll();
+        mav.addObject("categories", categoryDTOS);
+        mav.addObject("model", model);
+        mav.addObject("tab", "kết quả tìm kiếm cho : "+tab);
         return mav;
     }
 

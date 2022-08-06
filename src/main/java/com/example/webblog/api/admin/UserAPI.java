@@ -9,24 +9,24 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
-@RestController
+@RestController(value = "ApiOfAdmin")
 public class UserAPI {
     @Autowired
     private IUserService userService;
 
-    @PostMapping("api/user")
-    public UserDTO createPost(@RequestBody UserDTO userDTO){
+    @PostMapping("api/admin/user")
+    public UserDTO createUser(@RequestBody UserDTO userDTO){
         return userService.save(userDTO);
     }
 //
-    @PutMapping("api/user/{id}")
-    public UserDTO updatePost(@RequestBody UserDTO userDTO, @PathVariable("id")long id, HttpServletRequest request){
+    @PutMapping("api/admin/user/{id}")
+    public UserDTO updateUser(@RequestBody UserDTO userDTO, @PathVariable("id")long id, HttpServletRequest request){
         userDTO.setId(id);
         return userService.save(userDTO);
     }
 
-    @DeleteMapping("api/user")
-    public void deletePost(@RequestBody long[] ids) {
+    @DeleteMapping("api/admin/user")
+    public void deleteUser(@RequestBody long[] ids) {
         userService.delete(ids);
     }
 }

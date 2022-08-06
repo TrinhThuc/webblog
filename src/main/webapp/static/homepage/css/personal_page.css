@@ -139,8 +139,28 @@
     flex: 1;
 }
 
+.table__tag {
+    display: flex;
+    justify-content: space-between;
+}
+
 .table__title a:hover {
     text-decoration: underline;
+}
+
+.item__head {
+    display: flex;
+    justify-content: space-between;
+}
+
+.table_icon {
+    padding-right: 5%;
+}
+
+#modify,
+#delete {
+    margin-right: 10px;
+    padding: 8px;
 }
 
 .table__sub-title {
@@ -163,7 +183,9 @@
     font-weight: 500;
 }
 
+
 /* ======= Modal Edit =======*/
+
 .modal__edit {
     display: none;
     margin: 0 auto;
@@ -229,7 +251,9 @@
     color: #000;
 }
 
+
 /* CSS error checking */
+
 .modal__form.invalid .modal__input {
     border: 1px solid #f33a58;
 }
@@ -242,4 +266,12 @@
     font-size: 1.4rem;
     line-height: 1.6rem;
     padding: 4px 0 0;
+}
+
+.table_icon #modify {
+    color: #ffeb3b;
+}
+
+.table_icon #delete {
+    color: #f44336;
 }

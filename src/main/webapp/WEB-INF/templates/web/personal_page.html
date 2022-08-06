@@ -33,8 +33,11 @@
             <div class="container__user shadow__personal-page-25">
                 <div class="container__user-head">
                     <img src="/static/homepage/img/avt.jpg" alt="" class="user__avt">
-                    <span class="user__name" th:text="${userInf.username}" th:if="${userInf != null}">Phan Viet</span>
-                    <button class="btn user__edit">Chỉnh sửa</button>
+                    <span class="user__name" th:text="${user.userName}" th:if="${user != null}"></span>
+                    <span th:if="${userInf}!=null">
+                        <button class="btn user__edit" th:if="(${user.userName} == ${userInf.username})">Chỉnh sửa</button>
+                    </span>
+
                 </div>
                 <div class="container__user-footer">
                     <div class="user__follow">
@@ -64,8 +67,16 @@
                             <img src="/static/homepage/img/post.jpg" alt="">
                         </a>
                         <div class="table__content">
-                            <h4 class="table__tag" th:text="${post.categoryDTO.name}"
-                            th:if="${post.categoryDTO} != null">Quan điểm - tranh luận</h4>
+                            <div class="item__head">
+                                <h4 class="table__tag" th:text="${post.categoryDTO.name}"
+                                    th:if="${post.categoryDTO} != null">Quan điểm - tranh luận </h4>
+                                <div class="table_icon" th:id="${post.id}">
+                                    <a href="" id="modify"><i class="fa fa-pen"></i></a>
+                                    <a   id="delete"> <i class="fa fa-trash-can"></i></a>
+                                </div>
+                            </div>
+
+
                             <h2 class="table__title">
                                 <a th:href="@{'/bai-dang/'+ ${post.id}}" th:text="${post.title}">
                                     4 bài học sau khi xem phim tài liệu The VietNam war
@@ -83,7 +94,10 @@
                         </a>
                         <div class="table__content">
                             <h4 class="table__tag" th:text="${post.categoryDTO.name}"
-                                th:if="${post.categoryDTO} != null">Quan điểm - tranh luận</h4>
+                                th:if="${post.categoryDTO} != null">Quan điểm - tranh luận
+
+                            </h4>
+
                             <h2 class="table__title">
                                 <a th:href="@{'/bai-dang/'+ ${post.id}}" th:text="${post.title}">
                                     4 bài học sau khi xem phim tài liệu The VietNam war
@@ -100,15 +114,21 @@
                     Tải thêm
                 </button>
             </div>
-            <div class="modal__edit">
+            <span th:if="${userInf}!=null">
+                <div class="modal__edit" th:if="${user.userName} == ${userInf.username}">
                 <img src="/static/homepage/img/avt.jpg" alt="" class="avt modal__avt">
+
                 <div class="modal__form">
-                    <span>Email</span>
-                    <div class="modal__input">PhanViet@gmail.com</div>
+                    <span>Tên đăng nhập</span>
+                    <div class="modal__input" name ="username" th:text="${userInf.username}">VietDepTraiBoDoi</div>
                 </div>
                 <div class="modal__form">
-                    <span>Tên hiển thị</span>
-                    <div class="modal__input" contenteditable="true">VietDepTraiBoDoi</div>
+                    <span>Tên đầy đủ</span>
+                    <div class="modal__input" name="fullname" contenteditable="true" th:text="${userInf.fullName}">VietDepTraiBoDoi</div>
+                </div>
+                <div class="modal__form">
+                    <span>Email</span>
+                    <div class="modal__input" th:text="${userInf.email}">PhanViet@gmail.com</div>
                 </div>
                 <button class="btn modal__btn shadow__personal-page-50">Đổi mật khẩu</button>
                 <form id="form-psw" class="modal__change-psw">
@@ -120,13 +140,13 @@
                     <div class="modal__form">
                         <label for="password" class="form-label">Mật khẩu mới</label>
                         <input id="password" name="password" type="password" class="modal__input"
-                            placeholder="********">
+                               placeholder="********">
                         <span class="form-message"></span>
                     </div>
                     <div class="modal__form">
                         <label for="password_confirmation" >Xác nhận mật khẩu mới</label>
                         <input id="password_confirmation" name="password_confirmation" type="password"
-                            class="modal__input" placeholder="********">
+                               class="modal__input" placeholder="********">
                         <span class="form-message"></span>
                     </div>
                 </form>
@@ -135,6 +155,8 @@
                     <button class="btn modal__cancel-btn shadow__personal-page-25">Hủy bỏ</button>
                 </div>
             </div>
+            </span>
+
         </div>
         <footer class="footer">
             <div class="footer-info">
@@ -190,7 +212,8 @@
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script src="/static/homepage/JS/headerFeature.js"></script>
 <script src="/static/homepage/JS/personal.js"></script>
-<script src="/static/homepage/validation/main.js"></script>
+<script src="/static/homepage/JS/main.js"></script>
+<script src="/static/homepage/JS/searchBtn.js"></script>
 <script>
     Validator({
         form: '#form-psw',
@@ -206,5 +229,67 @@
         }
     });
 </script>
+<script>
+    var saveBtn = document.querySelector('.modal__save .modal__save-btn')
+    saveBtn.onclick = function (){
+        var fullname = document.querySelector('div[name="fullname"]').innerHTML
+        var userName = document.querySelector('div[name="username"]').innerHTML
+        var password = document.querySelector('input[name="password"]').value
+        var oldpassword = document.querySelector('input[id ="modal__input"]').value
+        var data = {
+            userName : userName,
+            fullname : fullname,
+            newPassword : password,
+            password : oldpassword
+        }
+        console.log(data)
+        updateUser(data)
+    }
+    function updateUser(data, callback){
+        var options = {
+            method : 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body : JSON.stringify(data)
+        };
+        fetch("http://localhost:8080/api/user", options)
+            .then(function (response){
+                console.log(response)
+                // window.location.href = "http://localhost:8080/quan-tri/trang-chu/nguoi-dung?page=1&limit=5"
+                return response.json()
+            })
+            .then(callback)
+    }
+</script>
+<script>
+    var btnDeletes = document.querySelectorAll('#delete');
+    btnDeletes.forEach(btnDelete =>{
+        btnDelete.onclick = function (){
+            const inf = btnDelete.closest('.table_icon')
+            var id = inf.getAttribute('id')
+            var arr = []
+            arr.push(id)
+            console.log(arr);
 
+            deletePost(arr)
+        }
+    })
+    function deletePost(data, callback){
+        var options = {
+            method : 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body : JSON.stringify(data)
+        };
+        fetch("http://localhost:8080/api/post", options)
+            .then(function (response){
+                console.log(response)
+                // window.location.href = "http://localhost:8080/quan-tri/role"
+                return response.json()
+            })
+            .then(callback)
+    }
+</script>
 </html>

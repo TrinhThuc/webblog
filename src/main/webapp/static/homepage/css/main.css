@@ -384,6 +384,7 @@
     align-items: center;
     cursor: pointer;
     overflow: hidden;
+    margin-right: 20px;
 }
 
 .header__search-icon i {
@@ -586,6 +587,7 @@
 
 .container__post-content {
     display: flex;
+    width: 100%;
 }
 
 .container__post-user-avt {
@@ -786,7 +788,6 @@
 .container__post-content--medium {
     margin-top: 16px;
     flex-direction: column;
-    justify-content: space-between;
     padding: 0 4px;
 }
 
@@ -883,4 +884,8 @@
 
 .thank-you-icon {
     color: red;
+}
+
+.header__search-bar .fas.fa-search {
+    cursor: pointer;
 }

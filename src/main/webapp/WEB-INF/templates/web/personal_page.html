@@ -52,10 +52,10 @@
             </div>
             <div class="container__content appear-block">
                 <div class="content__header shadow__personal-page-25">
-                    <a th:href="@{'/nguoi-dung/'+ ${userInf.username} + '?tab=createdPost'}">
+                    <a th:href="@{'/nguoi-dung/'+ ${user.userName} + '?tab=createdPost'}">
                         <span class="content__header-choose active">Bài viết</span>
                     </a>
-                    <a th:href="@{'/nguoi-dung/'+ ${userInf.username} + '?tab=savedPost'}">
+                    <a th:href="@{'/nguoi-dung/'+ ${user.userName} + '?tab=savedPost'}">
                         <span class="content__header-choose">Bài viết đã lưu</span>
                     </a>
 
@@ -70,9 +70,12 @@
                             <div class="item__head">
                                 <h4 class="table__tag" th:text="${post.categoryDTO.name}"
                                     th:if="${post.categoryDTO} != null">Quan điểm - tranh luận </h4>
-                                <div class="table_icon" th:id="${post.id}">
-                                    <a href="" id="modify"><i class="fa fa-pen"></i></a>
-                                    <a   id="delete"> <i class="fa fa-trash-can"></i></a>
+                                <div class="table_icon" th:id="${post.id}" th:if="${userInf} !=null">
+                                    <div th:if="${userInf.username} == ${post.createdBy}">
+                                        <a href="" id="modify"><i class="fa fa-pen"></i></a>
+                                        <a   id="delete"> <i class="fa fa-trash-can"></i></a>
+                                    </div>
+
                                 </div>
                             </div>
 

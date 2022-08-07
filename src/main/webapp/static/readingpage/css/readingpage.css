@@ -5,7 +5,7 @@ body {
 }
 
 .content-readpage {
-    margin-top: 100px;
+    margin-top: 50px;
     padding-left: 22%;
     padding-right: 10%;
     display: flex;
@@ -64,7 +64,6 @@ body {
 
 .content-read>p {
     text-indent: 40px;
-    /* text-align: justify; */
 }
 
 .content-read>hr {
@@ -104,7 +103,9 @@ body {
     font-size: 22px;
 }
 
+
 /* slider section */
+
 .slick-slider {
     display: flex !important;
 }
@@ -119,7 +120,7 @@ body {
     border: none;
     background: rgba(22, 22, 22, .1);
     transition: background 0.3s ease-in-out;
-    box-shadow: 0 10px 15px -3pxrgba(47, 181, 250, .05), 0 4px 6px -2px rgba(47, 181, 250, .025) !important;
+    box-shadow: 0 10px 15px -3px rgba(47, 181, 250, .05), 0 4px 6px -2px rgba(47, 181, 250, .025) !important;
 }
 
 .slick-arrow i {
@@ -282,15 +283,14 @@ body {
 
 .content-readpage_right {
     height: 400px;
-    padding-top: 60px;
     margin-left: 5%;
     text-align: center;
     position: sticky;
-    top: 0;
+    top: 25%;
     left: 75%;
 }
 
-.writer>#notice {
+.writer #notice {
     padding-bottom: 8px;
     color: rgb(158, 152, 152);
     font-size: 18px;
@@ -311,24 +311,24 @@ body {
     transition: all 0.5s;
 }
 
-.writer>#name {
+.writer #name {
     margin-top: 15px;
     margin-bottom: 10px;
 }
 
-#name>a {
+#name a {
     text-decoration: none;
     color: rgb(158, 142, 142);
     font-size: 20px;
     text-transform: capitalize;
 }
 
-#name>a:hover {
+#name a:hover {
     color: rgb(90, 132, 132);
     text-decoration: underline;
 }
 
-.writer>button {
+.writer button {
     width: 90px;
     font-size: 18px;
     min-height: 35px;
@@ -338,11 +338,47 @@ body {
     color: rgb(158, 142, 142);
 }
 
-.writer>button:hover {
+.writer button:hover {
     background-color: aliceblue;
     font-style: italic;
     cursor: pointer;
     color: rgb(90, 132, 132);
+}
+
+.change {
+    font-size: 16px;
+    display: flex;
+}
+
+#change_modify {
+    width: 60px;
+    height: 38px;
+    padding-top: 2px;
+    color: rgb(180, 187, 194);
+    border: 0.5px solid rgb(180, 187, 194);
+    margin-right: 10px;
+    border-radius: 5px;
+}
+
+#change_delete {
+    color: rgb(197, 111, 111);
+    width: 60px;
+    height: 38px;
+    padding-top: 2px;
+    border-radius: 5px;
+    border: 0.5px solid rgb(218, 26, 26);
+}
+
+#change_modify:hover {
+    cursor: pointer;
+    color: rgb(145, 137, 137);
+    background-color: rgb(205, 200, 200);
+}
+
+#change_delete:hover {
+    cursor: pointer;
+    color: rgb(120, 29, 29);
+    background-color: rgb(216, 62, 62)
 }
 
 body>hr {

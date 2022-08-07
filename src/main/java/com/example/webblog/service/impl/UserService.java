@@ -112,7 +112,7 @@ public class UserService implements IUserService {
         List<UserEntity> entities = userRepository.findAll(pageable).getContent();
         for (UserEntity user : entities) {
             UserDTO userDTO = userConverter.toDto(user);
-            List<PostEntity> posts = postRepository.findAllByCreatedBy(user.getUserName());
+            List<PostEntity> posts = postRepository.findAllByCreatedByOrderByCreatedDate(user.getUserName());
             userDTO.setPostEntities(posts);
             models.add(userDTO);
         }

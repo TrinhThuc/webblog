@@ -5,14 +5,17 @@ const prevBtn = document.querySelector('.prevBtn');
 const nextBtn = document.querySelector('.nextBtn');
 const lastBtn = document.querySelector('.lastBtn');
 const paginationBar = document.querySelector('.container__pagination');
-const totalPages = document.querySelector('.container__pagination__total-page');
-
-const pagination = {
+const pagination = document.querySelector('.container__pagination__total-page');
+// const page = 2;
+var url ;
+const exercutePaginationRender = {
     currentIndex: 0,
     currentPage: 0,
-    paginations: function () {
-        if (totalPages) {
-            const pages = totalPages.getAttribute('value');
+
+    
+    getTotalPage: function () {
+        if (pagination) {
+            const pages = pagination.getAttribute('totalPage');
             let pagesArray = [];
             for (let i = 1; i <= pages; ++i) {
                 pagesArray.push(i);
@@ -21,9 +24,16 @@ const pagination = {
         }
     },
 
+    getCurrentPage: function() {
+        const currentPage = pagination.getAttribute('currentPage');
+        return parseInt(currentPage);
+        // return this.currentIndex = currentPages;
+     },
+
     render: function () {
-        if (this.paginations()) {
-            const htmls = this.paginations().map((pagination, index) => {
+        this.currentIndex = this.getCurrentPage();
+        if (this.getTotalPage()) {
+            const htmls = this.getTotalPage().map((pagination, index) => {
                 return `
                 <li class="container__pagination-item ${index === this.currentIndex ? 'active' : ''}" data-index="${index}">${pagination}</li>
             `;
@@ -40,24 +50,35 @@ const pagination = {
         }
     },
 
+    setUrl : function (data){
+        url = data
+    },
+
+    getUrl : function (){
+        return url;
+    },
+
+
+
     handleEvents: function () {
         nextBtn.onclick = function () {
-            pagination.nextPage();
+            exercutePaginationRender.nextPage();
         }
 
         //Xu ly khi bam vao nut prev page
         prevBtn.onclick = function () {
-            pagination.prevPage();
+            exercutePaginationRender.prevPage();
         }
 
         //Xu ly khi bam vao nut last page
         lastBtn.onclick = function () {
-            pagination.lastPage();
+            exercutePaginationRender.lastPage();
         }
+
 
         //Xu ly khi bam vao nut first page
         firstBtn.onclick = function () {
-            pagination.firstPage();
+            exercutePaginationRender.firstPage();
         }
 
         //Lang nghe hanh vi click vao pagination list
@@ -66,24 +87,23 @@ const pagination = {
             if (!e.target.classList.contains('container__pagination-item')) return;
 
             const paginationNode = e.target.closest('.container__pagination-item:not(.active)');
-            pagination.currentPage = parseInt(e.target.dataset.index);
-
-            // let hrefIndexPage = pagination.currentPage + 1;
-            // window.location.href = 'localHost' + hrefIndexPage;
-
-            pagination.currentIndex = Number(paginationNode.dataset.index);
-            pagination.render();
+            exercutePaginationRender.currentPage = parseInt(e.target.dataset.index);
+            exercutePaginationRender.currentIndex = Number(paginationNode.dataset.index);
+            exercutePaginationRender.render();
 
             if (paginationNode) {
-                pagination.currentIndex = Number(paginationNode.dataset.index);
-                pagination.render();
+                exercutePaginationRender.currentIndex = Number(paginationNode.dataset.index);
+                exercutePaginationRender.render();
             }
+            var indexNextPage = Number(paginationNode.dataset.index) + 1
+            console.log(exercutePaginationRender.getUrl())
+            window.location.href = exercutePaginationRender.getUrl() + indexNextPage +"&limit=5"
         }
     },
     nextPage: function () {
         this.currentIndex++;
         this.currentPage++;
-        if (this.currentIndex >= this.paginations().length) {
+        if (this.currentIndex >= this.getTotalPage().length) {
             this.currentPage = 0;
             this.currentIndex = 0;
         }
@@ -96,24 +116,28 @@ const pagination = {
         this.currentPage--;
 
         if (this.currentIndex < 0) {
-            this.currentPage = this.paginations().length - 1;
-            this.currentIndex = this.paginations().length - 1;
+            this.currentPage = this.getTotalPage().length - 1;
+            this.currentIndex = this.getTotalPage().length - 1;
         }
 
         this.render();
     },
 
     lastPage: function () {
-        this.currentIndex = this.paginations().length - 1;
+        this.currentIndex = this.getTotalPage().length - 1;
+        this.currentPage = this.getTotalPage().length - 1;
         this.render();
     },
 
     firstPage: function () {
         this.currentIndex = 0;
+        this.currentPage = 0;
         this.render();
     },
 
     start: function() {
+        this.currentIndex = this.getCurrentPage();
+        this.currentPage = this.getCurrentPage();
         this.render();
         this.renderPagi();
         
@@ -122,4 +146,4 @@ const pagination = {
     }
 }
 
-pagination.start();
+exercutePaginationRender.start();

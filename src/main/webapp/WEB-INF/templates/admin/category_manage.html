@@ -243,7 +243,7 @@
         fetch("http://localhost:8080/api/category/"+data.id, options)
             .then(function (response){
                 console.log(response)
-                // window.location.href = "http://localhost:8080/quan-tri/role"
+                window.location.href = "/quan-tri/the-loai"
                 return response.json()
             })
             .then(callback)
@@ -259,7 +259,7 @@
         fetch("http://localhost:8080/api/category", options)
             .then(function (response){
                 console.log(response)
-                // window.location.href = "http://localhost:8080/quan-tri/role"
+                window.location.href = "/quan-tri/the-loai"
                 return response.json()
             })
             .then(callback)
@@ -275,7 +275,7 @@
         fetch("http://localhost:8080/api/category", options)
             .then(function (response){
                 console.log(response)
-                // window.location.href = "http://localhost:8080/quan-tri/trang-chu/nguoi-dung?page=1&limit=5"
+                window.location.href = "/quan-tri/the-loai"
                 return response.json()
             })
             .then(callback)

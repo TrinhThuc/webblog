@@ -349,7 +349,7 @@
                         <button class="btn lastBtn">
                             <i class="fa-solid fa-angles-right container__pagination-icon"></i>
                         </button>
-                        <input class="container__pagination__total-page" type="hidden" th:value="${model.totalPage}">
+                        <input class="container__pagination__total-page" type="hidden" th:totalPage="${model.totalPage}" th:currentPage="${model.page}-1">
                     </div>
                 </div>
             </div>
@@ -433,7 +433,7 @@
         fetch("http://localhost:8080/api/admin/user/"+data.id, options)
             .then(function (response){
                 console.log(response)
-                // window.location.href = "http://localhost:8080/quan-tri/trang-chu/nguoi-dung?page=1&limit=5"
+                window.location.href = "/quan-tri/trang-chu/nguoi-dung?page=1&limit=5"
                 return response.json()
             })
             .then(callback)
@@ -450,7 +450,7 @@
         fetch("http://localhost:8080/api/admin/user", options)
             .then(function (response){
                 console.log(response)
-                // window.location.href = "http://localhost:8080/quan-tri/trang-chu/nguoi-dung?page=1&limit=5"
+                window.location.href = "/quan-tri/trang-chu/nguoi-dung?page=1&limit=5"
                 return response.json()
             })
             .then(callback)
@@ -466,7 +466,7 @@
         fetch("http://localhost:8080/api/admin/user", options)
             .then(function (response){
                 console.log(response)
-                // window.location.href = "http://localhost:8080/quan-tri/trang-chu/nguoi-dung?page=1&limit=5"
+                window.location.href = "/quan-tri/trang-chu/nguoi-dung?page=1&limit=5"
                 return response.json()
             })
             .then(callback)

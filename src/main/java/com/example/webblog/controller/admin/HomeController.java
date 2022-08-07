@@ -82,7 +82,7 @@ public class HomeController {
         PostDTO model = new PostDTO();
         model.setPage(page);
         model.setLimit(limit);
-        Pageable pageable = PageRequest.of(page-1,limit);
+        Pageable pageable = PageRequest.of(page-1,limit, Sort.by(Sort.Direction.DESC, "createdDate"));
         List<PostDTO> Posts = postService.findAll(pageable);
         Integer i= (page-1)*limit +1;
         for(PostDTO postDTO : Posts){
@@ -90,7 +90,7 @@ public class HomeController {
             i++;
         }
         model.setListResult(Posts);
-        model.setTotalItem(userService.getTotalItem());
+        model.setTotalItem(postService.getTotalItem());
         model.setTotalPage((int) Math.ceil((double) model.getTotalItem() / model.getLimit()));
         ModelAndView mav = new ModelAndView("admin/posts-manage");
         mav.addObject("model", model);

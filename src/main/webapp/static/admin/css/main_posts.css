@@ -63,9 +63,6 @@
     font-size: 2rem;
 }
 
-.container__table-row .icon:hover {
-    cursor: pointer;
-}
 
 .container__table-row th {
     font-size: 1.6rem;
@@ -84,15 +81,33 @@
 
 .container__confirm {
     border: 1px solid var(--primary-color);
-    margin: 0 50px 24px auto;
+    position: absolute;
     width: 150px;
+    bottom: 28px;
     padding: 8px 16px;
     border-radius: 20px;
     font-size: 1.6rem;
     font-weight: 500;
+    right: 120px;
     color: var(--primary-color);
 }
 
 .container__confirm:hover {
     cursor: pointer;
+}
+
+.container__table-status {
+
+}
+
+.icon_status {
+    font-size: 2rem;
+}
+
+.icon.success {
+    color: #28a745;
+}
+
+.icon.error {
+    color: #dc3545;
 }

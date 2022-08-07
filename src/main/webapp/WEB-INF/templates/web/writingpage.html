@@ -20,26 +20,102 @@
         <div class="main">
             <header class="header">
                 <div class="header__content">
-                    <div class="header__blog-avatar">
-                        <a href="#">
+                    <div class="header__blog-logo">
+                        <a href="/">
                             <img src="/static/writingpage/img/logo-blog.png" alt="" />
                         </a>
                     </div>
                     <div class="header__blog-icon">
-                        <div class="header__icon__notificartion">
-                            <a href="#">
+                        <div class="header__notification-bell">
+                            <div class="header__icon__notificartion">
                                 <i class="fa-solid fa-bell"></i>
-                            </a>
+                            </div>
+                            <div class="header__modal__notification">
+                                <div class="modal__notification__tittle">
+                                    <h2>Thông báo</h2>
+                                </div>
+                                <div class="modal__notification__board">
+                                    <div class="notification__board__news-avatar">
+                                        <div class="board__item-avatar">
+                                            <img src="/static/writingpage/img/avt.jpg
+                                            " alt="">
+                                        </div>
+                                    </div>
+
+                                    <div class="notification__board__news-content">
+                                        <div class="board__item__content">
+                                            Spiderum Team vừa đăng một bài viết mới: "Chào Đón Website "Người Trong Muôn Nghề” Chính Thức Ra Mắt"
+                                        </div>
+
+                                        <div class="board__item__posted-time">
+                                            20 tháng 7
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
                         </div>
-                        <div class="header__icon__user-avatar">
-                            <a href="#">
+                        <div class="header__user-navbar">
+                            <div class="header__icon__user-navbar">
                                 <img src="/static/writingpage/img/avt.jpg" alt="" />
-                            </a>
+                            </div>
+                            <div class="header__modal__user-navbar">
+                                <div class="modal__user-navbar__information-wrapper">
+                                    <div class="modal__user-navbar__avatar">
+                                        <img src="/static/writingpage/img/avt.jpg
+                                            " alt="">
+                                    </div>
+                                    <div class="modal__user-navbar__information">
+                                        <div class="user-navbar__display-name"  th:text="${userInf.username}">
+                                            Hòa Vũ
+                                        </div>
+                                        <div class="user-navbar__user-name">
+                                            @lamzii
+                                        </div>
+                                        <a th:href="@{'/nguoi-dung/'+ ${userInf.username}}">
+                                            Xem trang cá nhân
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="modal__user-navbar__feature">
+                                    <ul class="user-navbar__items">
+                                        <a th:href="@{'/nguoi-dung/'+ ${userInf.username}}">
+                                            <li class="user-navbar__item">
+                                                <i class="fa-solid fa-pen"></i>
+                                                Bài viết của tôi
+                                            </li>
+                                        </a>
+                                        <a href="#">
+                                            <li class="user-navbar__item">
+                                                <i class="fa-solid fa-bookmark"></i>
+                                                Đã lưu
+                                            </li>
+                                        </a>
+                                        <a href="#">
+                                            <li class="user-navbar__item">
+                                                <i class="fa-solid fa-gear"></i>Tùy chỉnh tài khoản
+                                            </li>
+                                    </ul>
+                                    </a>
+                                </div>
+                                <div class="modal__user-navbar__sign-off">
+                                    <a th:href="@{/dang-xuat}">
+                                        <button class="user-navbar__sign-off__btn">
+                                        <span>
+                                            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                                            Đăng xuất
+                                        </span>
+                                        </button>
+                                    </a>
+
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </header>
-            <div class="container">
+            <div class="container" th:if="${post}== null">
                 <div class="writing-blog__container">
                     <div
                         class="writing-blog__items writing_blog__title"
@@ -60,7 +136,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="modal">
+                <div class="modal__writing-page-submition-form" >
                     <div class="modal__items">
                         <div class="modal__item modal__blog-post-description">
                             <p class="modal__text-label">
@@ -89,7 +165,81 @@
                                         class="blog-post-genre select-box__options"
 
                                     >
-                                        <div th:each="category : ${Categories}">
+
+                                            <div th:id="${category.id}" th:each="category : ${categories}" class="select-box__option ">
+                                                <input
+                                                        type="radio"
+                                                        name="genre"
+                                                        th:id="${category.id}"
+                                                        class="select-box__option__radio"
+                                                />
+                                                <label th:for="${category.id}" th:text="${category.name}">
+                                                </label>
+                                            </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal__action-warpper">
+                            <button class="modal__return-btn">Quay lại</button>
+                            <button class="modal__submit-btn" id ="createPostBtn">Tạo</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container" th:if="${post}!= null">
+                <div class="writing-blog__container">
+                    <div
+                            class="writing-blog__items writing_blog__title"
+                            contenteditable="true"
+                            placeholder="Tiêu đề bài viết..." name ="title"
+                            th:text="${post.title}"
+                    ></div>
+                    <div
+                            class="writing-blog__items writing-blog__editor-wrapper"
+                    >
+                        <div name = "content"
+                             class="writing-blog__editor editor"
+                             id="content"  placeholder="Nội dung bài viết"
+                        ></div>
+                    </div>
+                    <div class="writing-blog__submit-btn">
+                        <a href="#">
+                            <button>SUBMIT</button>
+                        </a>
+                    </div>
+                </div>
+                <div class="modal__writing-page-submition-form" >
+                    <div class="modal__items">
+                        <div class="modal__item modal__blog-post-description">
+                            <p class="modal__text-label">
+                                Mô tả bài viết <em>(Không bắt buộc)</em>
+                            </p>
+                            <textarea
+                                    name="shortDescription"
+                                    id="shortDescription"
+                                    cols="30"
+                                    rows="10"
+                            th:text="${post.shortDescription}"></textarea>
+                        </div>
+
+                        <div class="modal__item modal__blog-post-genre">
+                            <p class="blog-post-genre modal__text-label">
+                                Chọn danh mục
+                            </p>
+                            <div class="blog-post-genre modal__drop-down-list">
+                                <div
+                                        class="blog-post-genre modal__selected-choice"
+                                th:text="${post.categoryDTO.name}">
+                                    -- Chọn danh mục --
+                                </div>
+                                <div class="blog-post-genre modal__select-box" >
+                                    <div
+                                            class="blog-post-genre select-box__options"
+
+                                    >
+                                        <div th:each="category : ${categories}">
                                             <div th:id="${category.id}" class="select-box__option ">
                                                 <input
                                                         type="radio"
@@ -112,9 +262,83 @@
                         </div>
                     </div>
                 </div>
+                <input type="hidden" th:value="${post.content}" name="post_content" th:id="${post.id}">
             </div>
         </div>
     </body>
+    <script>
+        var id = document.querySelector('input[name = "post_content"]').getAttribute('id')
+        var createPostBtn = document.querySelector('#createPostBtn')
+        if(id != null){
+            var content = document.querySelector('input[name = "post_content"]').value
+            var contentTag = document.querySelector('#content')
+            contentTag.innerHTML = content
+            createPostBtn.onclick = function (){
+                var title = document.querySelector('div[name="title"]').textContent
+                var shortDescription = document.querySelector('textarea[name="shortDescription"]').value
+                var categoryId = result
+                var post = {
+                    id : id,
+                    title : title,
+                    content : content,
+                    shortDescription : shortDescription,
+                    isActive : true,
+                    categoryId : result
+                }
+                console.log(post);
+                updatePost(post)
+            }
+        }
+        else {
+            var title = document.querySelector('div[name="title"]').textContent
+            var content = document.querySelector('div[name="content"]').innerHTML
+            var shortDescription = document.querySelector('textarea[name="shortDescription"]').value
+            var categoryId = result
+            var post = {
+                title : title,
+                content : content,
+                shortDescription : shortDescription,
+                categoryId : result
+            }
+            createPost(post)
+            console.log(post)
+        }
+
+
+
+        function updatePost(data, callback){
+            var options = {
+                method : 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body : JSON.stringify(data)
+            };
+            fetch("http://localhost:8080/api/post/"+data.id, options)
+                .then(function (response){
+                    console.log(response)
+                    // window.location.href = "http://localhost:8080/bai-dang/viet-bai"
+                    return response.json()
+                })
+                .then(callback)
+        }
+        function createPost(data, callback){
+            var options = {
+                method : 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body : JSON.stringify(data)
+            };
+            fetch("http://localhost:8080/api/post", options)
+                .then(function (response){
+                    console.log(response)
+                    // window.location.href = "http://localhost:8080/bai-dang/viet-bai"
+                    return response.json()
+                })
+                .then(callback)
+        }
+    </script>
     <script src="/static/writingpage/ckeditor5-build-balloon/ckeditor.js"></script>
 <!--    <script src="/static/writingpage/ckfinder/ckfinder.js"></script>-->
     <script src="/static/writingpage/Javascript/main.js"></script>

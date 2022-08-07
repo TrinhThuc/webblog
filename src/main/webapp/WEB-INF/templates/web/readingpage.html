@@ -140,7 +140,9 @@
                 </div>
                 <div th:if="${userInf.username} == ${post.createdBy}" >
                     <div class="change">
-                        <button id="change_modify">Sửa</button>
+                        <a th:href="@{'/bai-dang/sua-bai/'+ ${post.id}}">
+                            <button id="change_modify">Sửa</button>
+                        </a>
                         <button id="change_delete">Xóa</button>
                     </div>
                 </div>

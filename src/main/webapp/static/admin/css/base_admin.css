@@ -55,6 +55,7 @@
     min-height: 100%;
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 .container__top {
@@ -141,6 +142,7 @@
 .container__pagination-item {
     padding: 4px 10px;
     margin: 10px;
+    cursor: pointer;
 }
 
 .container__pagination-item:hover {

@@ -47,6 +47,7 @@
 .container__wrapper.active {
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 .container__top {

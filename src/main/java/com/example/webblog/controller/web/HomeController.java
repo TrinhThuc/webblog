@@ -111,13 +111,29 @@ public class HomeController {
     }
 
     @GetMapping("/bai-dang/viet-bai")
-    public ModelAndView writingPage() {
-        CategoryDTO categoryDTO = new CategoryDTO();
-        categoryDTO.setListResult(categoryService.getAll());
+    public ModelAndView writingPost(Principal principal) {
         ModelAndView mav = new ModelAndView("web/writingpage");
-        mav.addObject("Categories", categoryDTO.getListResult());
+        if(principal != null) {
+            MyUser user = (MyUser) ((Authentication) principal).getPrincipal();
+            mav.addObject("userInf", user);
+        }
         List<CategoryDTO> categoryDTOS = categoryService.getAll();
         mav.addObject("categories", categoryDTOS);
+        return mav;
+
+    }
+
+    @GetMapping("/bai-dang/sua-bai/{id}")
+    public ModelAndView updatePost(@PathVariable(name= "id") Long id, Principal principal) {
+        PostDTO postDTO = postService.findById(id);
+        ModelAndView mav = new ModelAndView("web/writingpage");
+        if(principal != null) {
+            MyUser user = (MyUser) ((Authentication) principal).getPrincipal();
+            mav.addObject("userInf", user);
+        }
+        List<CategoryDTO> categoryDTOS = categoryService.getAll();
+        mav.addObject("categories", categoryDTOS);
+        mav.addObject("post", postDTO);
         return mav;
 
     }

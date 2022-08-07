@@ -21,13 +21,14 @@
     margin: 0 auto;
 }
 
-.header__blog-avatar a img {
+.header__blog-logo a img {
     width: 100px;
     height: 45px;
 }
 
 .header__blog-icon {
     display: flex;
+    position: relative;
     align-items: center;
     height: 100%;
 }
@@ -37,26 +38,205 @@
 }
 
 .header__icon__notificartion i {
-    font-size: 1.8rem;
-    color: rgb(192, 192, 192);
-    padding: 10px;
+    font-size: 2rem;
+    color: rgb(171, 199, 222);
+    padding: 10px 12px;
+    border-radius: 5px;
+    transition: background-color ease-in-out 0.3s;
 }
 
-.header__icon__notificartion:hover {
-    background-color: rgba(var(--blue-500), 0.15);
+.header__icon__notificartion i:hover {
+    background-color: rgb(255, 223, 250);
+    cursor: pointer;
+}
+
+.header__modal__notification {
+    display: none;
+    position: absolute;
+    left: -365px;
+    background-color: #fff;
+    overflow-y: scroll;
+    height: 500px;
+    width: 414px;
+    padding-top: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, .05), 0 10px 15px -3px rgba(0, 0, 0, .1), 0 4px 6px -2px rgba(0, 0, 0, .05) !important;
+}
+
+.header__modal__notification.active {
+    display: block;
+}
+
+.header__modal__notification::-webkit-scrollbar {
+    width: 8px;
+    border-radius: 0 5px 5px 0;
+}
+
+.header__modal__notification::-webkit-scrollbar-thumb {
+    background-color: rgb(255, 153, 240);
     border-radius: 5px;
 }
 
-.header__icon__user-avatar {
-    margin-left: 15px;
+.modal__notification__tittle {
+    font-size: 1.6rem;
+    margin: 20px 0 15px 20px;
 }
 
-.header__icon__user-avatar img {
-    width: 40px;
-    height: 40px;
+.modal__notification__board {
+    display: flex;
+    width: 100%;
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 15px;
+    margin-bottom: 3px;
+}
+
+.modal__notification__board:hover {
+    background-color: rgb(237, 242, 247);
+}
+
+.board__item-avatar {
+    height: 45px;
+    width: 45px;
+    border-radius: 100%;
+    overflow: hidden;
+    margin-right: 15px;
+}
+
+.notification__board__news-content {
+    font-size: 1.3rem;
+}
+
+.board__item__posted-time {
+    margin-top: 5px;
+    margin-left: 10px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: rgba(160, 174, 192, .7)
+}
+
+.header__user-navbar {
+    position: relative;
+}
+
+.header__icon__user-navbar {
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+.header__icon__user-navbar img {
+    width: 35px;
+    height: 35px;
     border-radius: 100%;
     margin: 10px;
 }
+
+.header__modal__user-navbar {
+    display: none;
+    position: absolute;
+    left: -200px;
+    background-color: #fff;
+    width: 260px;
+    padding-top: 5px;
+    border-radius: 5px;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, .05), 0 10px 15px -3px rgba(0, 0, 0, .1), 0 4px 6px -2px rgba(0, 0, 0, .05) !important;
+    font-family: Noto Sans, sans-serif;
+    overflow: hidden;
+}
+
+.header__modal__user-navbar.active {
+    display: block;
+}
+
+.modal__user-navbar__information-wrapper {
+    display: flex;
+    padding: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e3e3e3;
+}
+
+.modal__user-navbar__avatar img {
+    height: 50px;
+    width: 50px;
+    border-radius: 10px;
+    cursor: default;
+}
+
+.modal__user-navbar__information {
+    margin-left: 20px;
+}
+
+.user-navbar__display-name {
+    font-weight: 700;
+    font-size: 1.6rem;
+    margin-bottom: 6px;
+    cursor: default;
+}
+
+.user-navbar__user-name {
+    font-size: 1.3rem;
+    font-weight: 500;
+    cursor: default;
+    color: rgba(113, 128, 150, .6);
+}
+
+.modal__user-navbar__information a {
+    border: 1px solid #e3e3e3;
+    padding: 7px 15px;
+    margin-top: 6px;
+    display: block;
+    font-size: 1.3rem;
+    font-weight: 500;
+    border-radius: 20px;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.modal__user-navbar__information a:hover {
+    background-color: #eeeeee;
+}
+
+.user-navbar__item {
+    padding: 20px 25px;
+    font-size: 1.6rem;
+    transition: background-color ease-in-out 0.2s;
+}
+
+.user-navbar__item:hover {
+    background-color: #eeeeee;
+    cursor: pointer;
+}
+
+.user-navbar__item i {
+    color: #969696;
+    margin-right: 10px;
+}
+
+.user-navbar__sign-off__btn {
+    border: none;
+    width: 100%;
+    background-color: #fff;
+    padding: 15px 25px;
+    border-top: 1px solid #e3e3e3;
+    font-size: 1.6rem;
+    transition: background-color ease-in-out 0.2s;
+}
+
+.user-navbar__sign-off__btn:hover {
+    background-color: #eeeeee;
+    cursor: pointer;
+}
+
+.user-navbar__sign-off__btn span {
+    display: block;
+    text-align: left;
+}
+
+.user-navbar__sign-off__btn i {
+    color: #969696;
+    margin-right: 8px;
+}
+
+/* END: modal */
 
 
 .writing-blog__container {
@@ -66,11 +246,12 @@
 }
 
 .writing_blog__title {
+    margin-top: 30px !important;
     border: none;
     width: 100%;
     padding: 15px;
-    font-size: 2.2rem;
-    line-height: 2.5rem;
+    font-size: 3rem;
+    line-height: 3.4rem;
     color: var(--text-color);
     font-weight: 600;
     overflow: hidden;
@@ -85,10 +266,6 @@
 .writing_blog__title:empty:before {
     content: attr(placeholder);
     color: rgb(192, 192, 192);
-}
-
-.writing-blog__items {
-    margin: 10px 0;
 }
 
 .writing-blog__editor-wrapper {
@@ -137,7 +314,7 @@
 }
 
 /* modal section */
-.modal {
+.modal__writing-page-submition-form {
     padding-top: 50px;
     position: fixed;
     top: 0;
@@ -159,7 +336,7 @@
         opacity 0.2s ease-in-out;
 }
 
-.modal.visible {
+.modal__writing-page-submition-form.visible {
     visibility: visible;
     opacity: 1;
 }
@@ -173,7 +350,6 @@
 }
 
 .modal__item textarea,
-.modal__item.modal__input-box,
 .modal__item select {
     width: 100%;
 }
@@ -195,7 +371,7 @@
 
 .modal__blog-post-description textarea {
     resize: none;
-    height: 70px !important;
+    height: 170px !important;
     padding: 10px;
     font-size: 1.4rem;
     color: rgb(74, 85, 104);
@@ -204,39 +380,6 @@
     outline: none;
     font-family: 'Montserrat', Arial, Helvetica, sans-serif;
     background-color: #fff;
-}
-
-.modal__input-box {
-    border: 1px solid #e2e8f0;
-    padding: 15px;
-    background-color: #fff;
-    position: relative;
-}
-
-.modal__input-box::before {
-    content: "";
-    background-color: #ccc;
-    height: 20px;
-    width: 2px;
-    left: 225px;
-    top: 14px;
-    position: absolute;
-}
-
-.modal__input-box i {
-    font-size: 1.4rem;
-    margin-right: 0 10px;
-}
-
-.modal__input-box input {
-    border: none;
-    outline: none;
-    border-radius: 0;
-    font-size: 1.4rem;
-    margin-left: 10px;
-    font-weight: 500;
-    color: rgb(74, 85, 104);
-    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
 }
 
 /* modal selection box */
@@ -353,6 +496,7 @@
 .modal__return-btn:hover {
     background-color: rgba(19, 161, 243, 0.7);
     color: #fff;
+    border: none;
 }
 
 .modal__submit-btn {

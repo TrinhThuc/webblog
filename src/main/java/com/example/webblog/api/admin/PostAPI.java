@@ -17,7 +17,9 @@ public class PostAPI {
 
     @PutMapping("api/post/{id}")
     public PostDTO updatePost(@RequestBody PostDTO postDTO, @PathVariable("id")long id){
-        postDTO.setId(id);
+        PostDTO dto = postService.findById(postDTO.getId());
+        if(dto.isActive())
+        postDTO.setActive(true);
         return postService.save(postDTO);
     }
 

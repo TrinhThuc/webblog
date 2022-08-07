@@ -81,7 +81,7 @@
                 <button class="btn lastBtn">
                     <i class="fa-solid fa-angles-right container__pagination-icon"></i>
                 </button>
-                <input class="container__pagination__total-page" type="hidden" th:value="${model.totalPage}">
+                <input class="container__pagination__total-page" type="hidden" th:totalPage="${model.totalPage}" th:currentPage="${model.page}-1">
             </div>
         </div>
         <footer class="footer">

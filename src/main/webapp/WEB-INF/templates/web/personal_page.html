@@ -72,8 +72,8 @@
                                     th:if="${post.categoryDTO} != null">Quan điểm - tranh luận </h4>
                                 <div class="table_icon" th:id="${post.id}" th:if="${userInf} !=null">
                                     <div th:if="${userInf.username} == ${post.createdBy}">
-                                        <a href="" id="modify"><i class="fa fa-pen"></i></a>
-                                        <a   id="delete"> <i class="fa fa-trash-can"></i></a>
+                                        <a th:href="@{'/bai-dang/sua-bai/'+ ${post.id}}" id="modify"><i class="fa fa-pen"></i></a>
+                                        <a  href="" id="delete"> <i class="fa fa-trash-can"></i></a>
                                     </div>
 
                                 </div>
@@ -259,7 +259,7 @@
         fetch("http://localhost:8080/api/user", options)
             .then(function (response){
                 console.log(response)
-                // window.location.href = "http://localhost:8080/quan-tri/trang-chu/nguoi-dung?page=1&limit=5"
+                window.location.href = "/nguoi-dung/"+data.userName
                 return response.json()
             })
             .then(callback)
@@ -289,7 +289,7 @@
         fetch("http://localhost:8080/api/post", options)
             .then(function (response){
                 console.log(response)
-                // window.location.href = "http://localhost:8080/quan-tri/role"
+                window.location.href = "/nguoi-dung/"+data.userName
                 return response.json()
             })
             .then(callback)

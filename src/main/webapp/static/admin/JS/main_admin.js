@@ -257,7 +257,6 @@ const app = {
             }
         })
         console.log(array);
-        return array;
     },
 
     sendStatusBlock: function (value) {

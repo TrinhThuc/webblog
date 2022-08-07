@@ -1,11 +1,11 @@
         body {
             display: flex;
         }
-        
+
         .writer {
             text-align: center;
         }
-        
+
         #avatar {
             width: 150px;
             height: 150px;
@@ -13,21 +13,21 @@
             margin-left: auto;
             margin-right: auto;
         }
-        
+
         #name {
             margin-top: 20px;
             margin-bottom: 25px;
         }
-        
+
         #name>a {
             text-decoration: none;
             color: gray;
         }
-        
+
         #name>a:hover {
             color: rgb(152, 209, 220);
         }
-        
+
         .content-right {
             margin-top: 20px;
             width: 85%;
@@ -37,13 +37,13 @@
             padding: 3% 10%;
             font-size: 20px;
         }
-        
+
         .title {
             font-size: 28px;
             color: rgb(152, 209, 220);
             margin-bottom: 20px;
         }
-        
+
         .return {
             margin-left: 98%;
             width: 40px;
@@ -51,34 +51,34 @@
             border: 1px solid rgb(115, 196, 212);
             border-radius: 20px;
         }
-        
+
         .return_icon {
             font-size: 18px;
             padding-left: 12px;
             padding-top: 11px;
             color: rgb(115, 196, 212);
         }
-        
+
         .theme {
             margin-bottom: 20px;
         }
-        
+
         .theme>a {
             text-decoration: none;
             color: rgb(113, 116, 113);
             font-style: italic;
         }
-        
+
         .theme>a:hover {
             color: rgb(152, 209, 220);
         }
-        
+
         .content-right>h1 {
             text-align: center;
             margin-top: 10px;
             line-height: 40px;
         }
-        
+
         .content-right>h5 {
             font-style: italic;
             color: gray;
@@ -87,42 +87,42 @@
             line-height: 25px;
             margin-bottom: 20px;
         }
-        
+
         .content-read>#img_1 {
             display: block;
             width: 100%;
             margin: 30px auto 10px auto;
             border-radius: 3px;
         }
-        
+
         .content-read>#note_img {
             font-size: 16px;
             text-align: center;
             margin-bottom: 20px;
             color: gray;
         }
-        
+
         .content-read>p {
             text-indent: 40px;
             line-height: 25px;
         }
-        
+
         #heading_paragraph {
             font-size: 24px;
             padding-top: 20px;
             margin-bottom: 20px;
         }
-        
+
         #date {
             margin-top: 20px;
             padding-left: 85%;
         }
-        
+
         .agree {
             margin-top: 30px;
             padding-left: 83%;
         }
-        
+
         .agree>button {
             width: 150px;
             height: 50px;
@@ -132,7 +132,9 @@
             color: rgb(152, 209, 220);
             border: 1px solid rgb(152, 209, 220);
         }
-        
+
+        .agree>button:hover {}
+
         .agree>button:active {
             cursor: pointer;
             background-color: #fff;

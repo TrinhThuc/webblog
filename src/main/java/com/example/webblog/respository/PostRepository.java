@@ -13,7 +13,7 @@ import java.util.List;
 
 public interface PostRepository extends JpaRepository<PostEntity, Long>{
     PostEntity findPostEntitiesById(Long id);
-    List<PostEntity> findAllByCreatedBy(String name);
+    List<PostEntity> findAllByCreatedByOrderByCreatedDate(String name);
     Page<PostEntity> findAllByCategory_Code(String name, Pageable pageable);
     List<PostEntity> findAllByCategory_Code(String name);
 

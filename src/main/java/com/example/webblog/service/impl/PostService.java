@@ -64,7 +64,7 @@ public class PostService implements IPostService {
 	@Override
 	public List<PostDTO> findAllByAuthor(String name) {
 		List<PostDTO> postDTOS = new ArrayList<>();
-		for(PostEntity post : postRepository.findAllByCreatedBy(name)){
+		for(PostEntity post : postRepository.findAllByCreatedByOrderByCreatedDate(name)){
 			PostDTO postDTO = postConverter.toDto(post);
 			DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 			if(post.getCreatedDate() != null)

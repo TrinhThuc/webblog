@@ -48,6 +48,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //        http.authorizeRequests().antMatchers("/trang-chu").authenticated();
         http.authorizeRequests().antMatchers("/quan-tri/**").access("hasRole('ADMIN')");
 
+        http.authorizeRequests().antMatchers("/bai-dang/viet-bai", "/bai-dang/sua-bai/**").authenticated();
+
+        http.authorizeRequests().antMatchers("/api/category/**","/api/admin/post/active","/api/admin/post/remove",
+                "/api/role/**","api/admin/user").access("hasRole('ADMIN')");
+        http.authorizeRequests().antMatchers("/api/admin/post/**").authenticated();
+
         // Cấu hình cho Login Form.
         http.authorizeRequests().and().formLogin()//
                 .loginProcessingUrl("/j_spring_security_check")

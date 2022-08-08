@@ -266,42 +266,55 @@
             </div>
         </div>
     </body>
+    <script src="/static/writingpage/Javascript/submit.js"></script>
     <script>
-        var id = document.querySelector('input[name = "post_content"]').getAttribute('id')
+        var username = document.querySelector('.user-navbar__display-name').textContent
+        console.log(username)
+        var idTag = document.querySelector('input[name = "post_content"]')
         var createPostBtn = document.querySelector('#createPostBtn')
-        if(id != null){
+        if(idTag){
+            var id = idTag.getAttribute('id')
             var content = document.querySelector('input[name = "post_content"]').value
+
             var contentTag = document.querySelector('#content')
-            contentTag.innerHTML = content
+            console.log(content);
+            contentTag.innerHTML = content;
+
             createPostBtn.onclick = function (){
+                content = document.querySelector('div[name="content"]').innerHTML
                 var title = document.querySelector('div[name="title"]').textContent
                 var shortDescription = document.querySelector('textarea[name="shortDescription"]').value
-                var categoryId = result
+                var categoryId = submit.submitForm() || 1
                 var post = {
                     id : id,
                     title : title,
                     content : content,
                     shortDescription : shortDescription,
-                    isActive : true,
-                    categoryId : result
+                    categoryId : categoryId
                 }
                 console.log(post);
                 updatePost(post)
             }
         }
         else {
-            var title = document.querySelector('div[name="title"]').textContent
-            var content = document.querySelector('div[name="content"]').innerHTML
-            var shortDescription = document.querySelector('textarea[name="shortDescription"]').value
-            var categoryId = result
-            var post = {
-                title : title,
-                content : content,
-                shortDescription : shortDescription,
-                categoryId : result
+
+            console.log("fadfasdfad")
+            createPostBtn.onclick = function (){
+                var title = document.querySelector('div[name="title"]').textContent
+                var content = document.querySelector('div[name="content"]').innerHTML
+                var shortDescription = document.querySelector('textarea[name="shortDescription"]').value
+                var categoryId =  submit.submitForm() || 1
+
+                var post = {
+                    title : title,
+                    content : content,
+                    shortDescription : shortDescription,
+                    categoryId : categoryId
+                }
+                console.log(post)
+                createPost(post)
             }
-            createPost(post)
-            console.log(post)
+
         }
 
 
@@ -317,7 +330,7 @@
             fetch("http://localhost:8080/api/post/"+data.id, options)
                 .then(function (response){
                     console.log(response)
-                    // window.location.href = "http://localhost:8080/bai-dang/viet-bai"
+                    window.location.href = "/nguoi-dung/" + username
                     return response.json()
                 })
                 .then(callback)
@@ -333,16 +346,18 @@
             fetch("http://localhost:8080/api/post", options)
                 .then(function (response){
                     console.log(response)
-                    // window.location.href = "http://localhost:8080/bai-dang/viet-bai"
+                    window.location.href = "/nguoi-dung/"+ username
                     return response.json()
                 })
                 .then(callback)
         }
     </script>
+
     <script src="/static/writingpage/ckeditor5-build-balloon/ckeditor.js"></script>
-<!--    <script src="/static/writingpage/ckfinder/ckfinder.js"></script>-->
     <script src="/static/writingpage/Javascript/main.js"></script>
-    <script src="/static/homepage/JS/searchBtn.js"></script>
+
+<!--    <script src="/static/writingpage/ckfinder/ckfinder.js"></script>-->
+
 <!--    <script>-->
 <!--        let editor = BalloonEditor-->
 <!--            .create(-->

@@ -75,7 +75,6 @@
                                         <a th:href="@{'/bai-dang/sua-bai/'+ ${post.id}}" id="modify"><i class="fa fa-pen"></i></a>
                                         <a  href="" id="delete"> <i class="fa fa-trash-can"></i></a>
                                     </div>
-
                                 </div>
                             </div>
 
@@ -96,10 +95,16 @@
                             <img src="/static/homepage/img/post.jpg" alt="">
                         </a>
                         <div class="table__content">
-                            <h4 class="table__tag" th:text="${post.categoryDTO.name}"
-                                th:if="${post.categoryDTO} != null">Quan điểm - tranh luận
-
-                            </h4>
+                            <div class="item__head">
+                                <h4 class="table__tag" th:text="${post.categoryDTO.name}"
+                                    th:if="${post.categoryDTO} != null">Quan điểm - tranh luận </h4>
+                                <div class="table_icon" th:id="${post.id}" th:if="${userInf} !=null">
+                                    <div th:if="${userInf.username} == ${post.createdBy}">
+                                        <a th:href="@{'/bai-dang/sua-bai/'+ ${post.id}}" id="modify"><i class="fa fa-pen"></i></a>
+                                        <a  href="" id="delete"> <i class="fa fa-trash-can"></i></a>
+                                    </div>
+                                </div>
+                            </div>
 
                             <h2 class="table__title">
                                 <a th:href="@{'/bai-dang/'+ ${post.id}}" th:text="${post.title}">
@@ -217,6 +222,7 @@
 <script src="/static/homepage/JS/personal.js"></script>
 <script src="/static/homepage/JS/main.js"></script>
 <script src="/static/homepage/JS/searchBtn.js"></script>
+<script src="/static/homepage/JS/validator.js"></script>
 <script>
     Validator({
         form: '#form-psw',

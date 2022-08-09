@@ -75,7 +75,7 @@
             },
             body : JSON.stringify(data)
         };
-        fetch("http://localhost:8080/api/admin/post/active", options)
+        fetch("/api/admin/post/active", options)
             .then(function (response){
                 console.log(response)
                 window.location.href = "/quan-tri/bai-viet"

@@ -51,10 +51,14 @@ public class HomeController {
         List<PostDTO> listTrending = postService.findAll(pageable);
         List<PostDTO> newPost = postService.findAll(PageRequest.of(0,6,Sort.by(Sort.Direction.DESC, "createdDate")));
         List<PostDTO> listPopular = postService.findAll(pageable);
+        List<PostDTO> listSport = postService.findAllByCategory("the-thao",pageable);
+        List<PostDTO> listGame = postService.findAllByCategory("game",pageable);
         ModelAndView mav = new ModelAndView("web/homepage");
         mav.addObject("listTrending", listTrending);
         mav.addObject("newPost", newPost);
         mav.addObject("listPopular", listPopular);
+        mav.addObject("listSport",listSport);
+        mav.addObject("listGame",listGame);
         List<CategoryDTO> categoryDTOS = categoryService.getAll();
         mav.addObject("categories", categoryDTOS);
         if(principal != null) {

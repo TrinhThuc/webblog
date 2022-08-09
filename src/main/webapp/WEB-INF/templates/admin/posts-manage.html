@@ -138,7 +138,7 @@
             },
             body : JSON.stringify(data)
         };
-        fetch("http://localhost:8080/api/admin/post/active", options)
+        fetch("/api/admin/post/active", options)
             .then(function (response){
                 console.log(response)
                 window.location.href = "/quan-tri/bai-viet"
@@ -155,7 +155,7 @@
             },
             body : JSON.stringify(data)
         };
-        fetch("http://localhost:8080/api/post/remove", options)
+        fetch("/api/post/remove", options)
             .then(function (response){
                 console.log(response)
                 window.location.href = "/quan-tri/bai-viet"
@@ -172,7 +172,7 @@
             },
             body : JSON.stringify(data)
         };
-        fetch("http://localhost:8080/api/post", options)
+        fetch("/api/post", options)
             .then(function (response){
                 console.log(response)
                 window.location.href = "/quan-tri/bai-viet"

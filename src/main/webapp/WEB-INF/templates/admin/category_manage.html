@@ -240,7 +240,7 @@
             },
             body : JSON.stringify(data)
         };
-        fetch("http://localhost:8080/api/category/"+data.id, options)
+        fetch("/api/category/"+data.id, options)
             .then(function (response){
                 console.log(response)
                 window.location.href = "/quan-tri/the-loai"
@@ -256,7 +256,7 @@
             },
             body : JSON.stringify(data)
         };
-        fetch("http://localhost:8080/api/category", options)
+        fetch("/api/category", options)
             .then(function (response){
                 console.log(response)
                 window.location.href = "/quan-tri/the-loai"
@@ -272,7 +272,7 @@
             },
             body : JSON.stringify(data)
         };
-        fetch("http://localhost:8080/api/category", options)
+        fetch("/api/category", options)
             .then(function (response){
                 console.log(response)
                 window.location.href = "/quan-tri/the-loai"

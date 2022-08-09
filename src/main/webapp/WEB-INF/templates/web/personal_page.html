@@ -262,7 +262,7 @@
             },
             body : JSON.stringify(data)
         };
-        fetch("http://localhost:8080/api/user", options)
+        fetch("/api/user", options)
             .then(function (response){
                 console.log(response)
                 window.location.href = "/nguoi-dung/"+data.userName
@@ -292,7 +292,7 @@
             },
             body : JSON.stringify(data)
         };
-        fetch("http://localhost:8080/api/post", options)
+        fetch("/api/post", options)
             .then(function (response){
                 console.log(response)
                 window.location.href = "/nguoi-dung/"+data.userName

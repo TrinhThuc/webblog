@@ -146,7 +146,7 @@
                         <button id="change_delete">Xóa</button>
                     </div>
                 </div>
-
+                <input type="hidden" th:id="${post.id}" name="post_id">
             </div>
         </div>
     </div>
@@ -179,5 +179,29 @@
     var content = document.querySelector('input[name = "content"]').value
     var contentTag = document.querySelector('.content_hard')
     contentTag.innerHTML = content
+    var deleteBtn = document.querySelector('change_delete')
+    if(!deleteBtn)
+    deleteBtn.onclick = function (){
+        var id = document.querySelector('input[name = "post_id"]')
+        var ids = []
+        ids.push(id)
+        deletePost(ids)
+    }
+    function deletePost(data, callback){
+        var options = {
+            method : 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body : JSON.stringify(data)
+        };
+        fetch("/api/post", options)
+            .then(function (response){
+                console.log(response)
+                window.location.href = "/nguoi-dung/"+data.userName
+                return response.json()
+            })
+            .then(callback)
+    }
 </script>
 </html>

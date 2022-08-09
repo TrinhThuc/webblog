@@ -67,14 +67,14 @@ const app = {
         if (status == 'Xóa bài') {
             status = 'delete';
         }
-        const arr = [];
+        const ids = [];
         allUser.forEach(user => {
             if (user.querySelector('.container__table-input').checked) {
-                arr.push(user.getAttribute('id'));
+                ids.push(user.getAttribute('id'));
             }
         });
         const obj = {
-            arr: arr,
+            ids: ids,
             status: status
         }
         return obj;

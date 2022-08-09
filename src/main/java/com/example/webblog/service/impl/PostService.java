@@ -80,7 +80,7 @@ public class PostService implements IPostService {
 	@Override
 	public List<PostDTO> findAllByCategory(String category, Pageable pageable) {
 		List<PostDTO> postDTOS = new ArrayList<>();
-		List<PostEntity> postEntities = postRepository.findAllByCategory_Code(category, pageable).getContent();
+		List<PostEntity> postEntities = postRepository.findAllByCategory_CodeAndActiveIsTrue(category, pageable).getContent();
 		for(PostEntity post : postEntities){
 			PostDTO postDTO = postConverter.toDto(post);
 			DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -97,7 +97,7 @@ public class PostService implements IPostService {
 	@Override
 	public List<PostDTO> findAllByTab(String tab, Pageable pageable) {
 		List<PostDTO> postDTOS = new ArrayList<>();
-		List<PostEntity> postEntities = postRepository.findAllByTab(tab, pageable).getContent();
+		List<PostEntity> postEntities = postRepository.findAllByTab(tab,true, pageable).getContent();
 		for(PostEntity post : postEntities){
 			PostDTO postDTO = postConverter.toDto(post);
 			DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -110,6 +110,24 @@ public class PostService implements IPostService {
 		}
 		return postDTOS;
 	}
+
+	@Override
+	public List<PostDTO> findAllByActive(boolean isActive, Pageable pageable) {
+		List<PostDTO> postDTOS = new ArrayList<>();
+		List<PostEntity> postEntities = postRepository.findAllByActiveIsTrue( pageable).getContent();
+		for(PostEntity post : postEntities){
+			PostDTO postDTO = postConverter.toDto(post);
+			DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+			if(post.getCreatedDate() != null)
+				postDTO.setDateString(dateFormat.format(post.getCreatedDate()));
+			UserEntity user = userRepository.findOneByUserNameAndStatusAndEnabled(post.getCreatedBy(),1 ,true);
+			if(user != null)
+				postDTO.setAuthor(userConverter.toDto(user));
+			postDTOS.add(postDTO);
+		}
+		return postDTOS;
+	}
+
 
 
 	@Override
@@ -128,12 +146,17 @@ public class PostService implements IPostService {
 
 	@Override
 	public int getTotalItemWithCategory_Name(String name) {
-		return postRepository.findAllByCategory_Code(name).size();
+		return postRepository.findAllByCategory_CodeAndActiveIsTrue(name).size();
 	}
 
 	@Override
 	public int getTotalItemWithTab(String tab) {
-		return postRepository.findAllByTab(tab).size();
+		return postRepository.findAllByTab(tab, true).size();
+	}
+
+	@Override
+	public int getTotalItemWithActive(boolean isActive) {
+		return postRepository.findAllByActiveIsTrue().size();
 	}
 
 	@Override

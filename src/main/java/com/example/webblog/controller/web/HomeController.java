@@ -48,9 +48,9 @@ public class HomeController {
     @GetMapping(value = {"/trang-chu", "/", ""})
     public ModelAndView homePage(Principal principal) {
         Pageable pageable = PageRequest.of(0, 3, Sort.by(Sort.Direction.DESC, "createdDate"));
-        List<PostDTO> listTrending = postService.findAll(pageable);
-        List<PostDTO> newPost = postService.findAll(PageRequest.of(0,6,Sort.by(Sort.Direction.DESC, "createdDate")));
-        List<PostDTO> listPopular = postService.findAll(pageable);
+        List<PostDTO> listTrending = postService.findAllByActive(true,pageable);
+        List<PostDTO> newPost = postService.findAllByActive(true,PageRequest.of(0,6,Sort.by(Sort.Direction.DESC, "createdDate")));
+        List<PostDTO> listPopular = postService.findAllByActive(true,pageable);
         List<PostDTO> listSport = postService.findAllByCategory("the-thao",pageable);
         List<PostDTO> listGame = postService.findAllByCategory("game",pageable);
         ModelAndView mav = new ModelAndView("web/homepage");
@@ -201,8 +201,8 @@ public class HomeController {
             model.setCategoryDTO(categoryService.findByCode(category));
         }
         else{
-            dtos = postService.findAll(pageable);
-            model.setTotalItem(postService.getTotalItem());
+            dtos = postService.findAllByActive(true, pageable);
+            model.setTotalItem(postService.getTotalItemWithActive(true));
         }
 
         Integer i= (page-1)*limit +1;

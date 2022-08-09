@@ -110,17 +110,17 @@
     btnConfirm.onclick = function (){
         var data = app.sendInfOfEachUser()
         console.log(data)
-        if (data.status == 'Duyệt bài') {
+        if (data.status == 'post') {
             delete data.status;
             activePost(data);
             console.log(data)
         }
-        if (data.status == 'Gỡ bài') {
+        if (data.status == 'remove') {
             delete data.status;
             removePost(data);
             console.log(data)
         }
-        if (data.status == 'Xóa bài') {
+        if (data.status == 'delete') {
             delete data.status;
             deletePost(data.ids);
             console.log(data)
@@ -141,7 +141,7 @@
         fetch("/api/admin/post/active", options)
             .then(function (response){
                 console.log(response)
-                window.location.href = "/quan-tri/bai-viet"
+                window.location.href = "/quan-tri/bai-viet?page=1&limit=5"
                 return response.json()
             })
             .then(callback)
@@ -158,7 +158,7 @@
         fetch("/api/post/remove", options)
             .then(function (response){
                 console.log(response)
-                window.location.href = "/quan-tri/bai-viet"
+                window.location.href = "/quan-tri/bai-viet?page=1&limit=5"
                 return response.json()
             })
             .then(callback)
@@ -175,7 +175,7 @@
         fetch("/api/post", options)
             .then(function (response){
                 console.log(response)
-                window.location.href = "/quan-tri/bai-viet"
+                window.location.href = "/quan-tri/bai-viet?page=1&limit=5"
                 return response.json()
             })
             .then(callback)

@@ -14,13 +14,23 @@ import java.util.List;
 public interface PostRepository extends JpaRepository<PostEntity, Long>{
     PostEntity findPostEntitiesById(Long id);
     List<PostEntity> findAllByCreatedByOrderByCreatedDate(String name);
-    Page<PostEntity> findAllByCategory_Code(String name, Pageable pageable);
-    List<PostEntity> findAllByCategory_Code(String name);
 
-    @Query(value = "select p from PostEntity p where p.title like %:tab% order by p.createdDate desc ")
-    Page<PostEntity> findAllByTab(@Param("tab") String tab, Pageable pageable);
+    @Query(value = "select p from PostEntity p where p.category.code = ?1 and p.isActive = true ")
+    Page<PostEntity> findAllByCategory_CodeAndActiveIsTrue(String name , Pageable pageable);
 
-    @Query(value = "select p from PostEntity p where p.title like %:tab% order by p.createdDate desc ")
-    List<PostEntity> findAllByTab(@Param("tab") String tab);
+    @Query(value = "select p from PostEntity p where p.category.code = ?1 and p.isActive = true ")
+    List<PostEntity> findAllByCategory_CodeAndActiveIsTrue(String name);
+
+    @Query(value = "select p from  PostEntity p where p.isActive = true ")
+    Page<PostEntity> findAllByActiveIsTrue( Pageable pageable);
+
+    @Query(value = "select p from  PostEntity p where p.isActive = true ")
+    List<PostEntity> findAllByActiveIsTrue();
+
+    @Query(value = "select p from PostEntity p where p.title like %:tab% and  p.isActive = :isActive order by p.createdDate desc ")
+    Page<PostEntity> findAllByTab(@Param("tab") String tab,@Param("isActive") boolean isActive, Pageable pageable);
+
+    @Query(value = "select p from PostEntity p where p.title like %:tab% and  p.isActive = :isActive order by p.createdDate desc ")
+    List<PostEntity> findAllByTab(@Param("tab") String tab, @Param("isActive") boolean isActive);
 
 }
